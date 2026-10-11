@@ -24,3 +24,4 @@ dist-ssr
 
 # Contains a private API token — never commit
 src/mcpmarket-me/.mcp.json
+.vercel

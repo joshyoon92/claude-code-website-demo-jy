@@ -20,13 +20,9 @@ export default function Contact() {
       <section id="contact" className="section contact">
         <Reveal>
           <Rail index={4} label="Contact" />
-          <h2 className="contact__title">
-            Let’s build
-            <br />
-            the next one.
-          </h2>
+          <h2 className="contact__title">Get in touch.</h2>
           <p className="section__lede">
-            Get in touch about engineering, collaborations, or moving from architecture into software.
+            For engineering roles, collaborations, or questions about moving from architecture into software.
           </p>
         </Reveal>
         <Reveal delay={0.1} className="contact__actions">

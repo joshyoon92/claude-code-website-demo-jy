@@ -1,6 +1,6 @@
-import portrait from '../assets/portrait.jpg'
-import { contact, skills } from '../data/career'
-import { Mark, Rail, Reveal } from './ui'
+import portrait from "../assets/portrait.jpg";
+import { contact, skills } from "../data/career";
+import { Mark, Rail, Reveal } from "./ui";
 
 export default function About() {
   return (
@@ -19,17 +19,21 @@ export default function About() {
         </Reveal>
         <Reveal delay={0.1}>
           <p className="about__lead">
-            “I started my career leading and designing $100M+ high-rises as an architect.”
+            “I started my career leading and designing $100M+ high-rises as an
+            architect.”
           </p>
           <p>
-            Today I’m a Senior Software Engineer at JPMorgan Chase in Chicago. I own backend architecture
-            and data layers, build full-stack products in Java, Spring Boot, React and TypeScript, and design
-            the AI-assisted workflows (Claude Code) my teams use to ship faster.
+            Today I’m a Senior Software Engineer at JPMorgan Chase in Chicago. I
+            own backend architecture and data layers, build full-stack products
+            in Java, Spring Boot, React and TypeScript, and design the
+            AI-assisted workflows (Claude Code) my teams use to ship faster.
           </p>
           <p>
-            Architecture taught me to work from requirements to documents to a built result, coordinating
-            many disciplines on a fixed schedule. I bring the same habit to software: start from the business
-            requirements, design the data model first, and ship something people rely on.
+            Architecture taught me to work from requirements to documents to a
+            built result, coordinating many disciplines on a fixed schedule. I
+            bring the same habit to software: start from the business
+            requirements, design the data model first, and ship something people
+            rely on.
           </p>
         </Reveal>
 
@@ -41,7 +45,8 @@ export default function About() {
             </div>
             <div>
               <dt>Education</dt>
-              <dd>M.S. Software Development, Boston University · B.Arch, IIT</dd>
+              <dd>M.S. Software Development, Boston University</dd>
+              <dd>Bachelor of Architecture, Illinois Tech</dd>
             </div>
             <div>
               <dt>Languages</dt>
@@ -66,7 +71,12 @@ export default function About() {
         </Reveal>
 
         <Reveal delay={0.25} className="about__links">
-          <a className="btn btn--dark" href={contact.linkedin} target="_blank" rel="noreferrer">
+          <a
+            className="btn btn--dark"
+            href={contact.linkedin}
+            target="_blank"
+            rel="noreferrer"
+          >
             LinkedIn ↗
           </a>
           <a className="btn btn--outline" href="#contact">
@@ -75,5 +85,5 @@ export default function About() {
         </Reveal>
       </div>
     </section>
-  )
+  );
 }

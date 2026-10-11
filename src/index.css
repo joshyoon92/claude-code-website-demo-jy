@@ -5,14 +5,14 @@
    mono uppercase metadata rails, thin guide lines, no gradients or grain. */
 
 @font-face {
-  font-family: 'Geist';
-  src: url('./assets/fonts/GeistVariable-latin.woff2') format('woff2');
+  font-family: "Geist";
+  src: url("./assets/fonts/GeistVariable-latin.woff2") format("woff2");
   font-weight: 100 900;
   font-display: swap;
 }
 @font-face {
-  font-family: 'Geist Mono';
-  src: url('./assets/fonts/GeistMonoVariable-latin.woff2') format('woff2');
+  font-family: "Geist Mono";
+  src: url("./assets/fonts/GeistMonoVariable-latin.woff2") format("woff2");
   font-weight: 100 900;
   font-display: swap;
 }
@@ -37,19 +37,19 @@
   --paper-line: #d4d4d4;
   --paper-body: #1a1a1a;
   --paper-mute: #525252;
-  --olive: #556300;
+  --olive: #1d4ed8;
 
-  --lime: #d4f527;
-  --lime-ink: #0a0a0a;
-  --lime-soft: rgba(212, 245, 39, 0.14);
+  --lime: #3b82f6;
+  --lime-ink: #ffffff;
+  --lime-soft: rgba(59, 130, 246, 0.18);
 
   /* read by the wireframe canvas */
   --line: #8a8a8a;
   --line-faint: #222222;
   --accent: var(--lime);
 
-  --sans: 'Geist', -apple-system, 'Segoe UI', system-ui, sans-serif;
-  --mono: 'Geist Mono', ui-monospace, 'Cascadia Mono', Consolas, monospace;
+  --sans: "Geist", -apple-system, "Segoe UI", system-ui, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
 
   --gutter: clamp(1.25rem, 5vw, 5rem);
   --max: 1440px;
@@ -225,7 +225,7 @@ kbd {
 }
 @keyframes pulse {
   70% {
-    box-shadow: 0 0 0 10px rgba(212, 245, 39, 0);
+    box-shadow: 0 0 0 10px rgba(59, 130, 246, 0);
   }
 }
 
@@ -421,6 +421,10 @@ kbd {
   max-height: calc(100svh - var(--nav-h) - 8rem);
   justify-self: end;
   width: 100%;
+}
+.hero__portrait-motion {
+  width: 100%;
+  height: 100%;
 }
 .hero__portrait img {
   width: 100%;
@@ -726,7 +730,7 @@ cite {
   gap: 0.75rem;
 }
 .awards li::before {
-  content: '';
+  content: "";
   flex: 0 0 auto;
   width: 6px;
   height: 6px;
@@ -822,7 +826,10 @@ cite {
 }
 .index__row {
   display: grid;
-  grid-template-columns: 5.5rem minmax(0, 2.2fr) minmax(0, 1.4fr) minmax(0, 1.3fr) 10rem;
+  grid-template-columns: 5.5rem minmax(0, 2.2fr) minmax(0, 1.4fr) minmax(
+      0,
+      1.3fr
+    ) 10rem;
   gap: 1rem;
   align-items: center;
   width: 100%;
@@ -867,7 +874,7 @@ button.index__row:hover,
   color: var(--paper-mute);
 }
 .status::before {
-  content: '';
+  content: "";
   width: 7px;
   height: 7px;
   border-radius: 50%;
@@ -1220,7 +1227,10 @@ button.index__row:hover,
   grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
   gap: clamp(2.5rem, 6vw, 6rem);
   align-items: center;
-  padding-inline: max(var(--gutter), calc((100% - var(--max)) / 2 + var(--gutter)));
+  padding-inline: max(
+    var(--gutter),
+    calc((100% - var(--max)) / 2 + var(--gutter))
+  );
 }
 .about > * {
   max-width: none;
@@ -1485,19 +1495,6 @@ button.index__row:hover,
 .side__detail {
   color: var(--fg-3);
   font-size: 0.95rem;
-}
-.side__item--bridge .side__title::after {
-  content: 'Arch × Code';
-  margin-left: 0.6rem;
-  padding: 0.15rem 0.5rem;
-  border-radius: var(--r-pill);
-  background: var(--lime);
-  color: var(--lime-ink);
-  font-family: var(--mono);
-  font-size: 0.62rem;
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  vertical-align: 0.2em;
 }
 
 /* ───────────── Architecture archive intro ───────────── */
