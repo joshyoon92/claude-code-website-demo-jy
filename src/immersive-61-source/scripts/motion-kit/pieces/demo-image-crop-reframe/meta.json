@@ -1,0 +1,50 @@
+{
+  "slug": "demo-image-crop-reframe",
+  "title_ko": "같은 이미지에서 주인공 찾기",
+  "category": "technique",
+  "size": [1080, 830],
+  "duration": 6.5,
+  "key_at": [0.3, 2.0, 3.6, 5.9],
+  "uses": ["shorts", "ad", "longform", "web"],
+  "what": "An oversized image moves behind a fixed crop mask while a crop handle tightens the composition, then the selected crop becomes the final square cover.",
+  "how_to_use": "이미지 편집·썸네일 구도·자동 리프레임 설명에 사용. Variables: headline, prompt, action, result. This is an original simulated interface, not a recording of a commercial app.",
+  "vars": ["headline", "prompt", "action", "result"],
+  "techniques": ["crop-mask", "pan-inside-mask", "thirds", "aspect-ratio"],
+  "pack": "immersive-2026-10",
+  "family": "screen-workflow",
+  "source_refs": ["https://screen.studio/", "https://jitter.video/templates/", "https://rive.app/"],
+  "beats": [
+    {
+      "at": 1.3,
+      "action": "고정된 크롭 틀 안에서 이미지 위치를 옮긴다"
+    },
+    {
+      "at": 3.3,
+      "action": "핸들로 정사각형 비율을 맞춘다"
+    },
+    {
+      "at": 4.55,
+      "action": "가이드가 사라지고 선택한 구도가 남는다"
+    }
+  ],
+  "distinction": "An oversized image moves behind a fixed crop mask while a crop handle tightens the composition, then the selected crop becomes the final square cover.",
+  "sfx_cues": [
+    {
+      "at": 0.5,
+      "type": "soft-interface-tap"
+    },
+    {
+      "at": 2.1,
+      "type": "short-whoosh"
+    },
+    {
+      "at": 4.7,
+      "type": "resolved-tick"
+    }
+  ],
+  "shorts_use": "이미지 편집·썸네일 구도·자동 리프레임 설명에 사용.",
+  "suggested_duration": 5.5,
+  "entry_state": "큰 이미지 위의 크롭 가이드",
+  "exit_state": "REFRAMED / 1:1",
+  "evidence_note": "Technique references motivate attention and state transitions; no popularity or causal performance claim. All visual artwork and code are original."
+}

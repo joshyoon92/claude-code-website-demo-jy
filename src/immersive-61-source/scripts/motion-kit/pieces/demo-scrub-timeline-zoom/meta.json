@@ -1,0 +1,50 @@
+{
+  "slug": "demo-scrub-timeline-zoom",
+  "title_ko": "타임라인에서 정확한 순간 찾기",
+  "category": "technique",
+  "size": [1080, 830],
+  "duration": 6.0,
+  "key_at": [0.3, 2.0, 3.6, 5.6],
+  "uses": ["shorts", "ad", "longform", "web"],
+  "what": "A playhead scrubs a visual sequence, the timeline zooms around that anchored playhead, and a clip boundary snaps to the chosen edit point.",
+  "how_to_use": "영상 편집 도구의 탐색과 정밀 편집을 설명할 때. Variables: headline, prompt, action, result. This is an original simulated interface, not a recording of a commercial app.",
+  "vars": ["headline", "prompt", "action", "result"],
+  "techniques": ["timeline-scrub", "anchored-zoom", "trim-handle", "timecode"],
+  "pack": "immersive-2026-10",
+  "family": "screen-workflow",
+  "source_refs": ["https://screen.studio/", "https://jitter.video/templates/", "https://rive.app/"],
+  "beats": [
+    {
+      "at": 1.1,
+      "action": "플레이헤드를 원하는 장면으로 이동한다"
+    },
+    {
+      "at": 2.85,
+      "action": "플레이헤드를 고정한 채 타임라인을 확대한다"
+    },
+    {
+      "at": 3.85,
+      "action": "클립 끝을 편집 지점으로 당긴다"
+    }
+  ],
+  "distinction": "A playhead scrubs a visual sequence, the timeline zooms around that anchored playhead, and a clip boundary snaps to the chosen edit point.",
+  "sfx_cues": [
+    {
+      "at": 0.5,
+      "type": "soft-interface-tap"
+    },
+    {
+      "at": 2.1,
+      "type": "short-whoosh"
+    },
+    {
+      "at": 4.7,
+      "type": "resolved-tick"
+    }
+  ],
+  "shorts_use": "영상 편집 도구의 탐색과 정밀 편집을 설명할 때.",
+  "suggested_duration": 5.5,
+  "entry_state": "세 개의 영상 클립 타임라인",
+  "exit_state": "FRAME FOUND / CUT ALIGNED",
+  "evidence_note": "Technique references motivate attention and state transitions; no popularity or causal performance claim. All visual artwork and code are original."
+}

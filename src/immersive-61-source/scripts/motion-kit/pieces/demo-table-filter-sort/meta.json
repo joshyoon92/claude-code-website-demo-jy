@@ -1,0 +1,50 @@
+{
+  "slug": "demo-table-filter-sort",
+  "title_ko": "필터로 줄이고 순서로 읽다",
+  "category": "technique",
+  "size": [1080, 830],
+  "duration": 6.5,
+  "key_at": [0.3, 2.0, 3.6, 5.9],
+  "uses": ["shorts", "ad", "longform", "web"],
+  "what": "A status filter removes incomplete rows, remaining rows close the gaps, then sorting reverses their metric order and highlights the leading result.",
+  "how_to_use": "스프레드시트·데이터베이스·업무 관리 팁에 삽입. Variables: headline, prompt, action, result. This is an original simulated interface, not a recording of a commercial app.",
+  "vars": ["headline", "prompt", "action", "result"],
+  "techniques": ["table-filter", "row-collapse", "sort", "data-order"],
+  "pack": "immersive-2026-10",
+  "family": "screen-workflow",
+  "source_refs": ["https://screen.studio/", "https://jitter.video/templates/", "https://rive.app/"],
+  "beats": [
+    {
+      "at": 1.3,
+      "action": "미완료 항목을 필터로 제외한다"
+    },
+    {
+      "at": 1.6,
+      "action": "남은 행이 빈 공간을 채운다"
+    },
+    {
+      "at": 3.45,
+      "action": "최신 완료일 순으로 재정렬한다"
+    }
+  ],
+  "distinction": "A status filter removes incomplete rows, remaining rows close the gaps, then sorting reverses their metric order and highlights the leading result.",
+  "sfx_cues": [
+    {
+      "at": 0.5,
+      "type": "soft-interface-tap"
+    },
+    {
+      "at": 2.1,
+      "type": "short-whoosh"
+    },
+    {
+      "at": 4.7,
+      "type": "resolved-tick"
+    }
+  ],
+  "shorts_use": "스프레드시트·데이터베이스·업무 관리 팁에 삽입.",
+  "suggested_duration": 5.5,
+  "entry_state": "완료·미완료가 섞인 작업 테이블",
+  "exit_state": "FILTERED / NEWEST FIRST",
+  "evidence_note": "Technique references motivate attention and state transitions; no popularity or causal performance claim. All visual artwork and code are original."
+}

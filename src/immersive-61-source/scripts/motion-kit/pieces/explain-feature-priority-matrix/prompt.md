@@ -1,0 +1,1 @@
+1080×830 크기의 7.4초 모션 그래픽을 만들어 주세요. 장면의 주제는 “기준을 놓고 우선순위 정하기”입니다. Four sample feature options are positioned on an impact/cost matrix before one is prioritized; it exposes the decision criteria. 검정에 가까운 배경과 흰색 글자, 한 곳의 라임색 강조를 쓰고, 실제로 읽어야 할 결과는 1초 이상 보여 주세요. 텍스트·데이터는 교체 가능하게 하고, 어느 시간으로 이동해도 같은 프레임이 나오는 편집 가능한 HTML과 MP4로 제공해 주세요.

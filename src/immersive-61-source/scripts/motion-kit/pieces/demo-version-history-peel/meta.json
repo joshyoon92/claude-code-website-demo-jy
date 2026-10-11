@@ -1,0 +1,54 @@
+{
+  "slug": "demo-version-history-peel",
+  "title_ko": "이전 버전을 꺼내 복원",
+  "category": "technique",
+  "size": [1080, 830],
+  "duration": 6.5,
+  "key_at": [0.3, 2.0, 3.6, 5.9],
+  "uses": ["shorts", "ad", "longform", "web"],
+  "what": "Three stacked versions peel apart along depth and time, a cursor selects the middle revision, and that revision returns to the front as the restored design.",
+  "how_to_use": "버전 기록·되돌리기·이전 결과 비교를 소개할 때. Variables: headline, prompt, action, result. This is an original simulated interface, not a recording of a commercial app.",
+  "vars": ["headline", "prompt", "action", "result"],
+  "techniques": ["history-peel", "layer-separation", "revision-select", "restore"],
+  "pack": "immersive-2026-10",
+  "family": "screen-workflow",
+  "source_refs": ["https://screen.studio/", "https://jitter.video/templates/", "https://rive.app/"],
+  "beats": [
+    {
+      "at": 0.6,
+      "action": "쌓인 버전 카드가 양옆으로 펼쳐진다"
+    },
+    {
+      "at": 2.4,
+      "action": "가운데 버전을 선택한다"
+    },
+    {
+      "at": 2.6,
+      "action": "선택한 버전이 다시 전면으로 나온다"
+    },
+    {
+      "at": 3.5,
+      "action": "복원 완료를 표시한다"
+    }
+  ],
+  "distinction": "Three stacked versions peel apart along depth and time, a cursor selects the middle revision, and that revision returns to the front as the restored design.",
+  "sfx_cues": [
+    {
+      "at": 0.5,
+      "type": "soft-interface-tap"
+    },
+    {
+      "at": 2.1,
+      "type": "short-whoosh"
+    },
+    {
+      "at": 4.7,
+      "type": "resolved-tick"
+    }
+  ],
+  "shorts_use": "버전 기록·되돌리기·이전 결과 비교를 소개할 때.",
+  "suggested_duration": 5.5,
+  "entry_state": "겹쳐진 세 가지 버전",
+  "exit_state": "VERSION 2 RESTORED",
+  "evidence_note": "Technique references motivate attention and state transitions; no popularity or causal performance claim. All visual artwork and code are original."
+}

@@ -1,0 +1,50 @@
+{
+  "slug": "demo-split-editor-preview",
+  "title_ko": "코드를 쓰면 화면이 따라온다",
+  "category": "technique",
+  "size": [1080, 830],
+  "duration": 6.5,
+  "key_at": [0.3, 2.0, 3.6, 5.9],
+  "uses": ["shorts", "ad", "longform", "web"],
+  "what": "A split editor highlights and types a button label, then the exact same label updates in the adjacent live preview before the preview expands.",
+  "how_to_use": "AI 코딩·실시간 미리보기의 결과를 보여주는 인서트. Variables: headline, prompt, action, result. This is an original simulated interface, not a recording of a commercial app.",
+  "vars": ["headline", "prompt", "action", "result"],
+  "techniques": ["split-editor", "live-preview", "ime-typing", "preview-takeover"],
+  "pack": "immersive-2026-10",
+  "family": "screen-workflow",
+  "source_refs": ["https://screen.studio/", "https://jitter.video/templates/", "https://rive.app/"],
+  "beats": [
+    {
+      "at": 1.1,
+      "action": "코드 안의 버튼 문구를 입력한다"
+    },
+    {
+      "at": 2.65,
+      "action": "옆 미리보기에 같은 문구가 반영된다"
+    },
+    {
+      "at": 3.55,
+      "action": "완성 화면이 중앙으로 확대된다"
+    }
+  ],
+  "distinction": "A split editor highlights and types a button label, then the exact same label updates in the adjacent live preview before the preview expands.",
+  "sfx_cues": [
+    {
+      "at": 0.5,
+      "type": "soft-interface-tap"
+    },
+    {
+      "at": 2.1,
+      "type": "short-whoosh"
+    },
+    {
+      "at": 4.7,
+      "type": "resolved-tick"
+    }
+  ],
+  "shorts_use": "AI 코딩·실시간 미리보기의 결과를 보여주는 인서트.",
+  "suggested_duration": 5.5,
+  "entry_state": "코드 편집기와 미리보기",
+  "exit_state": "CODE → LIVE PREVIEW",
+  "evidence_note": "Technique references motivate attention and state transitions; no popularity or causal performance claim. All visual artwork and code are original."
+}

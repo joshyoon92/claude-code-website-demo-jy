@@ -1,0 +1,109 @@
+/* CHA Motion Kit — brand layer for video compositions.
+   Source of truth: careerhackeralex DESIGN.md + docs/design/creative-direction.md (Volt Lime rebrand, Alex 2026-10-01).
+   Charcoal authority, ONE volt-lime signal per frame (a highlighter, a plate, a live dot — never decoration),
+   KO-first type at weights 400/500/600 with tight editorial tracking, mono uppercase metadata rails, thin guide lines.
+   Clean default (Alex 2026-10-01: "모던하게 심플 깔끔하게"): solid ink or warm off-white, no grain, no gradients-as-decoration. */
+
+@font-face { font-family: "Geist"; src: url("fonts/GeistVariable-latin.woff2") format("woff2"); font-weight: 100 900; }
+@font-face { font-family: "Geist Mono"; src: url("fonts/GeistMonoVariable-latin.woff2") format("woff2"); font-weight: 100 900; }
+@font-face { font-family: "Pretendard"; src: url("fonts/PretendardVariable.woff2") format("woff2"); font-weight: 45 920; }
+
+:root {
+  /* ink substrate (default for video) */
+  --ink: #0A0A0A; --ink-1: #111111; --ink-2: #141414; --ink-3: #1A1A1A; --ink-4: #222222;
+  --line-1: #1E1E1E; --line-2: #2A2A2A; --line-3: #333333;
+  --fg-1: #FFFFFF; --fg-2: #CCCCCC; --fg-3: #A1A1A1; --fg-4: #888888; --fg-5: #6B6B6B; --fg-6: #555555;
+  /* paper substrate */
+  --paper: #F4F3EE; --paper-1: #FAFAF7; --paper-2: #ECEAE3; --paper-line: #D4D4D4; --paper-ink: #0A0A0A;
+  --paper-body: #1A1A1A; --paper-mute: #525252; --olive: #556300;
+  /* the one signal */
+  --lime: #D4F527; --lime-ink: #0A0A0A; --lime-soft: rgba(212, 245, 39, 0.14); --lime-line: rgba(212, 245, 39, 0.35);
+  /* status — the retired brand red lives here only */
+  --error: #B00D26; --success: #6EE7B7;
+  --sans: "Geist", "Pretendard", -apple-system, "Apple SD Gothic Neo", sans-serif;
+  --mono: "Geist Mono", "Pretendard", ui-monospace, monospace;
+  /* video type scale (1080-wide canvas). Weights 400/500/600 only. */
+  --t-hero: 132px; --t-display: 96px; --t-h1: 72px; --t-h2: 54px; --t-h3: 40px; --t-body: 32px; --t-small: 26px; --t-micro: 21px;
+  --r-window: 22px; --r-card: 24px; --r-pill: 999px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { overflow: hidden; background: var(--ink); }
+.cha { position: relative; overflow: hidden; font-family: var(--sans); color: var(--fg-1); background: var(--ink);
+  -webkit-font-smoothing: antialiased; font-kerning: normal; word-break: keep-all; }
+.cha.paper { background: var(--paper); color: var(--paper-ink); }
+
+/* type */
+.t-hero, .t-display, .t-h1, .t-h2, .t-h3 { font-weight: 600; white-space: nowrap; }
+.t-hero { font-size: var(--t-hero); line-height: 1.02; letter-spacing: -0.045em; }
+.t-display { font-size: var(--t-display); line-height: 1.05; letter-spacing: -0.04em; }
+.t-h1 { font-size: var(--t-h1); line-height: 1.1; letter-spacing: -0.035em; }
+.t-h2 { font-size: var(--t-h2); line-height: 1.15; letter-spacing: -0.03em; }
+.t-h3 { font-size: var(--t-h3); line-height: 1.25; letter-spacing: -0.02em; font-weight: 500; }
+.t-body { font-size: var(--t-body); line-height: 1.5; font-weight: 400; color: var(--fg-2); }
+.paper .t-body { color: var(--paper-body); }
+.t-rail { font-family: var(--mono); font-size: var(--t-micro); font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--fg-4); white-space: nowrap; }
+.paper .t-rail { color: var(--paper-mute); }
+.t-stat { font-size: 200px; font-weight: 600; letter-spacing: -0.05em; line-height: 0.92; font-variant-numeric: tabular-nums; }
+
+/* the highlighter: lime fill behind ink text (on ink or paper). Animate .mark-fill scaleX 0→1 from the left. */
+.mark { position: relative; display: inline-block; color: var(--lime-ink); padding: 0 0.12em; }
+.mark > .mark-fill { position: absolute; left: 0; right: 0; top: 0.08em; bottom: 0.02em; background: var(--lime); transform-origin: 0 50%; }
+.mark > span { position: relative; }  /* structure: <span class="mark"><i class="mark-fill"></i><span>text</span></span> */
+.mark.mark-ink { color: var(--fg-1); }
+.mark.mark-ink > .mark-ink-copy { position: absolute; left: 0.12em; top: 0; color: var(--lime-ink); font: inherit; white-space: nowrap; }
+.p3 { position: absolute; width: 0; height: 0; transform-style: preserve-3d; }  /* zero-size 3D rig node: pivots where it is placed */
+.lime { color: var(--lime); }
+.olive { color: var(--olive); }
+
+/* guide lines at the editorial rails (~12% margins) */
+.guides { position: absolute; inset: 0; pointer-events: none; }
+.guides > i { position: absolute; background: var(--line-1); }
+.paper .guides > i { background: var(--paper-line); }
+
+/* ---- devices (generic; no maker logos) ---- */
+.cha-view { position: absolute; inset: 0; perspective: 2200px; perspective-origin: 50% 45%; }
+.cha-world { position: absolute; left: 50%; top: 50%; width: 0; height: 0; transform-style: preserve-3d; }
+.p3d { transform-style: preserve-3d; }
+
+.cha-phone { position: absolute; border-radius: 64px; background: #1C1C1E; padding: 14px;
+  box-shadow: inset 0 0 0 2px #3A3A3C, 0 40px 90px rgba(0,0,0,0.45); }
+.cha-phone > .cha-screen { position: relative; width: 100%; height: 100%; border-radius: 50px; overflow: hidden; background: var(--ink-1); }
+.cha-phone > .cha-island { position: absolute; left: 50%; top: 30px; width: 118px; height: 34px; margin-left: -59px; border-radius: 20px; background: #000; z-index: 5; }
+.cha-phone .cha-status { position: absolute; left: 0; right: 0; top: 0; height: 64px; display: flex; justify-content: space-between; align-items: center;
+  padding: 8px 40px 0 46px; font-family: var(--sans); font-size: 21px; font-weight: 600; color: var(--fg-1); z-index: 4; }
+
+.cha-laptop { position: absolute; transform-style: preserve-3d; }
+.cha-laptop > .cha-lid { position: absolute; left: 0; top: 0; transform-origin: 50% 100%; transform-style: preserve-3d; }
+.cha-laptop > .cha-lid > .cha-lid-front, .cha-laptop > .cha-lid > .cha-lid-back { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.cha-laptop .cha-screen { position: relative; width: 100%; height: 100%; overflow: hidden; background: var(--ink-1); }
+.cha-laptop > .cha-deck { position: absolute; transform-origin: 50% 0; transform: rotateX(90deg); transform-style: preserve-3d; }
+.cha-win { position: absolute; border-radius: var(--r-window); background: var(--ink-2); overflow: hidden;
+  box-shadow: inset 0 0 0 1.5px var(--line-3), 0 30px 80px rgba(0,0,0,0.5); }
+.paper .cha-win { background: #FFFFFF; box-shadow: inset 0 0 0 1.5px var(--paper-line), 0 30px 70px rgba(10,10,10,0.14); }
+.cha-win > .cha-bar { position: relative; height: 56px; display: flex; align-items: center; gap: 10px; padding: 0 22px; border-bottom: 1.5px solid var(--line-2); }
+.paper .cha-win > .cha-bar { border-bottom-color: var(--paper-line); }
+.cha-win > .cha-bar > b { width: 15px; height: 15px; border-radius: 50%; background: var(--line-3); }
+.paper .cha-win > .cha-bar > b { background: var(--paper-line); }
+.cha-win > .cha-bar > span { position: absolute; left: 0; right: 0; text-align: center; font-family: var(--mono); font-size: 19px; font-weight: 500;
+  letter-spacing: 0.08em; color: var(--fg-4); pointer-events: none; }
+.cha-win > .cha-body { position: relative; }
+
+.cha-cursor { position: absolute; left: 0; top: 0; width: 46px; height: 56px; z-index: 50; }
+.cha-cursor svg { display: block; width: 100%; height: 100%; overflow: visible; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.35)); }
+.cha-ring { position: absolute; left: 0; top: 0; width: 80px; height: 80px; margin: -40px 0 0 -40px; border-radius: 50%; border: 4px solid var(--lime); opacity: 0; z-index: 49; }
+
+.cha-caret { display: inline-block; width: 0.08em; height: 1.05em; margin-left: 0.04em; vertical-align: -0.16em; background: var(--lime); }
+.paper .cha-caret { background: var(--paper-ink); }
+.k-ch { display: none; }
+
+/* UI atoms */
+.cha-pill { display: inline-flex; align-items: center; gap: 12px; height: 64px; padding: 0 30px; border-radius: var(--r-pill);
+  font-size: 28px; font-weight: 600; letter-spacing: -0.02em; white-space: nowrap; }
+.cha-pill.ink { background: var(--ink-3); color: var(--fg-1); box-shadow: inset 0 0 0 1.5px var(--line-3); }
+.cha-pill.white { background: #FFFFFF; color: var(--ink); }
+.cha-pill.lime { background: var(--lime); color: var(--lime-ink); }
+.cha-dot { display: inline-block; width: 14px; height: 14px; border-radius: 50%; background: var(--lime); }
+.cha-bar-skel { height: 18px; border-radius: 9px; background: var(--ink-4); }
+.paper .cha-bar-skel { background: var(--paper-2); }

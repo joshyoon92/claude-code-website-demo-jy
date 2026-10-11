@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=1080,height=830">
+<link rel="stylesheet" href="brand/cha.css"><link rel="stylesheet" href="brand/immersive-create.css">
+<script src="brand/gsap.min.js"></script><script src="brand/cha-motion.js"></script><script src="brand/immersive-create.js"></script>
+<style>#tokens{position:absolute;left:70px;right:70px;top:248px;display:flex;justify-content:center;gap:15px}#tokens span{border:1px solid #777;border-radius:7px;background:#252525;padding:17px 22px;font-size:28px}.pixel{position:absolute;width:38px;height:38px;border:1px solid #151515}#output{left:160px;top:58px;width:664px;height:464px;border-radius:0}#token-note{position:absolute;left:214px;bottom:22px;font-size:21px;color:#aaa}</style><link rel="stylesheet" href="brand/immersive-life.css"><script src="brand/immersive-life.js"></script></head><body>
+<div class="cha ic-stage" id="stage" data-composition-id="create-token-to-pixel" data-start="0" data-duration="6.8" data-width="1080" data-height="830" data-composition-variables='[{&quot;id&quot;: &quot;headline&quot;, &quot;type&quot;: &quot;string&quot;, &quot;label&quot;: &quot;headline&quot;, &quot;default&quot;: &quot;텍스트 토큰이 그림의 재료로&quot;}, {&quot;id&quot;: &quot;tokens&quot;, &quot;type&quot;: &quot;string&quot;, &quot;label&quot;: &quot;tokens&quot;, &quot;default&quot;: &quot;종이,곡선,풍경,햇빛&quot;}, {&quot;id&quot;: &quot;image&quot;, &quot;type&quot;: &quot;string&quot;, &quot;label&quot;: &quot;image&quot;, &quot;default&quot;: &quot;&quot;}]'>
+<div class="ic-head"><span>CREATE / TOKEN-TO-PIXEL</span><span>CHA MOTION</span></div><div class="ic-title" id="headline"></div>
+<div class="ic-body clip" id="canvas" data-start="0" data-duration="6.8" data-track-index="0"><div id="tokens"></div><div id="pixels"></div><div id="output" class="ic-panel"></div><div id="token-note" class="ic-label">텍스트 → 시각 결과 · 개념 비유</div></div>
+<div class="ic-foot"><span>설명용 재연 · 원본 벡터 아트</span><span>EDITABLE / 06.8 SEC</span></div></div>
+<script>(()=>{
+const V=CHA.vars({"headline": "텍스트 토큰이 그림의 재료로", "tokens": "종이,곡선,풍경,햇빛", "image": ""});
+IC.setText('headline',IC.txt(V.headline,22));
+const tl=gsap.timeline({paused:true});
+window.__timelines=window.__timelines||{};
+window.__timelines["create-token-to-pixel"]=tl;
+document.getElementById('tokens').innerHTML=IC.txt(V.tokens,28).split(',').slice(0,4).map(s=>`<span>${IC.esc(s.trim())}</span>`).join('');document.getElementById('output').innerHTML=IC.art(6,V.image);let cells='';for(let y=0;y<12;y++)for(let x=0;x<17;x++){const mountain=y>6+Math.sin(x*.7)*2;const arch=(x>=7&&x<=10&&y>=3&&y<11&&(x===7||x===10||y===3));const color=arch?'#f4f3ee':mountain?'#77776e':'#d8d5c7';cells+=`<i class="pixel" style="left:${166+x*38}px;top:${63+y*38}px;background:${color}"></i>`;}document.getElementById('pixels').innerHTML=cells;gsap.set(['#pixels','#output','#token-note'],{opacity:0});
+tl.fromTo('#tokens span',{opacity:0,y:20},{opacity:1,y:0,duration:.4,stagger:.13},.15);tl.to('#tokens',{scale:.5,opacity:0,duration:.65,ease:'power3.inOut'},1.4);tl.set('#pixels',{opacity:1},1.65);const pixels=gsap.utils.toArray('.pixel');pixels.forEach((p,i)=>tl.fromTo(p,{x:492-(166+i%17*38),y:275-(63+Math.floor(i/17)*38),scale:.05},{x:0,y:0,scale:1,duration:.85,ease:'power3.out'},1.7+(i%17)*.025+Math.floor(i/17)*.018));
+tl.to('#output',{opacity:1,duration:1},3.7);tl.to('#pixels',{opacity:0,duration:.6},3.9);tl.to('#token-note',{opacity:1,duration:.35},4.7);
+tl.set({},{},6.8);IMM.life(tl);tl.seek(0);
+})();</script></body></html>

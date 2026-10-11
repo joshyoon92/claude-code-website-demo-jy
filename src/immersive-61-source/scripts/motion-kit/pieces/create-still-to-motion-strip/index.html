@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=1080,height=830">
+<link rel="stylesheet" href="brand/cha.css"><link rel="stylesheet" href="brand/immersive-create.css">
+<script src="brand/gsap.min.js"></script><script src="brand/cha-motion.js"></script><script src="brand/immersive-create.js"></script>
+<style>#hero{left:212px;top:50px;width:560px;height:392px;transform-origin:50% 50%}#film{position:absolute;left:40px;top:458px;display:flex;gap:12px}.frame{width:171px;height:92px;overflow:hidden;border-radius:5px}#scrub{position:absolute;left:40px;top:564px;width:904px;height:2px;background:#555}#progress{height:3px;width:100%;background:#d4f527;transform-origin:0 50%}#playhead{position:absolute;left:0;top:-113px;width:2px;height:118px;background:#f4f3ee}#state{position:absolute;left:36px;top:30px}#motion-label{left:56px;bottom:153px;font-size:27px;color:#0a0a0a}</style><link rel="stylesheet" href="brand/immersive-life.css"><script src="brand/immersive-life.js"></script></head><body>
+<div class="cha ic-stage" id="stage" data-composition-id="create-still-to-motion-strip" data-start="0" data-duration="6.8" data-width="1080" data-height="830" data-composition-variables='[{&quot;id&quot;: &quot;headline&quot;, &quot;type&quot;: &quot;string&quot;, &quot;label&quot;: &quot;headline&quot;, &quot;default&quot;: &quot;정지 이미지에서 움직이는 장면으로&quot;}, {&quot;id&quot;: &quot;image&quot;, &quot;type&quot;: &quot;string&quot;, &quot;label&quot;: &quot;image&quot;, &quot;default&quot;: &quot;&quot;}]'>
+<div class="ic-head"><span>CREATE / STILL-TO-MOTION-STRIP</span><span>CHA MOTION</span></div><div class="ic-title" id="headline"></div>
+<div class="ic-body clip" id="canvas" data-start="0" data-duration="6.8" data-track-index="0"><div id="hero" class="ic-panel"></div><div id="film"></div><div id="scrub"><div id="progress"></div><div id="playhead"></div></div><div class="ic-pill" id="state">STILL</div><div id="motion-label" class="ic-read">이미지에 시간을 더하다</div></div>
+<div class="ic-foot"><span>설명용 재연 · 원본 벡터 아트</span><span>EDITABLE / 06.8 SEC</span></div></div>
+<script>(()=>{
+const V=CHA.vars({"headline": "정지 이미지에서 움직이는 장면으로", "image": ""});
+IC.setText('headline',IC.txt(V.headline,22));
+const tl=gsap.timeline({paused:true});
+window.__timelines=window.__timelines||{};
+window.__timelines["create-still-to-motion-strip"]=tl;
+document.getElementById('hero').innerHTML=IC.art(0,V.image);document.getElementById('film').innerHTML=Array.from({length:5},(_,i)=>`<div class="frame">${IC.art(i%4)}</div>`).join('');
+gsap.set('#film',{y:130,opacity:0});gsap.set(['#scrub','#motion-label'],{opacity:0});gsap.set('#progress',{scaleX:0});
+tl.to('#hero',{x:0,y:-18.5,scaleX:904/560,scaleY:405/392,duration:.9,ease:'power3.inOut'},.8);tl.to('#state',{opacity:0,duration:.2},.9);
+tl.to('#film',{y:0,opacity:1,duration:.7,ease:'power3.out'},1.65);tl.to('#scrub',{opacity:1,duration:.2},1.8);
+tl.to('#hero .art-object',{x:28,duration:3.6,ease:'sine.inOut'},2.1);tl.to('#hero .art-sun',{x:-44,y:15,duration:3.6,ease:'sine.inOut'},2.1);
+tl.to('#playhead',{x:904,duration:3.8,ease:'none'},2);tl.to('#progress',{scaleX:1,duration:3.8,ease:'none'},2);tl.fromTo('.frame',{opacity:.3},{opacity:1,stagger:.6,duration:.3},2);tl.to('#motion-label',{opacity:1,duration:.4},5.1);
+tl.set({},{},6.8);IMM.life(tl);tl.seek(0);
+})();</script></body></html>

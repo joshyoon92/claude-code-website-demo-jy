@@ -1,0 +1,50 @@
+{
+  "slug": "demo-form-to-dashboard",
+  "title_ko": "입력이 곧 대시보드가 된다",
+  "category": "technique",
+  "size": [1080, 830],
+  "duration": 6.5,
+  "key_at": [0.3, 2.0, 3.6, 5.9],
+  "uses": ["shorts", "ad", "longform", "web"],
+  "what": "Three filled form rows preserve their values while reorganizing into dashboard tiles and a generated launch checklist.",
+  "how_to_use": "온보딩·자동 문서 생성·프로젝트 시작 기능의 결과 인서트. Variables: headline, prompt, action, result. This is an original simulated interface, not a recording of a commercial app.",
+  "vars": ["headline", "prompt", "action", "result"],
+  "techniques": ["form-submit", "data-persistence", "dashboard-assemble", "next-action"],
+  "pack": "immersive-2026-10",
+  "family": "screen-workflow",
+  "source_refs": ["https://screen.studio/", "https://jitter.video/templates/", "https://rive.app/"],
+  "beats": [
+    {
+      "at": 0.5,
+      "action": "프로젝트 이름을 입력한다"
+    },
+    {
+      "at": 2.5,
+      "action": "생성 버튼을 누른다"
+    },
+    {
+      "at": 3.05,
+      "action": "입력한 목표와 일정이 대시보드로 배치된다"
+    }
+  ],
+  "distinction": "Three filled form rows preserve their values while reorganizing into dashboard tiles and a generated launch checklist.",
+  "sfx_cues": [
+    {
+      "at": 0.5,
+      "type": "soft-interface-tap"
+    },
+    {
+      "at": 2.1,
+      "type": "short-whoosh"
+    },
+    {
+      "at": 4.7,
+      "type": "resolved-tick"
+    }
+  ],
+  "shorts_use": "온보딩·자동 문서 생성·프로젝트 시작 기능의 결과 인서트.",
+  "suggested_duration": 5.5,
+  "entry_state": "프로젝트 입력 폼",
+  "exit_state": "INPUTS → WORKSPACE",
+  "evidence_note": "Technique references motivate attention and state transitions; no popularity or causal performance claim. All visual artwork and code are original."
+}

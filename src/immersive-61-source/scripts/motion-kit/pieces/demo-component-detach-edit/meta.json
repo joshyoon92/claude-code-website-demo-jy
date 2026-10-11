@@ -1,0 +1,54 @@
+{
+  "slug": "demo-component-detach-edit",
+  "title_ko": "연결을 풀고 하나만 바꾸기",
+  "category": "technique",
+  "size": [1080, 830],
+  "duration": 6.5,
+  "key_at": [0.3, 2.0, 3.6, 5.9],
+  "uses": ["shorts", "ad", "longform", "web"],
+  "what": "Three linked button instances share a source; one is detached and moves into focus, changes its own text and shape, then returns beside unchanged siblings.",
+  "how_to_use": "컴포넌트·인스턴스 개념과 개별 수정 기능을 설명할 때. Variables: headline, prompt, action, result. This is an original simulated interface, not a recording of a commercial app.",
+  "vars": ["headline", "prompt", "action", "result"],
+  "techniques": ["detach-instance", "local-edit", "component-link", "comparison"],
+  "pack": "immersive-2026-10",
+  "family": "screen-workflow",
+  "source_refs": ["https://screen.studio/", "https://jitter.video/templates/", "https://rive.app/"],
+  "beats": [
+    {
+      "at": 1.65,
+      "action": "가운데 인스턴스의 연결을 끊는다"
+    },
+    {
+      "at": 1.85,
+      "action": "편집할 버튼만 앞으로 나온다"
+    },
+    {
+      "at": 2.75,
+      "action": "문구와 모양을 바꾼다"
+    },
+    {
+      "at": 3.9,
+      "action": "다른 버튼은 유지한 채 제자리로 돌아간다"
+    }
+  ],
+  "distinction": "Three linked button instances share a source; one is detached and moves into focus, changes its own text and shape, then returns beside unchanged siblings.",
+  "sfx_cues": [
+    {
+      "at": 0.5,
+      "type": "soft-interface-tap"
+    },
+    {
+      "at": 2.1,
+      "type": "short-whoosh"
+    },
+    {
+      "at": 4.7,
+      "type": "resolved-tick"
+    }
+  ],
+  "shorts_use": "컴포넌트·인스턴스 개념과 개별 수정 기능을 설명할 때.",
+  "suggested_duration": 5.5,
+  "entry_state": "연결된 세 개의 버튼 인스턴스",
+  "exit_state": "ONE EDIT / OTHERS UNCHANGED",
+  "evidence_note": "Technique references motivate attention and state transitions; no popularity or causal performance claim. All visual artwork and code are original."
+}

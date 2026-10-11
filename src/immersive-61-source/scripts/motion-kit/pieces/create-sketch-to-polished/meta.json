@@ -1,0 +1,68 @@
+{
+  "slug": "create-sketch-to-polished",
+  "title_ko": "낙서가 제품 시안이 되는 순간",
+  "category": "technique",
+  "size": [1080, 830],
+  "duration": 6.8,
+  "key_at": [0.5, 2.5, 4.3, 6.2],
+  "uses": ["shorts", "ad", "longform"],
+  "what": "러프한 의자 스케치를 선 따라 그린 뒤 조립선이 정렬되며 완성된 제품 일러스트로 바뀐다. 수평 비교선이 지나가면 종이 포스터 안에 제품명과 캡션이 생긴다.",
+  "how_to_use": "mk.py render create-sketch-to-polished --vars vars.json. headline, product를 교체한다.",
+  "vars": ["headline", "product"],
+  "pack": "immersive-2026-10",
+  "family": "creative-transform",
+  "source_refs": [
+    "https://jitter.video/template/the-prompt-text-to-image/",
+    "https://jitter.video/template/the-prompt-generative-ai-features/",
+    "https://gsap.com/docs/v3/GSAP/Timeline/",
+    "https://rive.app/docs/editor/animate-mode/interpolation-easing"
+  ],
+  "research_note": "공식 제품 데모의 입력→조작→결과 구조 및 seekable timeline 원리를 참고. 코드와 일러스트는 원본 제작이며 특정 도구의 실제 추론을 녹화한 영상이 아님.",
+  "beats": [
+    {
+      "time": 0.15,
+      "action": "의자 스케치의 선 그리기"
+    },
+    {
+      "time": 2.2,
+      "action": "동일 좌표의 선을 완성된 면으로 교체"
+    },
+    {
+      "time": 4.05,
+      "action": "제품 포스터 크기로 정리"
+    },
+    {
+      "time": 4.85,
+      "action": "제품명과 DESIGN 레이블 확인"
+    }
+  ],
+  "distinction": "기존 real-vs-code-wipe의 두 그림 비교와 달리 스케치 선의 좌표를 공유한 채 면·그림자·포스터 레이아웃을 순서대로 조립한다.",
+  "sfx_cues": [
+    {
+      "time": 1,
+      "type": "soft-tap"
+    },
+    {
+      "time": 3.2,
+      "type": "short-whoosh"
+    },
+    {
+      "time": 5.4,
+      "type": "resolve-click"
+    }
+  ],
+  "audio": "silent; sfx_cues are editorial suggestions, not embedded audio",
+  "shorts_use": "AI·디자인 튜토리얼의 해당 기능 설명 직후 6.8초 삽입. 외부 자막은 Shorts 캡션 영역에 유지.",
+  "entry_state": "의자 스케치의 선 그리기",
+  "exit_state": "제품명과 DESIGN 레이블 확인",
+  "content_limits": {
+    "headline": "한글 22자 이내",
+    "word": "영문 3–8자 권장",
+    "prompt": "한글 24자 이내 권장",
+    "policy": "문자 수 한도를 넘으면 명시적으로 오류를 반환한다. 조용히 잘라내지 않는다."
+  },
+  "max_chars": {
+    "headline": 22,
+    "product": 50
+  }
+}

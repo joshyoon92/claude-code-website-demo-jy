@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=1080,height=830">
+<link rel="stylesheet" href="brand/cha.css"><link rel="stylesheet" href="brand/immersive-create.css">
+<script src="brand/gsap.min.js"></script><script src="brand/cha-motion.js"></script><script src="brand/immersive-create.js"></script>
+<style>#glyph-scene{position:absolute;inset:0;width:100%;height:100%}#glyph-label{position:absolute;left:55px;bottom:45px;font-size:24px}</style><link rel="stylesheet" href="brand/immersive-life.css"><script src="brand/immersive-life.js"></script></head><body>
+<div class="cha ic-stage" id="stage" data-composition-id="create-glyph-outline-fill" data-start="0" data-duration="6.8" data-width="1080" data-height="830" data-composition-variables='[{&quot;id&quot;: &quot;headline&quot;, &quot;type&quot;: &quot;string&quot;, &quot;label&quot;: &quot;headline&quot;, &quot;default&quot;: &quot;윤곽선이 로고의 면이 되다&quot;}, {&quot;id&quot;: &quot;glyph&quot;, &quot;type&quot;: &quot;string&quot;, &quot;label&quot;: &quot;glyph&quot;, &quot;default&quot;: &quot;A&quot;}]'>
+<div class="ic-head"><span>CREATE / GLYPH-OUTLINE-FILL</span><span>CHA MOTION</span></div><div class="ic-title" id="headline"></div>
+<div class="ic-body clip" id="canvas" data-start="0" data-duration="6.8" data-track-index="0"><svg id="glyph-scene" viewBox="0 0 984 580"><defs><clipPath id="glyph-clip"><path id="glyph-shape"/></clipPath></defs><g id="glyph-guides" stroke="#555" stroke-width="1"><path d="M250 85H735M250 500H735M290 50V535M692 50V535M492 50V535"/></g><g clip-path="url(#glyph-clip)"><rect id="glyph-fill" x="260" y="70" width="460" height="450" fill="#d4f527"/></g><path id="glyph-outline" fill="none" stroke="#f4f3ee" stroke-width="3"/><g id="glyph-nodes" fill="#f4f3ee" stroke="#0a0a0a" stroke-width="2"><rect x="484" y="77" width="16" height="16"/><rect x="281" y="492" width="16" height="16"/><rect x="684" y="492" width="16" height="16"/></g></svg><div id="glyph-label" class="ic-label">PATH → FILL</div></div>
+<div class="ic-foot"><span>설명용 재연 · 원본 벡터 아트</span><span>EDITABLE / 06.8 SEC</span></div></div>
+<script>(()=>{
+const V=CHA.vars({"headline": "윤곽선이 로고의 면이 되다", "glyph": "A"});
+IC.setText('headline',IC.txt(V.headline,22));
+const tl=gsap.timeline({paused:true});
+window.__timelines=window.__timelines||{};
+window.__timelines["create-glyph-outline-fill"]=tl;
+const paths={A:'M492 85 692 500H595L551 398H433L389 500H292L492 85ZM492 251 462 322H522L492 251Z',M:'M292 500V85H390L492 310 594 85H692V500H606V260L523 446H461L378 260V500Z'};const d=paths[String(V.glyph).toUpperCase()]||paths.A;document.getElementById('glyph-shape').setAttribute('d',d);document.getElementById('glyph-shape').setAttribute('fill-rule','evenodd');document.getElementById('glyph-outline').setAttribute('d',d);gsap.set('#glyph-outline',{strokeDasharray:1800,strokeDashoffset:1800});gsap.set('#glyph-fill',{y:450});gsap.set('#glyph-nodes',{opacity:0});gsap.set('#glyph-label',{opacity:0});
+tl.to('#glyph-outline',{strokeDashoffset:0,duration:2.35,ease:'power2.inOut'},.2);tl.to('#glyph-nodes',{opacity:1,duration:.3},1.6);tl.to('#glyph-fill',{y:0,duration:1.35,ease:'power3.inOut'},2.8);tl.to(['#glyph-guides','#glyph-nodes','#glyph-outline'],{opacity:0,duration:.45},4.3);tl.to('#glyph-label',{opacity:1,duration:.4},4.75);
+tl.set({},{},6.8);IMM.life(tl);tl.seek(0);
+})();</script></body></html>

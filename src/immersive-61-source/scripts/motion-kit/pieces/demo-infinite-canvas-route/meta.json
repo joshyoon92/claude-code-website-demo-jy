@@ -1,0 +1,50 @@
+{
+  "slug": "demo-infinite-canvas-route",
+  "title_ko": "캔버스를 가로질러 완성까지",
+  "category": "technique",
+  "size": [1080, 830],
+  "duration": 6.5,
+  "key_at": [0.3, 2.0, 3.6, 5.9],
+  "uses": ["shorts", "ad", "longform", "web"],
+  "what": "A single camera follows connected idea, design and delivery nodes across a canvas, then pulls out to reveal the full route.",
+  "how_to_use": "여러 AI 도구나 제작 단계를 연결해 설명하는 5–6초 인서트. Variables: headline, prompt, action, result. This is an original simulated interface, not a recording of a commercial app.",
+  "vars": ["headline", "prompt", "action", "result"],
+  "techniques": ["infinite-canvas", "route-follow", "pan", "pullback-reveal"],
+  "pack": "immersive-2026-10",
+  "family": "screen-workflow",
+  "source_refs": ["https://screen.studio/", "https://jitter.video/templates/", "https://rive.app/"],
+  "beats": [
+    {
+      "at": 0.65,
+      "action": "아이디어에서 설계 노드로 카메라가 따라간다"
+    },
+    {
+      "at": 2.25,
+      "action": "연결선을 따라 완성 노드에 도착한다"
+    },
+    {
+      "at": 4.25,
+      "action": "줌아웃으로 전체 경로가 드러난다"
+    }
+  ],
+  "distinction": "A single camera follows connected idea, design and delivery nodes across a canvas, then pulls out to reveal the full route.",
+  "sfx_cues": [
+    {
+      "at": 0.5,
+      "type": "soft-interface-tap"
+    },
+    {
+      "at": 2.1,
+      "type": "short-whoosh"
+    },
+    {
+      "at": 4.7,
+      "type": "resolved-tick"
+    }
+  ],
+  "shorts_use": "여러 AI 도구나 제작 단계를 연결해 설명하는 5–6초 인서트.",
+  "suggested_duration": 5.5,
+  "entry_state": "하나의 아이디어 노드",
+  "exit_state": "IDEA → BUILD → DONE",
+  "evidence_note": "Technique references motivate attention and state transitions; no popularity or causal performance claim. All visual artwork and code are original."
+}

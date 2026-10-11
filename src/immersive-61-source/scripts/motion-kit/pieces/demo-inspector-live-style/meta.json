@@ -1,0 +1,50 @@
+{
+  "slug": "demo-inspector-live-style",
+  "title_ko": "슬라이더가 화면을 바꾼다",
+  "category": "technique",
+  "size": [1080, 830],
+  "duration": 6.5,
+  "key_at": [0.3, 2.0, 3.6, 5.9],
+  "uses": ["shorts", "ad", "longform", "web"],
+  "what": "A style inspector changes a linked card from sharp to rounded corners while the camera moves between the control and its visibly changing result.",
+  "how_to_use": "디자인 속성을 조절하는 실시간 미리보기를 설명할 때. Variables: headline, prompt, action, result. This is an original simulated interface, not a recording of a commercial app.",
+  "vars": ["headline", "prompt", "action", "result"],
+  "techniques": ["inspector", "live-linked-property", "slider", "focus-transfer"],
+  "pack": "immersive-2026-10",
+  "family": "screen-workflow",
+  "source_refs": ["https://screen.studio/", "https://jitter.video/templates/", "https://rive.app/"],
+  "beats": [
+    {
+      "at": 1.3,
+      "action": "모서리 슬라이더를 오른쪽으로 민다"
+    },
+    {
+      "at": 1.3,
+      "action": "연결된 카드의 모서리가 동시에 둥글어진다"
+    },
+    {
+      "at": 3.5,
+      "action": "완성된 카드 쪽으로 카메라가 이동한다"
+    }
+  ],
+  "distinction": "A style inspector changes a linked card from sharp to rounded corners while the camera moves between the control and its visibly changing result.",
+  "sfx_cues": [
+    {
+      "at": 0.5,
+      "type": "soft-interface-tap"
+    },
+    {
+      "at": 2.1,
+      "type": "short-whoosh"
+    },
+    {
+      "at": 4.7,
+      "type": "resolved-tick"
+    }
+  ],
+  "shorts_use": "디자인 속성을 조절하는 실시간 미리보기를 설명할 때.",
+  "suggested_duration": 5.5,
+  "entry_state": "각진 카드와 속성 패널",
+  "exit_state": "RADIUS 0 → 56",
+  "evidence_note": "Technique references motivate attention and state transitions; no popularity or causal performance claim. All visual artwork and code are original."
+}

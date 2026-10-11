@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=1080,height=830">
+<link rel="stylesheet" href="brand/cha.css"><link rel="stylesheet" href="brand/immersive-create.css">
+<script src="brand/gsap.min.js"></script><script src="brand/cha-motion.js"></script><script src="brand/immersive-create.js"></script>
+<style>#paper{position:absolute;inset:0;background:#e5e2d5;transform-origin:50% 50%}#paper svg{position:absolute;left:94px;top:8px;width:800px;height:520px}#product{position:absolute;left:55px;right:55px;bottom:35px;display:flex;justify-content:space-between;font-size:28px;color:#0a0a0a}#divider{position:absolute;left:0;top:0;height:580px;width:4px;background:#d4f527}#sketch-label,#finish-label{position:absolute;left:28px;top:26px}</style><link rel="stylesheet" href="brand/immersive-life.css"><script src="brand/immersive-life.js"></script></head><body>
+<div class="cha ic-stage" id="stage" data-composition-id="create-sketch-to-polished" data-start="0" data-duration="6.8" data-width="1080" data-height="830" data-composition-variables='[{&quot;id&quot;: &quot;headline&quot;, &quot;type&quot;: &quot;string&quot;, &quot;label&quot;: &quot;headline&quot;, &quot;default&quot;: &quot;낙서가 제품 시안이 되는 순간&quot;}, {&quot;id&quot;: &quot;product&quot;, &quot;type&quot;: &quot;string&quot;, &quot;label&quot;: &quot;product&quot;, &quot;default&quot;: &quot;Contour chair&quot;}]'>
+<div class="ic-head"><span>CREATE / SKETCH-TO-POLISHED</span><span>CHA MOTION</span></div><div class="ic-title" id="headline"></div>
+<div class="ic-body clip" id="canvas" data-start="0" data-duration="6.8" data-track-index="0"><div id="paper"><svg viewBox="0 0 800 520"><g id="rough" fill="none" stroke="#53534e" stroke-width="4" stroke-linecap="round"><path d="M274 274 282 107 482 102 494 276 574 325 323 330 274 274 250 467M323 330 323 469M574 325 575 464M492 272 481 405"/><path d="M282 116 289 275 490 281M283 269 327 319 565 321M285 123 476 114"/></g><g id="finish"><ellipse cx="408" cy="475" rx="185" ry="18" fill="#bbb8aa"/><path d="M279 110Q279 98 291 98H480Q490 98 491 111L503 278H280Z" fill="#63635c"/><path d="M280 278H502L579 330H326Z" fill="#99998d"/><path d="M326 330H579V351H326Z" fill="#727369"/><path d="M281 278H298L264 471H247ZM326 343H343V474H326ZM560 345H578V471H562Z" fill="#45473f"/><path d="M286 118H484" stroke="#aaa99b" stroke-width="3"/></g></svg><div id="product"><span id="product-name"></span><span>FORM / 01</span></div></div><div id="divider"></div><div class="ic-pill" id="sketch-label">SKETCH</div><div class="ic-pill ic-signal" id="finish-label">DESIGN</div></div>
+<div class="ic-foot"><span>설명용 재연 · 원본 벡터 아트</span><span>EDITABLE / 06.8 SEC</span></div></div>
+<script>(()=>{
+const V=CHA.vars({"headline": "낙서가 제품 시안이 되는 순간", "product": "Contour chair"});
+IC.setText('headline',IC.txt(V.headline,22));
+const tl=gsap.timeline({paused:true});
+window.__timelines=window.__timelines||{};
+window.__timelines["create-sketch-to-polished"]=tl;
+IC.setText('product-name',V.product);gsap.set('#rough path',{strokeDasharray:1800,strokeDashoffset:1800});gsap.set('#finish',{clipPath:'inset(0 100% 0 0)'});gsap.set(['#divider','#finish-label','#product'],{opacity:0});
+tl.to('#rough path',{strokeDashoffset:0,duration:1.65,stagger:.2,ease:'power2.inOut'},.15);tl.to('#sketch-label',{opacity:0,duration:.25},2.1);tl.to('#divider',{opacity:1,duration:.1},2.2);
+tl.to('#finish',{clipPath:'inset(0 0% 0 0)',duration:1.6,ease:'power2.inOut'},2.2);tl.to('#rough',{clipPath:'inset(0 0 0 100%)',duration:1.6,ease:'power2.inOut'},2.2);tl.to('#divider',{x:984,duration:1.6,ease:'power2.inOut'},2.2);tl.to('#divider',{opacity:0,duration:.15},3.8);
+tl.to('#paper',{scale:.84,borderRadius:12,duration:.8,ease:'power3.inOut'},4.05);tl.to('#product',{opacity:1,duration:.45},4.65);tl.to('#finish-label',{opacity:1,duration:.3},4.85);
+tl.set({},{},6.8);IMM.life(tl);tl.seek(0);
+})();</script></body></html>

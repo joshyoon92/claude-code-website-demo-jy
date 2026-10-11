@@ -1,0 +1,71 @@
+{
+  "slug": "create-layer-depth-camera",
+  "title_ko": "평면 이미지의 레이어를 펼치기",
+  "category": "technique",
+  "size": [1080, 830],
+  "duration": 6.8,
+  "key_at": [0.5, 2.5, 4.3, 6.2],
+  "uses": ["shorts", "ad", "longform"],
+  "what": "평면으로 보이던 포스터가 배경·산·조형물의 세 깊이로 갈라진다. 카메라가 옆으로 이동해 레이어의 간격을 드러낸 뒤 같은 중심축으로 합쳐 완성 구도를 만든다.",
+  "how_to_use": "mk.py render create-layer-depth-camera --vars vars.json. headline를 교체한다.",
+  "vars": ["headline"],
+  "pack": "immersive-2026-10",
+  "family": "creative-transform",
+  "source_refs": [
+    "https://jitter.video/template/the-prompt-text-to-image/",
+    "https://jitter.video/template/the-prompt-generative-ai-features/",
+    "https://gsap.com/docs/v3/GSAP/Timeline/",
+    "https://rive.app/docs/editor/animate-mode/interpolation-easing"
+  ],
+  "research_note": "공식 제품 데모의 입력→조작→결과 구조 및 seekable timeline 원리를 참고. 코드와 일러스트는 원본 제작이며 특정 도구의 실제 추론을 녹화한 영상이 아님.",
+  "beats": [
+    {
+      "time": 0,
+      "action": "겹쳐진 한 장의 이미지"
+    },
+    {
+      "time": 0.8,
+      "action": "카메라가 옆으로 회전"
+    },
+    {
+      "time": 1.15,
+      "action": "전경·중경·배경의 깊이를 벌림"
+    },
+    {
+      "time": 2.4,
+      "action": "가림 관계를 보여주는 측면 이동"
+    },
+    {
+      "time": 4.1,
+      "action": "같은 축으로 다시 결합"
+    }
+  ],
+  "distinction": "기존 exploded-ui-layers의 앱 창 분해 대신 실제 그림의 전경·중경·배경을 따로 움직여 이미지의 깊이와 가림 관계를 보여준다.",
+  "sfx_cues": [
+    {
+      "time": 1,
+      "type": "soft-tap"
+    },
+    {
+      "time": 3.2,
+      "type": "short-whoosh"
+    },
+    {
+      "time": 5.4,
+      "type": "resolve-click"
+    }
+  ],
+  "audio": "silent; sfx_cues are editorial suggestions, not embedded audio",
+  "shorts_use": "AI·디자인 튜토리얼의 해당 기능 설명 직후 6.8초 삽입. 외부 자막은 Shorts 캡션 영역에 유지.",
+  "entry_state": "겹쳐진 한 장의 이미지",
+  "exit_state": "같은 축으로 다시 결합",
+  "content_limits": {
+    "headline": "한글 22자 이내",
+    "word": "영문 3–8자 권장",
+    "prompt": "한글 24자 이내 권장",
+    "policy": "문자 수 한도를 넘으면 명시적으로 오류를 반환한다. 조용히 잘라내지 않는다."
+  },
+  "max_chars": {
+    "headline": 22
+  }
+}

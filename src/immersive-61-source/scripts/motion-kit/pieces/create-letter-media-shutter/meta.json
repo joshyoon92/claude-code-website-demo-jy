@@ -1,0 +1,71 @@
+{
+  "slug": "create-letter-media-shutter",
+  "title_ko": "글자가 열리면 장면이 시작된다",
+  "category": "transition",
+  "size": [1080, 830],
+  "duration": 6.8,
+  "key_at": [0.5, 2.5, 4.3, 6.2],
+  "uses": ["shorts", "ad", "longform"],
+  "what": "네 글자가 각각 세로 셔터처럼 화면을 채운다. 같은 축을 중심으로 글자 패널이 옆으로 열리면서 뒤의 한 장면을 드러내고, 마지막 패널이 닫히지 않고 화면 밖으로 정리된다.",
+  "how_to_use": "mk.py render create-letter-media-shutter --vars vars.json. headline word caption image를 교체한다. 로컬 이미지 경로는 image에 넣고 해당 파일을 piece 폴더에 둔다.",
+  "vars": ["headline", "word", "caption", "image"],
+  "pack": "immersive-2026-10",
+  "family": "creative-transform",
+  "source_refs": [
+    "https://jitter.video/template/the-prompt-text-to-image/",
+    "https://jitter.video/template/the-prompt-generative-ai-features/",
+    "https://gsap.com/docs/v3/GSAP/Timeline/",
+    "https://rive.app/docs/editor/animate-mode/interpolation-easing"
+  ],
+  "research_note": "공식 제품 데모의 입력→조작→결과 구조 및 seekable timeline 원리를 참고. 코드와 일러스트는 원본 제작이며 특정 도구의 실제 추론을 녹화한 영상이 아님.",
+  "beats": [
+    {
+      "time": 0,
+      "action": "네 글자 셔터가 장면을 가림"
+    },
+    {
+      "time": 1,
+      "action": "글자의 세로 면을 차례로 회전"
+    },
+    {
+      "time": 2.1,
+      "action": "뒤의 이미지를 향해 시점 정리"
+    },
+    {
+      "time": 4.4,
+      "action": "이미지와 짧은 캡션 유지"
+    }
+  ],
+  "distinction": "기존 letter-clip-shapes처럼 글자 안에 도형을 넣는 효과가 아니라 글자 자체를 화면 가림막의 물리적 면으로 사용한다.",
+  "sfx_cues": [
+    {
+      "time": 1,
+      "type": "soft-tap"
+    },
+    {
+      "time": 3.2,
+      "type": "short-whoosh"
+    },
+    {
+      "time": 5.4,
+      "type": "resolve-click"
+    }
+  ],
+  "audio": "silent; sfx_cues are editorial suggestions, not embedded audio",
+  "shorts_use": "AI·디자인 튜토리얼의 해당 기능 설명 직후 6.8초 삽입. 외부 자막은 Shorts 캡션 영역에 유지.",
+  "entry_state": "네 글자 셔터가 장면을 가림",
+  "exit_state": "이미지와 짧은 캡션 유지",
+  "content_limits": {
+    "headline": "한글 22자 이내",
+    "word": "영문 4자 이내 권장",
+    "prompt": "한글 24자 이내 권장",
+    "policy": "문자 수 한도를 넘으면 명시적으로 오류를 반환한다. 조용히 잘라내지 않는다."
+  },
+  "max_chars": {
+    "headline": 22,
+    "word": 4,
+    "caption": 50,
+    "image": 512
+  },
+  "custom_media_note": "immersive.py의 --image로 로컬 PNG/JPEG/WebP를 넣습니다. 기본 벡터 그림의 내부 피사체 움직임은 교체한 이미지에 적용되지 않으며, 이미지→영상 변환 과정을 설명하는 장면입니다. SVG를 쓰려면 편집 소스에서 직접 연결합니다."
+}

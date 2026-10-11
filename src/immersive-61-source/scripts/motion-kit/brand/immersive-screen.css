@@ -1,0 +1,254 @@
+/* Screen-native actions: shared geometry, independently authored choreography. */
+#stage {
+  width: 100%;
+  height: 100%;
+  background: #0a0a0a;
+  color: #f4f3ee;
+}
+.sw-head {
+  position: absolute;
+  left: 48px;
+  right: 48px;
+  top: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.sw-title {
+  font-size: 32px;
+  font-weight: 500;
+  letter-spacing: -.03em;
+}
+.sw-number {
+  font: 17px var(--mono);
+  color: #969692;
+}
+.sw-window {
+  position: absolute;
+  left: 48px;
+  top: 113px;
+  width: 984px;
+  height: 620px;
+  border: 1px solid #373737;
+  border-radius: 24px;
+  overflow: hidden;
+  background: #171717;
+  box-shadow: 0 28px 55px #0009;
+}
+.sw-world {
+  position: absolute;
+  inset: 0;
+  transform-origin: 50% 50%;
+}
+.sw-bar {
+  height: 58px;
+  display: flex;
+  align-items: center;
+  padding: 0 27px;
+  border-bottom: 1px solid #363636;
+  font: 17px var(--mono);
+  color: #a8a8a3;
+  letter-spacing: .08em;
+  gap: 16px;
+}
+.sw-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #656561;
+}
+.sw-viewport {
+  position: absolute;
+  inset: 58px 0 0;
+  overflow: hidden;
+}
+.sw-body {
+  position: absolute;
+  inset: 0;
+}
+.sw-foot {
+  position: absolute;
+  left: 50px;
+  right: 50px;
+  top: 762px;
+  display: flex;
+  justify-content: space-between;
+  font: 16px var(--mono);
+  color: #969692;
+}
+.sw-state {
+  color: #e6e6df;
+}
+.sw-card {
+  position: absolute;
+  border: 1px solid #494945;
+  border-radius: 19px;
+  background: #242423;
+  padding: 24px;
+}
+.sw-label {
+  font: 17px var(--mono);
+  color: #a8a8a3;
+  letter-spacing: .07em;
+}
+.sw-big {
+  font-size: 44px;
+  line-height: 1.15;
+  font-weight: 500;
+  letter-spacing: -.035em;
+}
+.sw-copy {
+  font-size: 26px;
+  line-height: 1.4;
+  color: #d1d1cb;
+}
+.sw-field {
+  background: #30302e;
+  border: 1px solid #575753;
+  border-radius: 13px;
+  padding: 17px 23px;
+  min-height: 66px;
+  font-size: 28px;
+}
+.sw-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #f4f3ee;
+  color: #0a0a0a;
+  border-radius: 12px;
+  padding: 13px 24px;
+  font-size: 24px;
+  font-weight: 500;
+}
+.sw-pill {
+  padding: 9px 17px;
+  border: 1px solid #64645c;
+  border-radius: 999px;
+  font: 18px var(--mono);
+}
+.sw-row {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  border-bottom: 1px solid #434340;
+  padding: 19px 22px;
+  font-size: 27px;
+  min-height: 75px;
+}
+.sw-muted {
+  color: #96968d;
+}
+.sw-small {
+  font-size: 20px;
+  color: #b9b9b3;
+}
+.sw-signal {
+  background: #d4f527;
+  color: #0a0a0a;
+}
+.sw-cursor {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 34px;
+  height: 41px;
+  z-index: 30;
+  filter: drop-shadow(0 3px 4px #0008);
+}
+.sw-cursor svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.sw-ring {
+  position: absolute;
+  left: 0;
+  top: 0;
+  border: 2px solid #f4f3ee;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  margin: -24px;
+  opacity: 0;
+  z-index: 29;
+}
+.sw-grid {
+  background-image: radial-gradient(#5a5a52 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+.sw-art {
+  position: relative;
+  overflow: hidden;
+  background: #d6d5cc;
+  border-radius: 10px;
+}
+.sw-art:before {
+  content: "";
+  position: absolute;
+  width: 38%;
+  height: 70%;
+  border-radius: 160px 160px 0 0;
+  background: #363a34;
+  left: 13%;
+  top: 25%;
+}
+.sw-art:after {
+  content: "";
+  position: absolute;
+  width: 36%;
+  height: 95%;
+  border-radius: 190px 190px 0 0;
+  background: #878b80;
+  right: 12%;
+  top: 12%;
+}
+.sw-check {
+  font-size: 25px;
+  line-height: 1;
+}
+.sw-line {
+  height: 10px;
+  border-radius: 8px;
+  background: #575751;
+}
+.sw-key {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 68px;
+  height: 64px;
+  border: 1px solid #666660;
+  border-bottom: 5px solid #55554f;
+  background: #292927;
+  border-radius: 12px;
+  font: 25px var(--mono);
+}
+.sw-code {
+  font: 23px / 1.65 var(--mono);
+  white-space: pre;
+  color: #d8d8d2;
+}
+.sw-connector {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+.sw-connector path {
+  fill: none;
+  stroke: #85857a;
+  stroke-width: 3;
+}
+.cha-caret {
+  background: #f4f3ee;
+}
+.sw-chip {
+  display: inline-block;
+  background: #393936;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font: 19px var(--mono);
+}

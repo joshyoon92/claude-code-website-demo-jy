@@ -1,0 +1,54 @@
+{
+  "slug": "demo-multi-cursor-handoff",
+  "title_ko": "같은 화면에서 이어받기",
+  "category": "technique",
+  "size": [1080, 830],
+  "duration": 6.5,
+  "key_at": [0.3, 2.0, 3.6, 5.9],
+  "uses": ["shorts", "ad", "longform", "web"],
+  "what": "Two named cursors edit a shared card in sequence: one finishes the headline, hands the card to a second editor, and a review badge resolves the handoff.",
+  "how_to_use": "협업·핸드오프·실시간 편집 기능의 설명 인서트. Variables: headline, prompt, action, result. This is an original simulated interface, not a recording of a commercial app.",
+  "vars": ["headline", "prompt", "action", "result"],
+  "techniques": ["multi-cursor", "handoff", "ime-typing", "review-state"],
+  "pack": "immersive-2026-10",
+  "family": "screen-workflow",
+  "source_refs": ["https://screen.studio/", "https://jitter.video/templates/", "https://rive.app/"],
+  "beats": [
+    {
+      "at": 0.35,
+      "action": "첫 편집자가 제목 위치로 이동한다"
+    },
+    {
+      "at": 1.05,
+      "action": "제목을 입력한다"
+    },
+    {
+      "at": 2.8,
+      "action": "두 번째 편집자가 검토를 이어받는다"
+    },
+    {
+      "at": 4.05,
+      "action": "완료 배지가 나타난다"
+    }
+  ],
+  "distinction": "Two named cursors edit a shared card in sequence: one finishes the headline, hands the card to a second editor, and a review badge resolves the handoff.",
+  "sfx_cues": [
+    {
+      "at": 0.5,
+      "type": "soft-interface-tap"
+    },
+    {
+      "at": 2.1,
+      "type": "short-whoosh"
+    },
+    {
+      "at": 4.7,
+      "type": "resolved-tick"
+    }
+  ],
+  "shorts_use": "협업·핸드오프·실시간 편집 기능의 설명 인서트.",
+  "suggested_duration": 5.5,
+  "entry_state": "빈 공동 편집 카드",
+  "exit_state": "EDITED → REVIEWED",
+  "evidence_note": "Technique references motivate attention and state transitions; no popularity or causal performance claim. All visual artwork and code are original."
+}

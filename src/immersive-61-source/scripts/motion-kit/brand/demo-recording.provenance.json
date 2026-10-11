@@ -1,0 +1,31 @@
+{
+  "title": "Canvas Studio — original simulated screen recording",
+  "origin": "Original interface, text, vector artwork and motion created for Creator Studio on 2026-10-02. No third-party footage or product screenshots.",
+  "license": "Project-owned original source/artwork. Bundled fonts and GSAP retain their existing licenses; this record grants no third-party rights.",
+  "dimensions": [1440, 900],
+  "duration": 14,
+  "fps": 30,
+  "audio": false,
+  "sources": {
+    "demo-recording-source.html": {
+      "sha256": "4310370840e27b48c02a76d304b5b5be0aff27dfcf7ba5b261351a7513b745cc",
+      "bytes": 8199
+    },
+    "demo-recording.mp4": {
+      "sha256": "6d448dbe072551c1fbb6b879618d5b576902229c129435faed5bad9863b06dce",
+      "bytes": 315874
+    },
+    "demo-recording-still.jpg": {
+      "sha256": "49e4208b12e853ab72782ae0c6e6dd95177824a887734fc5e067d8ac27a5831a",
+      "bytes": 63251
+    }
+  },
+  "reproduce": [
+    "Copy demo-recording-source.html to index.html in an empty local build directory; copy this brand directory into build/brand.",
+    "npx -y hyperframes@0.8.105 check <build> --samples 9 --json",
+    "npx -y hyperframes@0.8.105 render <build> --quality looks --workers 1 -o raw.mp4",
+    "ffmpeg -i raw.mp4 -an -c:v libx264 -preset slow -crf 26 -pix_fmt yuv420p -movflags +faststart demo-recording.mp4",
+    "ffmpeg -i demo-recording.mp4 -frames:v 1 -q:v 2 demo-recording-still.jpg"
+  ],
+  "evidence": "Source check passed; snapshots inspected at 1.8,5.8,9.5,13.5. Encoder output probed 1440×900 30fps 14s; screenshot capture on hardware GPU."
+}

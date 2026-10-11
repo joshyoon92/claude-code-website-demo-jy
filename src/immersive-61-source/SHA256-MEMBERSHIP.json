@@ -1,0 +1,1211 @@
+{
+  "schema": "cha-archive-membership.v1",
+  "self_excluded": "SHA256-MEMBERSHIP.json",
+  "files": [
+    {
+      "path": "READ-ME.md",
+      "bytes": 1353,
+      "sha256": "d6bbf4e7b0efbb962388e0fccbc45af84c2eca7a562a682230951fee5b25b762"
+    },
+    {
+      "path": "THIRD-PARTY-NOTICES.md",
+      "bytes": 919,
+      "sha256": "f6c47df7577b3fcab0993acb4181682cfe9e598611a0856ffd7087fea64a314f"
+    },
+    {
+      "path": "licenses/GSAP-NOTICE.txt",
+      "bytes": 735,
+      "sha256": "fb1b5f26bc0508394dc5f7a6df7643ff525d0e1eb20f93aa0dbd2bcdcf5f31d8"
+    },
+    {
+      "path": "licenses/Geist-OFL.txt",
+      "bytes": 4387,
+      "sha256": "1781d2806a07d91c4edf4740b88449fab7d0eadad53f7c351b94cd4d4eb8c00f"
+    },
+    {
+      "path": "licenses/Pretendard-OFL.txt",
+      "bytes": 4418,
+      "sha256": "d31ddd9f2bed32fd7e302a205cf2380ba0de6529152d239ef99cfb6f261bfc04"
+    },
+    {
+      "path": "public-manifest.json",
+      "bytes": 28221,
+      "sha256": "8c4d49b190780d77ba15ec76e693262e039a17915c07627b149708c8db36ec11"
+    },
+    {
+      "path": "scripts/motion-kit/IMMERSIVE.md",
+      "bytes": 8889,
+      "sha256": "6f38bb5ac2b05fa885eb63b5f390897ded22a3b5f33df491819b93576581ab54"
+    },
+    {
+      "path": "scripts/motion-kit/README.md",
+      "bytes": 11955,
+      "sha256": "36557e81bf13bdcbdb8fc544d7aeec67dfe0bb2183cafeec53f18055e6dda839"
+    },
+    {
+      "path": "scripts/motion-kit/brand/cha-figure.js",
+      "bytes": 54705,
+      "sha256": "00dff17bb284501eb7c1c7709a8a904c5889145eb083f62c5a9ed983ca33ed9b"
+    },
+    {
+      "path": "scripts/motion-kit/brand/cha-mocap.js",
+      "bytes": 13586,
+      "sha256": "37f4da7afed8f0b3dd782d9627edfa58aa7323628e2bb427c88a8a0db71a3e9e"
+    },
+    {
+      "path": "scripts/motion-kit/brand/cha-motion.js",
+      "bytes": 17412,
+      "sha256": "e8fdd060e4aa84c9c595c9639e57b2c368c597b204f8ab4ddf11c1956b86db37"
+    },
+    {
+      "path": "scripts/motion-kit/brand/cha.css",
+      "bytes": 8470,
+      "sha256": "0ffbfb9e11d9527da588616fff9e640aac2f018287f6f102b2f3c9e1d6b6173e"
+    },
+    {
+      "path": "scripts/motion-kit/brand/demo-recording-source.html",
+      "bytes": 8199,
+      "sha256": "4310370840e27b48c02a76d304b5b5be0aff27dfcf7ba5b261351a7513b745cc"
+    },
+    {
+      "path": "scripts/motion-kit/brand/demo-recording-still.jpg",
+      "bytes": 63251,
+      "sha256": "49e4208b12e853ab72782ae0c6e6dd95177824a887734fc5e067d8ac27a5831a"
+    },
+    {
+      "path": "scripts/motion-kit/brand/demo-recording.mp4",
+      "bytes": 315874,
+      "sha256": "6d448dbe072551c1fbb6b879618d5b576902229c129435faed5bad9863b06dce"
+    },
+    {
+      "path": "scripts/motion-kit/brand/demo-recording.provenance.json",
+      "bytes": 1576,
+      "sha256": "1aecb743b322fe298bb0f5ea486d47911b965887d1e1343a7e27bdaba1509054"
+    },
+    {
+      "path": "scripts/motion-kit/brand/fonts/GeistMonoVariable-latin.woff2",
+      "bytes": 31288,
+      "sha256": "b7ac144b394cbd81052d6397ec0c33397977b1d7e9bc095e744e652a378c6fb3"
+    },
+    {
+      "path": "scripts/motion-kit/brand/fonts/GeistVariable-latin.woff2",
+      "bytes": 28356,
+      "sha256": "1b5ebfb3a01a97343ac96873e6d59a8cb285c66012b6a1ac509cb2765e995ba8"
+    },
+    {
+      "path": "scripts/motion-kit/brand/fonts/PretendardVariable.woff2",
+      "bytes": 2057688,
+      "sha256": "9599f12fd42fc0bce1cd50b47a0c022e108d7aa64dd0d1bb0ed44f3282d900b4"
+    },
+    {
+      "path": "scripts/motion-kit/brand/gsap.min.js",
+      "bytes": 72779,
+      "sha256": "c174bfce53a729418d57a8ad8625e7247c793a22fef8e2851e3cfa3de9cd8280"
+    },
+    {
+      "path": "scripts/motion-kit/brand/immersive-create.css",
+      "bytes": 2856,
+      "sha256": "80394469f82c92d7161955a98d5a3999070846b459e05c356fc1f8402d37b660"
+    },
+    {
+      "path": "scripts/motion-kit/brand/immersive-create.js",
+      "bytes": 4959,
+      "sha256": "36705f4066f8f2b3aacd5eadb1cd635360e06b6b0e27c2ec0dcc6625fb41ea4c"
+    },
+    {
+      "path": "scripts/motion-kit/brand/immersive-life.css",
+      "bytes": 808,
+      "sha256": "5a289526ee47b4bf4cf942a9f451c0f3821c313dbd62be2ab0f7effdc2679e3a"
+    },
+    {
+      "path": "scripts/motion-kit/brand/immersive-life.js",
+      "bytes": 16648,
+      "sha256": "6e8641d8f384b66ca1864395f4c68585a24c9fa3e053a9aa1cf0f04251210881"
+    },
+    {
+      "path": "scripts/motion-kit/brand/immersive-screen.css",
+      "bytes": 4314,
+      "sha256": "a463542cd5a584f5ae7478a5efcad3b57af45ea34e670ececc31fcd9f93e80c1"
+    },
+    {
+      "path": "scripts/motion-kit/brand/immersive-screen.js",
+      "bytes": 1135,
+      "sha256": "3607454ac042c50316af4ff79c7b007ad112bfafcb7c92a22746b04659127cc9"
+    },
+    {
+      "path": "scripts/motion-kit/brand/logo/cha-logo-lime-512.png",
+      "bytes": 22505,
+      "sha256": "134b5a2088ff58151558237397e9513ab70c6e39c0607bec7228c4c3da983614"
+    },
+    {
+      "path": "scripts/motion-kit/brand/logo/cha-logo-lime-tight.svg",
+      "bytes": 6569,
+      "sha256": "0096c0bc92aab8ba5f2cfd6a647fccd07c7ca19e814b127c1b48670d456f4d39"
+    },
+    {
+      "path": "scripts/motion-kit/brand/logo/cha-logo-lime.svg",
+      "bytes": 6567,
+      "sha256": "36c35c4a7b27805886c4b4bbcd0098699def2210ff3548b29b2a6a2482478cc7"
+    },
+    {
+      "path": "scripts/motion-kit/brand/logo/cha-logo-paper.svg",
+      "bytes": 6567,
+      "sha256": "5b2b918b50661d4a95eb233c42a0837bc9165966668f41470efc50535ca12c91"
+    },
+    {
+      "path": "scripts/motion-kit/brand/logo/cha-logo-transparent-dark-ink-tight.svg",
+      "bytes": 6519,
+      "sha256": "660ca1ff8b709f5d5520af478c6e217dad8bf7f74d615f0fb3737212b7dac691"
+    },
+    {
+      "path": "scripts/motion-kit/brand/logo/cha-logo-transparent-light-ink-512.png",
+      "bytes": 26024,
+      "sha256": "cce58c03277b2096416e0509ef0f6da4268517607df9bd86001f6837ab8c7b1e"
+    },
+    {
+      "path": "scripts/motion-kit/brand/logo/cha-logo-transparent-light-ink-tight.svg",
+      "bytes": 7835,
+      "sha256": "0767f59d08d6c4e976c06461c0fce47ae6fcc7f2ed21933adb8fc52fe042b1ab"
+    },
+    {
+      "path": "scripts/motion-kit/examples/immersive-create.ko.json",
+      "bytes": 96,
+      "sha256": "93953aec2cce6d858d8c015b3aff975371b842d4e99d2f86eed02acbcf5ce17c"
+    },
+    {
+      "path": "scripts/motion-kit/examples/immersive-recording.ko.json",
+      "bytes": 162,
+      "sha256": "fb092e803b10d8419838b61038dac403d1fd0de551a7090e8f0421dc803d4655"
+    },
+    {
+      "path": "scripts/motion-kit/examples/immersive-screen.ko.json",
+      "bytes": 95,
+      "sha256": "c20b744b28c4391dc0a0ff22617a005fa2c3c178f4ff21b1d738cf830759a31e"
+    },
+    {
+      "path": "scripts/motion-kit/immersive-catalog.html",
+      "bytes": 15586,
+      "sha256": "396a97443a0e0d69f289728dfef3a0adf2000b4a173d1327d4f8c4bdef540d2b"
+    },
+    {
+      "path": "scripts/motion-kit/immersive.py",
+      "bytes": 24094,
+      "sha256": "eed9177c16ab5e24d2bb36209f49d162b0e05beb406778d45e86abc7e0e7c6db"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/create-audio-wave-to-captions/index.html",
+      "bytes": 3536,
+      "sha256": "a9dcdfd9b95499898cd29ed1a39db3219304202ab9e4c38348dd5cbfecc2cb35"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/create-audio-wave-to-captions/meta.json",
+      "bytes": 2640,
+      "sha256": "49e31336072b3fe1432661b50d46523534926a6bebaadc8bb1f21231bc809f6c"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/create-audio-wave-to-captions/prompt.md",
+      "bytes": 1266,
+      "sha256": "30632fc7a89752993e1db8dc61216353a665a31e953823df9f40e240313c0eba"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/create-contact-sheet-select/index.html",
+      "bytes": 3836,
+      "sha256": "badf873ad46366a9aceb2fab5abe51a623bf9e42c2431817e909f15ca76952bb"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/create-contact-sheet-select/meta.json",
+      "bytes": 3116,
+      "sha256": "fd88f6c0d7e87779048b3667330a0769bd4b23ca7cabc0824b4588c01198d9d5"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/create-contact-sheet-select/prompt.md",
+      "bytes": 1325,
+      "sha256": "a4db74c02cda795bcae979ca5686defa4e6a86b14cb7852798f4831f03469fc4"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/create-glyph-outline-fill/index.html",
+      "bytes": 3483,
+      "sha256": "6386edbb2937dacbae3f210e77e0cc960f0c2e736e00db39b96ecd19572bee17"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/create-glyph-outline-fill/meta.json",
+      "bytes": 2610,
+      "sha256": "541f52230ce4ee104018cef19f02a29e90d80ae23c8cadd996749f1410766354"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/create-glyph-outline-fill/prompt.md",
+      "bytes": 1267,
+      "sha256": "06129d7910e43ec7406e671c67d8ebdc2a90437c4fd918dc7efd1f2dbeec49ad"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/create-image-outpaint-canvas/index.html",
+      "bytes": 3548,
+      "sha256": "b3ec921ef64196efa29a4cf73d7b0ac83ef3f97795f85b2e57f9a5058a723d7c"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/create-image-outpaint-canvas/meta.json",
+      "bytes": 3007,
+      "sha256": "17028ef8fddb8079cd25d1ea78af52c4d3af04e5c799c0766b40b0587b6edfcf"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/create-image-outpaint-canvas/prompt.md",
+      "bytes": 1331,
+      "sha256": "52b84c6e06622e5b53802d9f458dd40fc17b92afea5e33e8d4e39ed3936952cb"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/create-image-to-type-poster/index.html",
+      "bytes": 4396,
+      "sha256": "4779de2376792ce6adb02cef0695834a44fed79d805dd184e1a0ae6021e8dac6"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/create-image-to-type-poster/meta.json",
+      "bytes": 3185,
+      "sha256": "6bc535ce9b5f7c4f958e39b721c3081b0a756dd52e6a3e4737be8065b3b26d61"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/create-image-to-type-poster/prompt.md",
+      "bytes": 1355,
+      "sha256": "007075453737626b889ddc80b34028ac788cfc18a5c0282cc49c54b399501ed3"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/create-layer-depth-camera/index.html",
+      "bytes": 3608,
+      "sha256": "647a8fba11d065471884a26096f223d06e41d0ca9d99462ba600c842ab12e420"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/create-layer-depth-camera/meta.json",
+      "bytes": 2625,
+      "sha256": "ad43bb367fdd3557aedfa4559f4f0b735595b65a1dea932095d036ddce0f2388"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/create-layer-depth-camera/prompt.md",
+      "bytes": 1320,
+      "sha256": "59b4143fdb3629834f50c9c34ee068e620d908e72cda8a3ce699138a26d16eb8"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/create-letter-media-shutter/index.html",
+      "bytes": 3298,
+      "sha256": "b7e9a80fef675907042caf29954d5d4ca7812608dcc6f1d85cd42d87ff991a14"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/create-letter-media-shutter/meta.json",
+      "bytes": 3070,
+      "sha256": "c6cecf7df897163a112ade3db051d027f0a8e7d8d245b8ae31774247d0905cb5"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/create-letter-media-shutter/prompt.md",
+      "bytes": 1323,
+      "sha256": "42a6f1bd8675364872ee38bad33e28731ec2163886a949f70ddbd39521489828"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/create-mask-inpaint-reveal/index.html",
+      "bytes": 3745,
+      "sha256": "49488c6002732cf591c267f2d75011af99ef8668c91b41506b64e1779ab1be23"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/create-mask-inpaint-reveal/meta.json",
+      "bytes": 2677,
+      "sha256": "9a4c72007174211cebb3482aa977b97c7ff1de3684166b142e03cab25a89f91e"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/create-mask-inpaint-reveal/prompt.md",
+      "bytes": 1305,
+      "sha256": "f7aaa119ef91228ae1377d033bfd0c174f52e3bf26990ac963759d986c7e68bb"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/create-paragraph-to-headline/index.html",
+      "bytes": 4529,
+      "sha256": "db987ea3cf1b2ab4e17ead3807f9b71aad6533110304657c58da8e8e8a750a9f"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/create-paragraph-to-headline/meta.json",
+      "bytes": 2750,
+      "sha256": "9a3cb8e441f9ad6caab452e21d9f9916f7265a89f21c4084b9a4ff23f73155ef"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/create-paragraph-to-headline/prompt.md",
+      "bytes": 1264,
+      "sha256": "fa2daa579766fade0891953e01e362fffcb5e494eb394f77e8931f6a968d8bf5"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/create-prompt-image-grid/index.html",
+      "bytes": 3930,
+      "sha256": "db2d6a9d2682b0d77fb89165f5696c0077585af57ad1dbcbf6a0452da1a9c3af"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/create-prompt-image-grid/meta.json",
+      "bytes": 3059,
+      "sha256": "d84e6dcceec1b35ba66ec14ad032245068295f7240b19d36684e1a86373df5e1"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/create-prompt-image-grid/prompt.md",
+      "bytes": 1372,
+      "sha256": "738db5adec6a245b29341b86d96f2ff0b6f40845c2089ed8664c5f2b7a7a60f5"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/create-prompt-to-layout/index.html",
+      "bytes": 4752,
+      "sha256": "d3cddb155ed60f8ee01458aa140a161de7ce910dee22fa527f9206baf7930a58"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/create-prompt-to-layout/meta.json",
+      "bytes": 3134,
+      "sha256": "c6187959ab115b7273e6c15af5d8dd45e32a100f86675bcd0462cd3072a07bde"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/create-prompt-to-layout/prompt.md",
+      "bytes": 1306,
+      "sha256": "1bef1a26babf74d34504f9ab4c7817f48f23e702b890f1b4397ff57126c29ec4"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/create-sketch-to-polished/index.html",
+      "bytes": 4016,
+      "sha256": "8c0bade98b6d198a453a7acf5746d68b06147feb79cadf65405a37db8eea3b07"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/create-sketch-to-polished/meta.json",
+      "bytes": 2598,
+      "sha256": "595be073269b30a2c5713917ccdb8b205a8417b8eea0007b694dff07a0bbd46d"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/create-sketch-to-polished/prompt.md",
+      "bytes": 1314,
+      "sha256": "396cb2c797260432a5ad381c5eb7f1f35c622bf8f33babf0bacb94391d00ac95"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/create-still-to-motion-strip/index.html",
+      "bytes": 3485,
+      "sha256": "c407c5cdf403cae4e55406e7fb48454f5c28986f152f6e9aba9ab246d7c47d9f"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/create-still-to-motion-strip/meta.json",
+      "bytes": 3049,
+      "sha256": "9bbb62b4616e729c8a1f5826508c1d28c81061f26ab949585b783bdef50d3e37"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/create-still-to-motion-strip/prompt.md",
+      "bytes": 1400,
+      "sha256": "1a8584866734ecdc4582bb56d2d5b3120d1d77cbb627ba79862ed6b3ea52fd86"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/create-style-reference-blend/index.html",
+      "bytes": 3768,
+      "sha256": "e980ba3c9abb09b28f982c9210931f5c0fa7114f6aa06074af85cd430120c3ce"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/create-style-reference-blend/meta.json",
+      "bytes": 3000,
+      "sha256": "f9ade346713318325388422439dcb07ac6147e35c6e7a464ea1a49ab08ddaf3d"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/create-style-reference-blend/prompt.md",
+      "bytes": 1296,
+      "sha256": "23ae0f12bfb1741ba7b4987fc2b31e23edf569086555bca33e59a3ee0f865588"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/create-text-path-carousel/index.html",
+      "bytes": 3205,
+      "sha256": "df0885f3a93ced2740144f9e5f96e5e4507a6ad2c85fd4e61a2d352eb34a3a4c"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/create-text-path-carousel/meta.json",
+      "bytes": 2579,
+      "sha256": "eb34c4b5dd4934881c931441020fd0d2c2cf39b2cd330eb5474ca5890ce3286d"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/create-text-path-carousel/prompt.md",
+      "bytes": 1321,
+      "sha256": "127dd17f57ddc1fe07020dfc57f5b92c6969526029d7712ebd1ac03ec2298cc6"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/create-text-to-vector-path/index.html",
+      "bytes": 3430,
+      "sha256": "57c392d4e80fc24f5c3f0eff4353bb3bdcc7ab1aa80eeeb1f87e8325e0bc6e95"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/create-text-to-vector-path/meta.json",
+      "bytes": 2666,
+      "sha256": "3a8c1088cf6bfdaf6b856769c9b50f968f01d3d0ce1c9ef705711edce4275629"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/create-text-to-vector-path/prompt.md",
+      "bytes": 1318,
+      "sha256": "3fb2dadf5ac73fee41ee9689d4cdd2bde494c816d5add9c3fa4af256fe68526b"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/create-timeline-to-storyboard/index.html",
+      "bytes": 3963,
+      "sha256": "089ce346cee23a81d1b3ef7a42184d6ef1e8d1d5c22b5808fab1bee50f23eb65"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/create-timeline-to-storyboard/meta.json",
+      "bytes": 2661,
+      "sha256": "660558cd4ed9ad4377381a3e8022f94e8ca1396291fccb24746e7cd7be81c4b9"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/create-timeline-to-storyboard/prompt.md",
+      "bytes": 1290,
+      "sha256": "81715e81016323cb0099e0708541f16c8b5c6c64d4821c23df5be487de4e6dc4"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/create-token-to-pixel/index.html",
+      "bytes": 3705,
+      "sha256": "49b5b146b200fabddb4d98bdfc424736253d29ee7845a5dcb4bba3f0f71c0b69"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/create-token-to-pixel/meta.json",
+      "bytes": 3149,
+      "sha256": "7d0abb3dfc9e5d765253e862f8b92e892e314cc750cf53486b0421ca7fd740fb"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/create-token-to-pixel/prompt.md",
+      "bytes": 1342,
+      "sha256": "5c1a89a5449eec2900ee531889d3aa2ff7071e6aa85850e95562a8b3f8071618"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/create-type-to-interface/index.html",
+      "bytes": 4299,
+      "sha256": "674d49bd2924e89a4823b11bcbcbefc205ed23c85540460b0acf8a0498b9b448"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/create-type-to-interface/meta.json",
+      "bytes": 3090,
+      "sha256": "62de2f7026358db06a148afb2c23d332f50c2315b0f8f9fcf079f28dc7732880"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/create-type-to-interface/prompt.md",
+      "bytes": 1308,
+      "sha256": "62ca3c4c813384f9a9b714a0f94c5904bd4955caa5617c40658071ed65f8ac47"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/create-word-extrude-fold/index.html",
+      "bytes": 4080,
+      "sha256": "132588c32218044c503311f95cd8eb5ba234b14c5b70422b5f8329e4855d185f"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/create-word-extrude-fold/meta.json",
+      "bytes": 2719,
+      "sha256": "c9d31ed45e6adacaa0c8fe2f05ad024a4530d313fbdbcd0cf5d09683e47070ed"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/create-word-extrude-fold/prompt.md",
+      "bytes": 1308,
+      "sha256": "e46b5d52a52ce4066b91862bce60ce9dad6b27f0c43175651bc2fd797227fc3e"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/create-workflow-oner/index.html",
+      "bytes": 6705,
+      "sha256": "55ec47ee1b8cc2836cff908ce9eb4f25a28f626a43b4bf2b061e02da493414ed"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/create-workflow-oner/meta.json",
+      "bytes": 3576,
+      "sha256": "31ecdc58042089468cb2ace2f5734d047caa187f93cc5dce0f2497817dd0f898"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/create-workflow-oner/prompt.md",
+      "bytes": 1624,
+      "sha256": "b5b7cebebda2289e5621af946d1844ffc79e058d19bdb701718c03d3fd88c1c7"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/demo-command-palette-dive/index.html",
+      "bytes": 3933,
+      "sha256": "5904b9432716ddda0033158df775b951f03454e45d11af8e33044e9acf6583bb"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/demo-command-palette-dive/meta.json",
+      "bytes": 1964,
+      "sha256": "844e0ce630cdc66b1581b3de249b5fb3ba4209f307fc277aa56b73944b2660f8"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/demo-command-palette-dive/prompt.md",
+      "bytes": 1074,
+      "sha256": "f80d67f4e49414ebc8b1d88dda5d990f3ffba6cbf1c0132e3d64006d3195f9e4"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/demo-comment-resolve-chain/index.html",
+      "bytes": 3824,
+      "sha256": "626ee6cfeefb892deb1d89a45988b76cea99db2de50c1019501a839ca1a227ee"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/demo-comment-resolve-chain/meta.json",
+      "bytes": 1988,
+      "sha256": "4eb0df6d2d91e42dcdf1b98fc5d9d3c370d1a7b9df9b9fee0daa990c96ca9b36"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/demo-comment-resolve-chain/prompt.md",
+      "bytes": 1106,
+      "sha256": "683bd1d2e62cd1a318094eb60028fbecbcd908426f362e50ac35844efbf7a764"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/demo-component-detach-edit/index.html",
+      "bytes": 3836,
+      "sha256": "b7508cf03c56cb3ff6f5af3076a0d06c6c136492927dc228d132c694cd93b776"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/demo-component-detach-edit/meta.json",
+      "bytes": 2101,
+      "sha256": "58fc4153d29f26273b235fbce54ba0a9a3b3f5f7df9bda64e1a5dad131b18aad"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/demo-component-detach-edit/prompt.md",
+      "bytes": 1175,
+      "sha256": "5748d8fee4c7cc1ffba2babf707539239fab867578256e078273120e2e3d074a"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/demo-drag-asset-drop/index.html",
+      "bytes": 3879,
+      "sha256": "ca7f79bcf1cb32c281898eb5534b928374a37f77e925968ecb70b593d2d3481e"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/demo-drag-asset-drop/meta.json",
+      "bytes": 2010,
+      "sha256": "63170cf3c8beabdb16c2794c0f76b50650f4ac4a1e49eb114030adf8babeba9b"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/demo-drag-asset-drop/prompt.md",
+      "bytes": 1124,
+      "sha256": "b79f55442161d608e0d8f67c9204bd929580a89841901e0dc68257d406880d12"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/demo-form-to-dashboard/index.html",
+      "bytes": 3948,
+      "sha256": "50e824bd5917e10e1569f0363124265b92be56f67544f77f23f9121fe3e8502f"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/demo-form-to-dashboard/meta.json",
+      "bytes": 1915,
+      "sha256": "19988f4be260bdc721cce25b3655b6ffccaf4580309bdbe83d7bd17af4e3c482"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/demo-form-to-dashboard/prompt.md",
+      "bytes": 1047,
+      "sha256": "57346dffe3549832dcaf8eb739d8aeea209960f87ab8793b5595e395da03a65b"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/demo-image-crop-reframe/index.html",
+      "bytes": 3957,
+      "sha256": "ad1c1654937b460565b3800e8817843aa11297b232d79bf0f496a0a9bc6df7da"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/demo-image-crop-reframe/meta.json",
+      "bytes": 2001,
+      "sha256": "2e4693e410de16192570275602ab51a434f87dad213d61d8e9af23ed017d461b"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/demo-image-crop-reframe/prompt.md",
+      "bytes": 1128,
+      "sha256": "668697e46c7afafa172ad212c9cf52e215df6a6dcdaf9cc2ef57be30890732db"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/demo-infinite-canvas-route/index.html",
+      "bytes": 5487,
+      "sha256": "45d9e6223a2ea7b4aa65b18ec6d5aa31a5806eb303135cea71dc5a15aee896dc"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/demo-infinite-canvas-route/meta.json",
+      "bytes": 1965,
+      "sha256": "a955750e12ddb34396f9d824973dfdebf02c28a211ca9747a4ad486e8e8cf0fe"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/demo-infinite-canvas-route/prompt.md",
+      "bytes": 1101,
+      "sha256": "bf91cd5e8c6c59c966804c7391963f60930296edf1ccfaef72dc7a897a95db12"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/demo-inspector-live-style/index.html",
+      "bytes": 3662,
+      "sha256": "6fbc6e4a9fd35c206fb484f23ea71eba7fd42e35b64798523775e7abb8528bfa"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/demo-inspector-live-style/meta.json",
+      "bytes": 1990,
+      "sha256": "c510cacf6fafc5a90fbe6370cf168b83b6f62a000aed660c8d501776fd57b1ef"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/demo-inspector-live-style/prompt.md",
+      "bytes": 1113,
+      "sha256": "26e3af553d448aecaa215a7095f77d5756bd95a3538802d16cd6035cdadbb784"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/demo-keyboard-workflow/index.html",
+      "bytes": 4072,
+      "sha256": "dbd47b987413de3c6203b5990b41a05c7e14981a85c5bd5d4a69371742a451b6"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/demo-keyboard-workflow/meta.json",
+      "bytes": 2024,
+      "sha256": "0ea939b6ec0ce28b2c57b3451d39fcec13b29f5561ed8625bed6a0d304b2097c"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/demo-keyboard-workflow/prompt.md",
+      "bytes": 1117,
+      "sha256": "8ffb3b11612e400ec2ce0a3757fd0979f307635dcebdb1689b9cbbdf4c11e93d"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/demo-multi-cursor-handoff/index.html",
+      "bytes": 3677,
+      "sha256": "04c2ca5642c01ab998d3dd657f351c607e0e5e2f25f10d7207b07fb91c411d18"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/demo-multi-cursor-handoff/meta.json",
+      "bytes": 2017,
+      "sha256": "ff7058c12519fb88ab8e351dfd33cf60ff2452e87ca5139c3e72b08f50ce85a0"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/demo-multi-cursor-handoff/prompt.md",
+      "bytes": 1121,
+      "sha256": "f442e2407f75e1c0613d31933fe731b90f4722609d5bc6758161b5e86dc5bb6a"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/demo-node-connect-run/index.html",
+      "bytes": 5429,
+      "sha256": "24c15bf52a1e5486170af7ac7a8f983a5d1163c4db5104db267d49176d9b98ea"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/demo-node-connect-run/meta.json",
+      "bytes": 2088,
+      "sha256": "791896d29fc8a1974228743cf32b9e3b89bdddbf96f2f84795e33b424f04c387"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/demo-node-connect-run/prompt.md",
+      "bytes": 1153,
+      "sha256": "8cac54c8e6a722a33c19de485f60888eef9e2e846687c0dedc611d05dd2aaa5d"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/demo-responsive-canvas-reflow/index.html",
+      "bytes": 4016,
+      "sha256": "a1f24f23971ed2222022404dcb0188de48ad42118bae10abf53b2da3b545dd82"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/demo-responsive-canvas-reflow/meta.json",
+      "bytes": 2001,
+      "sha256": "9a83fa24bb79da5db3d31eb5a162645e2d2f0c659370e3c3243f6d93c331dbd6"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/demo-responsive-canvas-reflow/prompt.md",
+      "bytes": 1129,
+      "sha256": "ced8486bde1a8ef76f920c02c01011dd67e0b34a4357b66c5c145040d3ac0452"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/demo-scroll-section-magnify/index.html",
+      "bytes": 4521,
+      "sha256": "d3e4f92dcee317d8605f0da474c0ff7bc8034274238d0bf1852f3e509b14904c"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/demo-scroll-section-magnify/meta.json",
+      "bytes": 2057,
+      "sha256": "8d01fb1b18562534b33beadba36be4f6848e218bfa066e82f7e641596803db0f"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/demo-scroll-section-magnify/prompt.md",
+      "bytes": 1156,
+      "sha256": "3656d40e1205c61f77f02b607c5a205f455b27a3df3a9de9cf81ab88bf1b02e9"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/demo-scrub-timeline-zoom/index.html",
+      "bytes": 4292,
+      "sha256": "10c77e691af03e86373e77eb94bdabc9ccd8bb225e08be08a3b09cbd12b09127"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/demo-scrub-timeline-zoom/meta.json",
+      "bytes": 1982,
+      "sha256": "0b757ffd37c31c9673e0b3bc8ce7d381740e4a40bbdcff60759a4242bb166788"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/demo-scrub-timeline-zoom/prompt.md",
+      "bytes": 1132,
+      "sha256": "e161d580696987b2aded5d72c5bdbf811653f280b4633d4f7467f2ae250f9a95"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/demo-search-result-tunnel/index.html",
+      "bytes": 3910,
+      "sha256": "d075a3ffa9060844c774293caaeaff67ab5270f2309497012c85f3c0354e21a8"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/demo-search-result-tunnel/meta.json",
+      "bytes": 2033,
+      "sha256": "1bb87202c31217c51564b7f7374d2c95a24f493170422bf80db609da62d36dfb"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/demo-search-result-tunnel/prompt.md",
+      "bytes": 1119,
+      "sha256": "a85e22e0c49039413356cc93f88b4ea557da68a413f30bca7e1fdf4ee16bb927"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/demo-selection-marquee-group/index.html",
+      "bytes": 3635,
+      "sha256": "9a74d047b3ba45f71ce9f20f7a5077ad9996a54837da49ee424fc1ba25fe1a7d"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/demo-selection-marquee-group/meta.json",
+      "bytes": 1997,
+      "sha256": "3e6061b6007db6aaa7c644dd0292726768d2bd976266bd773fc77106280f6b43"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/demo-selection-marquee-group/prompt.md",
+      "bytes": 1106,
+      "sha256": "d85dcdb6a544910541e2a6d080ae8a0a8e93594075340fecd9a5c727343fdd19"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/demo-split-editor-preview/index.html",
+      "bytes": 3708,
+      "sha256": "abe8e5bcd3e543c37e8f2d23978c76bcd837466dcb78bf3101f80aba3bf2814f"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/demo-split-editor-preview/meta.json",
+      "bytes": 1969,
+      "sha256": "ed96d36a019cee7b8bd73d55f935e1a08f25ca33db7ed809f80c36f1d09ea6bc"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/demo-split-editor-preview/prompt.md",
+      "bytes": 1100,
+      "sha256": "29c77d18fd2769f8e4397cf3c6e41d7522c265b6fca4ac57bc78824d7f526b23"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/demo-tab-context-switch/index.html",
+      "bytes": 3942,
+      "sha256": "ccc8105d257b60218996f116d00fa3e22b34bc1cdba02bd2187a55091d743962"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/demo-tab-context-switch/meta.json",
+      "bytes": 2009,
+      "sha256": "59a5593c3ce1a0b3e71409044fd69e15098dbf6483f0a0d851b0e3d628145395"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/demo-tab-context-switch/prompt.md",
+      "bytes": 1122,
+      "sha256": "abcb66c29e55abdbba735114dd542245effbed79a00a2ccf79755a46a2ef7322"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/demo-table-filter-sort/index.html",
+      "bytes": 3964,
+      "sha256": "22bbceb296ebea5a990db7aa5945bf801fc39d783dd0d8594980567a655f6fab"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/demo-table-filter-sort/meta.json",
+      "bytes": 1957,
+      "sha256": "53f619d179462db48e51776e86d27491b668cc16012f23f911b7cbf5c202b12f"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/demo-table-filter-sort/prompt.md",
+      "bytes": 1102,
+      "sha256": "a7a9fb5d2da3c1bc2f5d7a60096994ae61ffde6aae0b38258ba427e9a15c7d46"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/demo-version-history-peel/index.html",
+      "bytes": 4164,
+      "sha256": "00a468e92e44d1bb5a4980aa27e551e2cbcbadc63c9c9d3774713727159595a5"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/demo-version-history-peel/meta.json",
+      "bytes": 2046,
+      "sha256": "322ecf7f59a7ca0d416ef8eb1782e37ce8c1891f264dbf20615b1ac9ec1dfa56"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/demo-version-history-peel/prompt.md",
+      "bytes": 1135,
+      "sha256": "8d0238bb896c938739124d102572942fafc1c5aa56a9c5d54649818cc5469359"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/explain-compare-sync-workflows/index.html",
+      "bytes": 5745,
+      "sha256": "9f7d9841f83d1f46ed324d7ec99377c232ec539d75cbc4105e1de429aea7a405"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/explain-compare-sync-workflows/index.motion.json",
+      "bytes": 207,
+      "sha256": "16a0391a8e6211e20de29a82b3a1218db426c0a847c84740825b67567f54a463"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/explain-compare-sync-workflows/meta.json",
+      "bytes": 1968,
+      "sha256": "04f17c32f62cb0ad6f7ab9bda7d522b0e09cfee6dc9e7b92caf4b33bb99258bb"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/explain-compare-sync-workflows/prompt.md",
+      "bytes": 591,
+      "sha256": "667414796326624ce08248d93abd9f4530815375f555ea1dde6ae26c311eeba2"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/explain-evidence-source-to-quote/index.html",
+      "bytes": 5331,
+      "sha256": "37595393ff72bdeb7883c6e9e1e98e891830550504b76da368a94ca0b654f346"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/explain-evidence-source-to-quote/index.motion.json",
+      "bytes": 207,
+      "sha256": "16a0391a8e6211e20de29a82b3a1218db426c0a847c84740825b67567f54a463"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/explain-evidence-source-to-quote/meta.json",
+      "bytes": 1865,
+      "sha256": "b60501676443aa7ab2ae398d2c56c8077ce4227586ca7182d4dfce9af34dc9f4"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/explain-evidence-source-to-quote/prompt.md",
+      "bytes": 595,
+      "sha256": "627850b5be7f923bb32d5047aec0d137dc8166917c982b071d3898e7c3674602"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/explain-export-format-fanout/index.html",
+      "bytes": 5350,
+      "sha256": "5b998ac621543e0546940773b0b6bd56357c7e60465047cc3e9ccb8f3730dd50"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/explain-export-format-fanout/index.motion.json",
+      "bytes": 207,
+      "sha256": "16a0391a8e6211e20de29a82b3a1218db426c0a847c84740825b67567f54a463"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/explain-export-format-fanout/meta.json",
+      "bytes": 1803,
+      "sha256": "b828615b04f77706ec5da6da251c85d0bf49a89952e95e8e6f554a2cf55591f2"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/explain-export-format-fanout/prompt.md",
+      "bytes": 597,
+      "sha256": "38bba844c643ceb613ff6966cfe781b14b5a91cf7d294e5237ffd6f4f685cc2d"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/explain-feature-priority-matrix/index.html",
+      "bytes": 5416,
+      "sha256": "27af7f482f7d56f1eadd4f524cde310c13bc7aa5053efc0cd945c4b585940219"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/explain-feature-priority-matrix/index.motion.json",
+      "bytes": 207,
+      "sha256": "16a0391a8e6211e20de29a82b3a1218db426c0a847c84740825b67567f54a463"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/explain-feature-priority-matrix/meta.json",
+      "bytes": 1890,
+      "sha256": "6aaaffe5b5fc198079a100f9a938fbd393b0c3c941039f73a85bc835123970a1"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/explain-feature-priority-matrix/prompt.md",
+      "bytes": 589,
+      "sha256": "db2826df14597ffdea1915daa2e267f7736d7a9542f752408d0b6415b8c14222"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/explain-metric-waterfall-impact/index.html",
+      "bytes": 5346,
+      "sha256": "f301a06ec6ef4e3afdcb5a1751ccb72580a76212c90d0c1b479faa6fc1e193b6"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/explain-metric-waterfall-impact/index.motion.json",
+      "bytes": 207,
+      "sha256": "16a0391a8e6211e20de29a82b3a1218db426c0a847c84740825b67567f54a463"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/explain-metric-waterfall-impact/meta.json",
+      "bytes": 1876,
+      "sha256": "905656314c7446f0134915579b7bd474419f9292fe3ef4d27d53e6b1dfe5c8ec"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/explain-metric-waterfall-impact/prompt.md",
+      "bytes": 614,
+      "sha256": "22b29dc204ac53a548f948046bf6535e6fae9de4a556258a7aec88de3b366c12"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/explain-objection-answer-stack/index.html",
+      "bytes": 6215,
+      "sha256": "ecf1ac011f12032d5110ee5d8d7e711733db32a0b7bb3c94cb0bfce0fbaa6da0"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/explain-objection-answer-stack/index.motion.json",
+      "bytes": 207,
+      "sha256": "16a0391a8e6211e20de29a82b3a1218db426c0a847c84740825b67567f54a463"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/explain-objection-answer-stack/meta.json",
+      "bytes": 1888,
+      "sha256": "6c8e57be43195f31388114547014f95d343547d92f06bed9e293dba4a28dcb09"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/explain-objection-answer-stack/prompt.md",
+      "bytes": 581,
+      "sha256": "c9fd14acac847a964275283392144fcaab545e1196e7db1c21b090372c8649e2"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/explain-result-detail-triptych/index.html",
+      "bytes": 6488,
+      "sha256": "26bc72162983460bf54e24bee40e692d5900b015058b5f1e9036cee19cd005f5"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/explain-result-detail-triptych/index.motion.json",
+      "bytes": 207,
+      "sha256": "16a0391a8e6211e20de29a82b3a1218db426c0a847c84740825b67567f54a463"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/explain-result-detail-triptych/meta.json",
+      "bytes": 2170,
+      "sha256": "263950be3397cd5634cc29a899f5c598413176e52d33a0701f8c733b414f2699"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/explain-result-detail-triptych/prompt.md",
+      "bytes": 800,
+      "sha256": "ccbcb3a07069bd672fcaff6ccd325fc402650907fd977a70042f613eb00146e1"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/explain-steps-route-map/index.html",
+      "bytes": 5387,
+      "sha256": "319c73ef6ba57758b320534f2d22393b53b2274c95babc7037d4a6ad5e73055a"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/explain-steps-route-map/index.motion.json",
+      "bytes": 207,
+      "sha256": "16a0391a8e6211e20de29a82b3a1218db426c0a847c84740825b67567f54a463"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/explain-steps-route-map/meta.json",
+      "bytes": 1871,
+      "sha256": "18912cfd3e71d90980ae8c0c97f68f1205c605a86c1c3b3b445bbacaab374598"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/explain-steps-route-map/prompt.md",
+      "bytes": 584,
+      "sha256": "ab3884b9702d67deb9d163f63be2e3a57f76ed2e5432521e6d2d6fb5e5f8ac0b"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/explain-time-compression-bridge/index.html",
+      "bytes": 5108,
+      "sha256": "dc949aacc38c4684f8be9a6602a84e777f08da277448f00ccc818d122af19c2a"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/explain-time-compression-bridge/index.motion.json",
+      "bytes": 207,
+      "sha256": "16a0391a8e6211e20de29a82b3a1218db426c0a847c84740825b67567f54a463"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/explain-time-compression-bridge/meta.json",
+      "bytes": 2217,
+      "sha256": "b82774eb7a044a9c973b022b9f3730be497750c100b94434e0b23a2425985701"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/explain-time-compression-bridge/prompt.md",
+      "bytes": 822,
+      "sha256": "37e51f42a65927957cd6bd38b420fa784d101f8594b6862d05c8e61358ce4b40"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/explain-workflow-branch-decision/index.html",
+      "bytes": 5517,
+      "sha256": "c67c1ccd917d63644455d0d5ffa4188ad4be4d2fe5b4ca9ed46bd0c1fbb7be54"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/explain-workflow-branch-decision/index.motion.json",
+      "bytes": 207,
+      "sha256": "16a0391a8e6211e20de29a82b3a1218db426c0a847c84740825b67567f54a463"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/explain-workflow-branch-decision/meta.json",
+      "bytes": 1931,
+      "sha256": "5a0d81731608e11fd9596132ed3319dfd33750a36502246616aad6349e3e4db3"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/explain-workflow-branch-decision/prompt.md",
+      "bytes": 584,
+      "sha256": "8dcbec597cc3629e9ebf52bedf53ec2785731f39de719e67d60b65ae1aacffae"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/record-camera-tour/index.html",
+      "bytes": 6310,
+      "sha256": "6b1252e47ef8ed9460e18aae6a47f3f15c3cf0effeecd255522defedf57dd0e3"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/record-camera-tour/index.motion.json",
+      "bytes": 207,
+      "sha256": "16a0391a8e6211e20de29a82b3a1218db426c0a847c84740825b67567f54a463"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/record-camera-tour/meta.json",
+      "bytes": 2288,
+      "sha256": "8a0793c8fce71969c884c1319bfb9d11887f71cd0a88c528524f5e6369fcc9fd"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/record-camera-tour/prompt.md",
+      "bytes": 809,
+      "sha256": "2ddc1141aa978be5060ffe9628e543a122031aa76be1c5c5cc64762fa39f4aa9"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/record-context-inset/index.html",
+      "bytes": 5839,
+      "sha256": "33a3e47cc2c2db3039b7a83887e201a6cf6b837b8b18baafa588a4f6bebd84bd"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/record-context-inset/index.motion.json",
+      "bytes": 207,
+      "sha256": "16a0391a8e6211e20de29a82b3a1218db426c0a847c84740825b67567f54a463"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/record-context-inset/meta.json",
+      "bytes": 2210,
+      "sha256": "7e3dc3f284fdf5e028191336db4993246986ebd5e133abc18f041751f5ae055b"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/record-context-inset/prompt.md",
+      "bytes": 805,
+      "sha256": "1900fc873ca296b0b7dd24c8ce843a12e3a9943420d2c004ee4cf175407a8b7a"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/record-cursor-trail-route/index.html",
+      "bytes": 5716,
+      "sha256": "28dd50a830867b2af816298440257c2bf51d81841f0a1462e01d62cd63baf997"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/record-cursor-trail-route/index.motion.json",
+      "bytes": 207,
+      "sha256": "16a0391a8e6211e20de29a82b3a1218db426c0a847c84740825b67567f54a463"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/record-cursor-trail-route/meta.json",
+      "bytes": 2248,
+      "sha256": "c9b7f3d7b9466b4e7670ae12fcb1f347f2b8f08acf3b54bea5ea959bb00d681c"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/record-cursor-trail-route/prompt.md",
+      "bytes": 829,
+      "sha256": "6e5c46729a52adfd00212f64c8116925042372e87b00afaabc6acb81a778b82d"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/record-detail-freeze-callout/index.html",
+      "bytes": 6355,
+      "sha256": "d0b25d8f7649b7962ef049a537854061fcd671fdd580feb337e636d45eb14513"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/record-detail-freeze-callout/index.motion.json",
+      "bytes": 207,
+      "sha256": "16a0391a8e6211e20de29a82b3a1218db426c0a847c84740825b67567f54a463"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/record-detail-freeze-callout/meta.json",
+      "bytes": 2354,
+      "sha256": "e2ecef04ed4af40d7a58b2b09f47f4b708c8d84ad9cb70cc038a63f010e92847"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/record-detail-freeze-callout/prompt.md",
+      "bytes": 829,
+      "sha256": "0217b060af78318c6d0b47e3c2dd540dfbe9eadd1afa727f99e2b0d16ca10168"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/record-linked-loupe/index.html",
+      "bytes": 6316,
+      "sha256": "5991aa9da3626c4c43b90e5a3537dfa976fa81ebc024eb9d99e61a8b60c27fc5"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/record-linked-loupe/index.motion.json",
+      "bytes": 207,
+      "sha256": "16a0391a8e6211e20de29a82b3a1218db426c0a847c84740825b67567f54a463"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/record-linked-loupe/meta.json",
+      "bytes": 2255,
+      "sha256": "730f9364a9332ec743bf78917371e6fa3f613a23c9fcfd96d8f6f16c0db7cfc5"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/record-linked-loupe/prompt.md",
+      "bytes": 819,
+      "sha256": "c0d4f874f56b1adcbae6c9558cd04bdea9bf07feaf27d8b6f31e5a0cbe6d4e4b"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/record-pan-between-controls/index.html",
+      "bytes": 6333,
+      "sha256": "1dafdc81a1478abfdb391d88142b23f3fb62be4f441668702f82d8c7759b1ff9"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/record-pan-between-controls/index.motion.json",
+      "bytes": 207,
+      "sha256": "16a0391a8e6211e20de29a82b3a1218db426c0a847c84740825b67567f54a463"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/record-pan-between-controls/meta.json",
+      "bytes": 2326,
+      "sha256": "b37bfc844f733bc03e9423d1376faee36d77dabb2907d25abf758c57257cfc93"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/record-pan-between-controls/prompt.md",
+      "bytes": 797,
+      "sha256": "bf05a700aed3e2e303e8b6f86c52be8e6a6f0a64b5cdc40839945370f5294c2c"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/record-portrait-reframe/index.html",
+      "bytes": 5638,
+      "sha256": "2e94bb0d0dacaaaf4865dc678ed551b047ebe033badb49b75bd5715e664dd443"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/record-portrait-reframe/index.motion.json",
+      "bytes": 207,
+      "sha256": "16a0391a8e6211e20de29a82b3a1218db426c0a847c84740825b67567f54a463"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/record-portrait-reframe/meta.json",
+      "bytes": 2230,
+      "sha256": "f39519286c0c88d9f220d0bb88c3dc1bafab5d0e95f31ba5e2ec4fabba5684f8"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/record-portrait-reframe/prompt.md",
+      "bytes": 834,
+      "sha256": "97b30e2c47a8a1a41420e056c6b6b964bb84155e2e96a4dd96bd880b6986c945"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/record-proof-replay/index.html",
+      "bytes": 5257,
+      "sha256": "f748413c4fb944d8506eb50ee0fd08d33d7722b4f462245d0709607a096715ba"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/record-proof-replay/index.motion.json",
+      "bytes": 207,
+      "sha256": "16a0391a8e6211e20de29a82b3a1218db426c0a847c84740825b67567f54a463"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/record-proof-replay/meta.json",
+      "bytes": 2190,
+      "sha256": "c76b45a1e80eb2e1d895f7a2e89962c969110ff417ddc4e946a19be63acb8106"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/record-proof-replay/prompt.md",
+      "bytes": 798,
+      "sha256": "4562454fddb756d453a264e56f6d167556d3509c88fee02b418ddc2315e368af"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/record-punch-hold-return/index.html",
+      "bytes": 5760,
+      "sha256": "19c4cbff42f340b277393e589f5da8bc3167bd4608a82f15af1f820677be7387"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/record-punch-hold-return/index.motion.json",
+      "bytes": 207,
+      "sha256": "16a0391a8e6211e20de29a82b3a1218db426c0a847c84740825b67567f54a463"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/record-punch-hold-return/meta.json",
+      "bytes": 2191,
+      "sha256": "a70cb0746c55fd40570b48ffe259fb48efb1a34fa97bcc3dcdaf1298c47ccca6"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/record-punch-hold-return/prompt.md",
+      "bytes": 785,
+      "sha256": "199040818302096a3e729c3fc784bcb414b4bbdfeecebec600ec7e814cb5d3fb"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/record-timeline-jump/index.html",
+      "bytes": 5403,
+      "sha256": "57dc970e9d4dc1aee785879fd46af6e76f35544bd7ddda00bcd65071d0aabd96"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/record-timeline-jump/index.motion.json",
+      "bytes": 207,
+      "sha256": "16a0391a8e6211e20de29a82b3a1218db426c0a847c84740825b67567f54a463"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/record-timeline-jump/meta.json",
+      "bytes": 2179,
+      "sha256": "b00e8658a286650f7a587b34678fb6400cbde5460e2e42fa615170df27609c58"
+    },
+    {
+      "path": "scripts/motion-kit/pieces/record-timeline-jump/prompt.md",
+      "bytes": 802,
+      "sha256": "ce6b89181bb55173aab94339858442eb683a795ee3e7faf2fa81856466163172"
+    }
+  ]
+}

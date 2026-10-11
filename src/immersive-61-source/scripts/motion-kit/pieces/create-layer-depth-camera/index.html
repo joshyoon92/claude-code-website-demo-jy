@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=1080,height=830">
+<link rel="stylesheet" href="brand/cha.css"><link rel="stylesheet" href="brand/immersive-create.css">
+<script src="brand/gsap.min.js"></script><script src="brand/cha-motion.js"></script><script src="brand/immersive-create.js"></script>
+<style>#rig{position:absolute;left:132px;top:65px;width:720px;height:450px;transform-style:preserve-3d}.depth-layer{position:absolute;inset:0;border:1px solid #777;transform-style:preserve-3d}.depth-layer svg{width:100%;height:100%}#depth-tags{position:absolute;left:40px;right:40px;bottom:25px;display:flex;justify-content:space-between;font:19px var(--mono);color:#ccc}#depth-line{position:absolute;left:40px;bottom:12px;width:904px;height:3px;background:#d4f527;transform-origin:0 50%}</style><link rel="stylesheet" href="brand/immersive-life.css"><script src="brand/immersive-life.js"></script></head><body>
+<div class="cha ic-stage" id="stage" data-composition-id="create-layer-depth-camera" data-start="0" data-duration="6.8" data-width="1080" data-height="830" data-composition-variables='[{&quot;id&quot;: &quot;headline&quot;, &quot;type&quot;: &quot;string&quot;, &quot;label&quot;: &quot;headline&quot;, &quot;default&quot;: &quot;평면 이미지의 레이어를 펼치기&quot;}]'>
+<div class="ic-head"><span>CREATE / LAYER-DEPTH-CAMERA</span><span>CHA MOTION</span></div><div class="ic-title" id="headline"></div>
+<div class="ic-body clip" id="canvas" data-start="0" data-duration="6.8" data-track-index="0"><div id="rig"><div id="back" class="depth-layer"><svg viewBox="0 0 720 450"><rect width="720" height="450" fill="#e5e2d5"/><circle cx="565" cy="110" r="62" fill="#f8f7ef"/></svg></div><div id="middle" class="depth-layer"><svg viewBox="0 0 720 450"><path d="M0 320 160 153 335 325 495 186 720 351V450H0Z" fill="#b3b1a6"/><path d="M0 406 239 317 411 397 635 291 720 369V450H0Z" fill="#73756a"/></svg></div><div id="front" class="depth-layer"><svg viewBox="0 0 720 450"><ellipse cx="378" cy="403" rx="119" ry="19" fill="#34372f" opacity=".25"/><path d="M300 401V187A73 73 0 0 1 446 187V401H412V187A39 39 0 0 0 334 187V401Z" fill="#f4f3ee"/></svg></div></div><div id="depth-tags"><span>BACKGROUND</span><span>MIDGROUND</span><span>FOREGROUND</span></div><div id="depth-line"></div></div>
+<div class="ic-foot"><span>설명용 재연 · 원본 벡터 아트</span><span>EDITABLE / 06.8 SEC</span></div></div>
+<script>(()=>{
+const V=CHA.vars({"headline": "평면 이미지의 레이어를 펼치기"});
+IC.setText('headline',IC.txt(V.headline,22));
+const tl=gsap.timeline({paused:true});
+window.__timelines=window.__timelines||{};
+window.__timelines["create-layer-depth-camera"]=tl;
+gsap.set('#depth-tags',{opacity:0});gsap.set('#depth-line',{scaleX:0});tl.to('#rig',{rotationY:-31,rotationX:7,scale:.72,x:-45,duration:1,ease:'power3.inOut'},.8);tl.to('#back',{z:-190,x:-45,duration:1.1,ease:'power3.inOut'},1.15);tl.to('#middle',{z:0,x:20,duration:1.1,ease:'power3.inOut'},1.15);tl.to('#front',{z:190,x:75,duration:1.1,ease:'power3.inOut'},1.15);tl.to('#depth-tags',{opacity:1,duration:.3},2.15);tl.to('#depth-line',{scaleX:1,duration:.9,ease:'power2.out'},2.2);tl.to('#rig',{rotationY:-16,x:50,duration:1.3,ease:'sine.inOut'},2.4);tl.to(['#back','#middle','#front'],{z:0,x:0,duration:1.2,ease:'power3.inOut'},4.1);tl.to('#rig',{rotationY:0,rotationX:0,scale:1,x:0,duration:1.2,ease:'power3.inOut'},4.1);tl.to(['#depth-tags','#depth-line'],{opacity:0,duration:.4},4.7);
+tl.set({},{},6.8);IMM.life(tl);tl.seek(0);
+})();</script></body></html>

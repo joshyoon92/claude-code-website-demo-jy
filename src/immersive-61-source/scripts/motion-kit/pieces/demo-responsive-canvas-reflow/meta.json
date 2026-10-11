@@ -1,0 +1,50 @@
+{
+  "slug": "demo-responsive-canvas-reflow",
+  "title_ko": "폭이 바뀌면 구조도 바뀐다",
+  "category": "technique",
+  "size": [1080, 830],
+  "duration": 6.5,
+  "key_at": [0.3, 2.0, 3.6, 5.9],
+  "uses": ["shorts", "ad", "longform", "web"],
+  "what": "A responsive canvas is physically resized by its edge handle; three columns reflow into a compact vertical stack while preserving content order.",
+  "how_to_use": "반응형 레이아웃·웹사이트 제작 기능을 소개할 때. Variables: headline, prompt, action, result. This is an original simulated interface, not a recording of a commercial app.",
+  "vars": ["headline", "prompt", "action", "result"],
+  "techniques": ["responsive", "resize-handle", "layout-reflow", "preserved-order"],
+  "pack": "immersive-2026-10",
+  "family": "screen-workflow",
+  "source_refs": ["https://screen.studio/", "https://jitter.video/templates/", "https://rive.app/"],
+  "beats": [
+    {
+      "at": 1.3,
+      "action": "캔버스의 오른쪽 조절점을 안으로 당긴다"
+    },
+    {
+      "at": 1.7,
+      "action": "세 열의 카드가 순서대로 세로 배치로 바뀐다"
+    },
+    {
+      "at": 2.8,
+      "action": "좁은 화면 폭과 동일한 내용을 확인한다"
+    }
+  ],
+  "distinction": "A responsive canvas is physically resized by its edge handle; three columns reflow into a compact vertical stack while preserving content order.",
+  "sfx_cues": [
+    {
+      "at": 0.5,
+      "type": "soft-interface-tap"
+    },
+    {
+      "at": 2.1,
+      "type": "short-whoosh"
+    },
+    {
+      "at": 4.7,
+      "type": "resolved-tick"
+    }
+  ],
+  "shorts_use": "반응형 레이아웃·웹사이트 제작 기능을 소개할 때.",
+  "suggested_duration": 5.5,
+  "entry_state": "세 열로 배치된 콘텐츠",
+  "exit_state": "3 COLUMNS → 1 STACK",
+  "evidence_note": "Technique references motivate attention and state transitions; no popularity or causal performance claim. All visual artwork and code are original."
+}

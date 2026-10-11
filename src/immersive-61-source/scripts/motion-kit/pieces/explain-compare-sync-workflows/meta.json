@@ -1,0 +1,48 @@
+{
+  "slug": "explain-compare-sync-workflows",
+  "title_ko": "같은 단계끼리 나란히 비교하기",
+  "category": "technique",
+  "size": [1080, 830],
+  "duration": 7.4,
+  "key_at": [0.3, 2.3, 4.4, 6.9],
+  "uses": ["shorts", "ad", "longform", "web"],
+  "what": "두 작업 흐름을 같은 단계와 시계에 맞춰 비교합니다. 단계 아래의 진행선이 함께 이동하며, 측정하지 않은 속도 우위를 주장하지 않습니다.",
+  "how_to_use": "headline, note와 표시된 변수로 내용을 교체합니다. 설명용 샘플 데이터이며 실제 제품 성능을 주장하지 않습니다.",
+  "vars": ["headline", "note", "left_name", "right_name"],
+  "techniques": ["compare-sync-workflows", "deterministic", "source-bound"],
+  "pack": "immersive-2026-10",
+  "family": "recording-marketing",
+  "source_refs": [
+    "https://screen.studio/",
+    "https://www.ibm.com/design/language/animation/tips-and-techniques/"
+  ],
+  "beats": [
+    {
+      "at": 0.4,
+      "action": "맥락을 먼저 보여 준다"
+    },
+    {
+      "at": 2.2,
+      "action": "핵심 동작과 결과를 연결한다"
+    },
+    {
+      "at": 5.8,
+      "action": "결과를 읽을 수 있도록 정리한다"
+    }
+  ],
+  "distinction": "두 작업 흐름을 같은 단계와 시계에 맞춰 비교합니다. 단계 아래의 진행선이 함께 이동하며, 측정하지 않은 속도 우위를 주장하지 않습니다.",
+  "entry_state": "동작 전의 입력과 맥락",
+  "exit_state": "동작 결과와 전체 맥락",
+  "sfx_cues": [
+    {
+      "at": 1.3,
+      "type": "soft-whoosh"
+    },
+    {
+      "at": 4.8,
+      "type": "resolved-tick"
+    }
+  ],
+  "shorts_use": "기능을 실행한 증거와 결과를 하나의 짧은 장면으로 설명합니다.",
+  "evidence_note": "Original code/artwork; source references inform technique, not popularity. Default recording is an original simulated screen, visibly identified. Silent by design."
+}

@@ -1,0 +1,73 @@
+{
+  "slug": "create-word-extrude-fold",
+  "title_ko": "글자의 깊이를 접어 한 줄로",
+  "category": "typography",
+  "size": [1080, 830],
+  "duration": 6.8,
+  "key_at": [0.5, 2.5, 4.3, 6.2],
+  "uses": ["shorts", "ad", "longform"],
+  "what": "하나의 단어가 얇은 등고선처럼 깊이 방향으로 쌓인다. 시점이 옆으로 돌아가 입체 두께를 드러내고 글자층이 한 면으로 접히며 아래의 결론 문장이 열린다.",
+  "how_to_use": "mk.py render create-word-extrude-fold --vars vars.json. headline, word, caption를 교체한다.",
+  "vars": ["headline", "word", "caption"],
+  "pack": "immersive-2026-10",
+  "family": "creative-transform",
+  "source_refs": [
+    "https://jitter.video/template/the-prompt-text-to-image/",
+    "https://jitter.video/template/the-prompt-generative-ai-features/",
+    "https://gsap.com/docs/v3/GSAP/Timeline/",
+    "https://rive.app/docs/editor/animate-mode/interpolation-easing"
+  ],
+  "research_note": "공식 제품 데모의 입력→조작→결과 구조 및 seekable timeline 원리를 참고. 코드와 일러스트는 원본 제작이며 특정 도구의 실제 추론을 녹화한 영상이 아님.",
+  "beats": [
+    {
+      "time": 0.45,
+      "action": "단어를 입체 시점으로 회전"
+    },
+    {
+      "time": 0.65,
+      "action": "9개 문자 평면을 깊이 방향으로 벌림"
+    },
+    {
+      "time": 2.05,
+      "action": "반대쪽으로 카메라 이동"
+    },
+    {
+      "time": 3.8,
+      "action": "모든 문자층을 평면으로 접음"
+    },
+    {
+      "time": 4.85,
+      "action": "아래 문장을 펼쳐 결론 제시"
+    }
+  ],
+  "distinction": "기존 weight-breathe가 글자의 굵기를 조절하는 방식이라면 여기서는 개별 평면의 z축 간격과 접힘을 사용해 입체 구조를 만든다.",
+  "sfx_cues": [
+    {
+      "time": 1,
+      "type": "soft-tap"
+    },
+    {
+      "time": 3.2,
+      "type": "short-whoosh"
+    },
+    {
+      "time": 5.4,
+      "type": "resolve-click"
+    }
+  ],
+  "audio": "silent; sfx_cues are editorial suggestions, not embedded audio",
+  "shorts_use": "AI·디자인 튜토리얼의 해당 기능 설명 직후 6.8초 삽입. 외부 자막은 Shorts 캡션 영역에 유지.",
+  "entry_state": "단어를 입체 시점으로 회전",
+  "exit_state": "아래 문장을 펼쳐 결론 제시",
+  "content_limits": {
+    "headline": "한글 22자 이내",
+    "word": "영문 6자 이내 권장",
+    "prompt": "한글 24자 이내 권장",
+    "policy": "문자 수 한도를 넘으면 명시적으로 오류를 반환한다. 조용히 잘라내지 않는다."
+  },
+  "max_chars": {
+    "headline": 22,
+    "word": 6,
+    "caption": 50
+  }
+}

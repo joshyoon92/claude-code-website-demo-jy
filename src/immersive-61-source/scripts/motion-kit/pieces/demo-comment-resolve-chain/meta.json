@@ -1,0 +1,50 @@
+{
+  "slug": "demo-comment-resolve-chain",
+  "title_ko": "댓글에서 수정 완료까지",
+  "category": "technique",
+  "size": [1080, 830],
+  "duration": 6.5,
+  "key_at": [0.3, 2.0, 3.6, 5.9],
+  "uses": ["shorts", "ad", "longform", "web"],
+  "what": "A comment pinned to a headline opens, the requested wording is changed in place, then the comment collapses into a resolved marker without replacing the design.",
+  "how_to_use": "협업 툴이나 AI 문구 개선의 수정 전후를 보여줄 때. Variables: headline, prompt, action, result. This is an original simulated interface, not a recording of a commercial app.",
+  "vars": ["headline", "prompt", "action", "result"],
+  "techniques": ["comment-pin", "copy-revision", "resolve", "persistent-canvas"],
+  "pack": "immersive-2026-10",
+  "family": "screen-workflow",
+  "source_refs": ["https://screen.studio/", "https://jitter.video/templates/", "https://rive.app/"],
+  "beats": [
+    {
+      "at": 1.2,
+      "action": "문구에 달린 댓글을 연다"
+    },
+    {
+      "at": 2.6,
+      "action": "피드백에 맞춰 문구가 바뀐다"
+    },
+    {
+      "at": 4.1,
+      "action": "댓글을 해결하고 체크 표시로 접는다"
+    }
+  ],
+  "distinction": "A comment pinned to a headline opens, the requested wording is changed in place, then the comment collapses into a resolved marker without replacing the design.",
+  "sfx_cues": [
+    {
+      "at": 0.5,
+      "type": "soft-interface-tap"
+    },
+    {
+      "at": 2.1,
+      "type": "short-whoosh"
+    },
+    {
+      "at": 4.7,
+      "type": "resolved-tick"
+    }
+  ],
+  "shorts_use": "협업 툴이나 AI 문구 개선의 수정 전후를 보여줄 때.",
+  "suggested_duration": 5.5,
+  "entry_state": "댓글이 달린 히어로 문구",
+  "exit_state": "FEEDBACK → EDIT → RESOLVED",
+  "evidence_note": "Technique references motivate attention and state transitions; no popularity or causal performance claim. All visual artwork and code are original."
+}

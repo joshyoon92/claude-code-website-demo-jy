@@ -1,0 +1,54 @@
+{
+  "slug": "demo-node-connect-run",
+  "title_ko": "노드를 연결하면 흐름이 돈다",
+  "category": "technique",
+  "size": [1080, 830],
+  "duration": 6.5,
+  "key_at": [0.3, 2.0, 3.6, 5.9],
+  "uses": ["shorts", "ad", "longform", "web"],
+  "what": "A dragged connector snaps between input and transform nodes, a run button triggers a travelling data packet, and the output card reveals a structured summary.",
+  "how_to_use": "노코드·에이전트·자동화 워크플로의 실행 흐름을 설명할 때. Variables: headline, prompt, action, result. This is an original simulated interface, not a recording of a commercial app.",
+  "vars": ["headline", "prompt", "action", "result"],
+  "techniques": ["node-editor", "connector-drag", "data-packet", "run-result"],
+  "pack": "immersive-2026-10",
+  "family": "screen-workflow",
+  "source_refs": ["https://screen.studio/", "https://jitter.video/templates/", "https://rive.app/"],
+  "beats": [
+    {
+      "at": 0.95,
+      "action": "입력과 처리 노드를 연결한다"
+    },
+    {
+      "at": 2.8,
+      "action": "실행 버튼을 누른다"
+    },
+    {
+      "at": 3.05,
+      "action": "데이터가 연결 경로를 따라 이동한다"
+    },
+    {
+      "at": 4.65,
+      "action": "요약 결과가 나타난다"
+    }
+  ],
+  "distinction": "A dragged connector snaps between input and transform nodes, a run button triggers a travelling data packet, and the output card reveals a structured summary.",
+  "sfx_cues": [
+    {
+      "at": 0.5,
+      "type": "soft-interface-tap"
+    },
+    {
+      "at": 2.1,
+      "type": "short-whoosh"
+    },
+    {
+      "at": 4.7,
+      "type": "resolved-tick"
+    }
+  ],
+  "shorts_use": "노코드·에이전트·자동화 워크플로의 실행 흐름을 설명할 때.",
+  "suggested_duration": 5.5,
+  "entry_state": "연결되지 않은 자동화 노드",
+  "exit_state": "CONNECTED → RUN → SUMMARY",
+  "evidence_note": "Technique references motivate attention and state transitions; no popularity or causal performance claim. All visual artwork and code are original."
+}

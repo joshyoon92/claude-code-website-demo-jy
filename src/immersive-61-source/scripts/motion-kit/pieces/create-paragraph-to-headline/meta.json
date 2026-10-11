@@ -1,0 +1,77 @@
+{
+  "slug": "create-paragraph-to-headline",
+  "title_ko": "긴 설명에서 핵심만 꺼내기",
+  "category": "typography",
+  "size": [1080, 830],
+  "duration": 6.8,
+  "key_at": [0.5, 2.5, 4.3, 6.2],
+  "uses": ["shorts", "ad", "longform"],
+  "what": "짧은 설명 문장 안에서 세 핵심 어절을 선택한다. 나머지 말은 흐려지고 선택한 어절만 원래 순서로 위아래를 재배치하며 큰 헤드라인이 된다.",
+  "how_to_use": "mk.py render create-paragraph-to-headline --vars vars.json. headline, lead, first, bridge, second, tail, third를 교체한다.",
+  "vars": ["headline", "lead", "first", "bridge", "second", "tail", "third"],
+  "pack": "immersive-2026-10",
+  "family": "creative-transform",
+  "source_refs": [
+    "https://jitter.video/template/the-prompt-text-to-image/",
+    "https://jitter.video/template/the-prompt-generative-ai-features/",
+    "https://gsap.com/docs/v3/GSAP/Timeline/",
+    "https://rive.app/docs/editor/animate-mode/interpolation-easing"
+  ],
+  "research_note": "공식 제품 데모의 입력→조작→결과 구조 및 seekable timeline 원리를 참고. 코드와 일러스트는 원본 제작이며 특정 도구의 실제 추론을 녹화한 영상이 아님.",
+  "beats": [
+    {
+      "time": 0,
+      "action": "원문 문단 읽기"
+    },
+    {
+      "time": 0.85,
+      "action": "핵심 어절을 차례로 선택"
+    },
+    {
+      "time": 2.05,
+      "action": "나머지 문장의 비중을 낮춤"
+    },
+    {
+      "time": 3,
+      "action": "같은 핵심 어절을 큰 제목으로 재배치"
+    },
+    {
+      "time": 4.4,
+      "action": "핵심 헤드라인 유지"
+    }
+  ],
+  "distinction": "기존 phrase-stack의 새 문장 등장과 달리 원문에 존재하는 단어를 그대로 추출해 편집·요약 과정을 보여준다.",
+  "sfx_cues": [
+    {
+      "time": 1,
+      "type": "soft-tap"
+    },
+    {
+      "time": 3.2,
+      "type": "short-whoosh"
+    },
+    {
+      "time": 5.4,
+      "type": "resolve-click"
+    }
+  ],
+  "audio": "silent; sfx_cues are editorial suggestions, not embedded audio",
+  "shorts_use": "AI·디자인 튜토리얼의 해당 기능 설명 직후 6.8초 삽입. 외부 자막은 Shorts 캡션 영역에 유지.",
+  "entry_state": "원문 문단 읽기",
+  "exit_state": "핵심 헤드라인 유지",
+  "content_limits": {
+    "headline": "한글 22자 이내",
+    "word": "영문 3–8자 권장",
+    "prompt": "한글 24자 이내 권장",
+    "policy": "문자 수 한도를 넘으면 명시적으로 오류를 반환한다. 조용히 잘라내지 않는다."
+  },
+  "max_chars": {
+    "headline": 22,
+    "lead": 50,
+    "first": 50,
+    "bridge": 50,
+    "second": 50,
+    "tail": 50,
+    "third": 50
+  }
+}

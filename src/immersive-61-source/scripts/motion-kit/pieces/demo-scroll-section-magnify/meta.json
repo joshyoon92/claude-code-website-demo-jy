@@ -1,0 +1,54 @@
+{
+  "slug": "demo-scroll-section-magnify",
+  "title_ko": "스크롤하다 핵심에서 멈추기",
+  "category": "technique",
+  "size": [1080, 830],
+  "duration": 6.5,
+  "key_at": [0.3, 2.0, 3.6, 5.9],
+  "uses": ["shorts", "ad", "longform", "web"],
+  "what": "A tall product page scrolls through a hero, process and result; the camera settles on one result block and expands it for a readable proof beat.",
+  "how_to_use": "웹사이트 둘러보기·랜딩페이지 소개의 핵심 인서트. Variables: headline, prompt, action, result. This is an original simulated interface, not a recording of a commercial app.",
+  "vars": ["headline", "prompt", "action", "result"],
+  "techniques": ["scroll-journey", "section-anchor", "proof-magnify", "cta"],
+  "pack": "immersive-2026-10",
+  "family": "screen-workflow",
+  "source_refs": ["https://screen.studio/", "https://jitter.video/templates/", "https://rive.app/"],
+  "beats": [
+    {
+      "at": 0.8,
+      "action": "히어로에서 사용 단계로 스크롤한다"
+    },
+    {
+      "at": 2.35,
+      "action": "다음 행동을 안내하는 결과 블록으로 이동한다"
+    },
+    {
+      "at": 3.75,
+      "action": "핵심 블록을 확대하고 멈춘다"
+    },
+    {
+      "at": 4.65,
+      "action": "CTA를 누른다"
+    }
+  ],
+  "distinction": "A tall product page scrolls through a hero, process and result; the camera settles on one result block and expands it for a readable proof beat.",
+  "sfx_cues": [
+    {
+      "at": 0.5,
+      "type": "soft-interface-tap"
+    },
+    {
+      "at": 2.1,
+      "type": "short-whoosh"
+    },
+    {
+      "at": 4.7,
+      "type": "resolved-tick"
+    }
+  ],
+  "shorts_use": "웹사이트 둘러보기·랜딩페이지 소개의 핵심 인서트.",
+  "suggested_duration": 5.5,
+  "entry_state": "긴 제품 페이지의 첫 화면",
+  "exit_state": "SCROLL → FOCUS → ACTION",
+  "evidence_note": "Technique references motivate attention and state transitions; no popularity or causal performance claim. All visual artwork and code are original."
+}

@@ -1,0 +1,48 @@
+{
+  "slug": "explain-steps-route-map",
+  "title_ko": "작업이 어디로 이어지는지",
+  "category": "technique",
+  "size": [1080, 830],
+  "duration": 6.0,
+  "key_at": [0.3, 2.3, 4.4, 5.6],
+  "uses": ["shorts", "ad", "longform", "web"],
+  "what": "하나의 작업이 공간에 배치된 세 단계를 통과합니다. 입력과 목적지를 남겨 전체 흐름을 쉽게 따라가게 합니다.",
+  "how_to_use": "headline, note와 표시된 변수로 내용을 교체합니다. 설명용 샘플 데이터이며 실제 제품 성능을 주장하지 않습니다.",
+  "vars": ["headline", "note", "step1", "step2", "step3"],
+  "techniques": ["steps-route-map", "deterministic", "source-bound"],
+  "pack": "immersive-2026-10",
+  "family": "recording-marketing",
+  "source_refs": [
+    "https://screen.studio/",
+    "https://www.ibm.com/design/language/animation/tips-and-techniques/"
+  ],
+  "beats": [
+    {
+      "at": 0.4,
+      "action": "맥락을 먼저 보여 준다"
+    },
+    {
+      "at": 2.2,
+      "action": "핵심 동작과 결과를 연결한다"
+    },
+    {
+      "at": 5.8,
+      "action": "결과를 읽을 수 있도록 정리한다"
+    }
+  ],
+  "distinction": "하나의 작업이 공간에 배치된 세 단계를 통과합니다. 입력과 목적지를 남겨 전체 흐름을 쉽게 따라가게 합니다.",
+  "entry_state": "동작 전의 입력과 맥락",
+  "exit_state": "동작 결과와 전체 맥락",
+  "sfx_cues": [
+    {
+      "at": 1.3,
+      "type": "soft-whoosh"
+    },
+    {
+      "at": 4.8,
+      "type": "resolved-tick"
+    }
+  ],
+  "shorts_use": "기능을 실행한 증거와 결과를 하나의 짧은 장면으로 설명합니다.",
+  "evidence_note": "Original code/artwork; source references inform technique, not popularity. Default recording is an original simulated screen, visibly identified. Silent by design."
+}

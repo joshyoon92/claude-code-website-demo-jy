@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=1080,height=830">
+<link rel="stylesheet" href="brand/cha.css"><link rel="stylesheet" href="brand/immersive-create.css">
+<script src="brand/gsap.min.js"></script><script src="brand/cha-motion.js"></script><script src="brand/immersive-create.js"></script>
+<style>#scene,#mask{position:absolute;inset:0;width:100%;height:100%}#edit-prompt{left:262px;bottom:28px;width:460px;height:68px;font-size:26px}</style><link rel="stylesheet" href="brand/immersive-life.css"><script src="brand/immersive-life.js"></script></head><body>
+<div class="cha ic-stage" id="stage" data-composition-id="create-mask-inpaint-reveal" data-start="0" data-duration="6.8" data-width="1080" data-height="830" data-composition-variables='[{&quot;id&quot;: &quot;headline&quot;, &quot;type&quot;: &quot;string&quot;, &quot;label&quot;: &quot;headline&quot;, &quot;default&quot;: &quot;바꾸고 싶은 부분만 고치기&quot;}, {&quot;id&quot;: &quot;prompt&quot;, &quot;type&quot;: &quot;string&quot;, &quot;label&quot;: &quot;prompt&quot;, &quot;default&quot;: &quot;병을 식물이 있는 화병으로&quot;}]'>
+<div class="ic-head"><span>CREATE / MASK-INPAINT-REVEAL</span><span>CHA MOTION</span></div><div class="ic-title" id="headline"></div>
+<div class="ic-body clip" id="canvas" data-start="0" data-duration="6.8" data-track-index="0"><div id="scene"><svg viewBox="0 0 984 580"><rect width="984" height="580" fill="#dedbcf"/><path d="M0 415H984V580H0Z" fill="#b3b1a7"/><path d="M0 414H984" stroke="#9d9c92"/><ellipse cx="489" cy="450" rx="170" ry="24" fill="#8e8e84"/><g id="before"><rect x="430" y="155" width="125" height="280" rx="28" fill="#f4f3ee"/><rect x="460" y="105" width="65" height="80" rx="8" fill="#606159"/><path d="M430 280H555V356H430Z" fill="#a7a89a"/></g><g id="after"><path d="M420 305H566L551 433Q495 454 435 433Z" fill="#f4f3ee"/><path d="M492 318V120M492 234 436 185M492 196 549 139" stroke="#44483e" stroke-width="9" fill="none"/><path d="M492 208Q416 202 421 141Q480 142 492 208M493 183Q490 106 550 100Q562 161 493 183M492 268Q550 189 581 226Q578 276 492 268" fill="#696d5b"/></g></svg></div><svg id="mask" viewBox="0 0 984 580"><path d="M397 90H595V458H397Z" fill="#d4f527" fill-opacity=".15" stroke="#d4f527" stroke-width="3" stroke-dasharray="10 7"/></svg><div id="cursor-wrap"></div><div id="edit-prompt" class="ic-prompt"></div></div>
+<div class="ic-foot"><span>설명용 재연 · 원본 벡터 아트</span><span>EDITABLE / 06.8 SEC</span></div></div>
+<script>(()=>{
+const V=CHA.vars({"headline": "바꾸고 싶은 부분만 고치기", "prompt": "병을 식물이 있는 화병으로"});
+IC.setText('headline',IC.txt(V.headline,22));
+const tl=gsap.timeline({paused:true});
+window.__timelines=window.__timelines||{};
+window.__timelines["create-mask-inpaint-reveal"]=tl;
+document.getElementById('cursor-wrap').innerHTML=IC.cursor();IC.setText('edit-prompt',V.prompt);gsap.set(['#mask','#edit-prompt'],{opacity:0});gsap.set('#after',{opacity:0});gsap.set('#ic-cursor',{x:835,y:499});
+tl.to('#ic-cursor',{x:399,y:91,duration:.65,ease:'power3.inOut'},.45);tl.to('#mask',{opacity:1,duration:.25},1.1);tl.to('#ic-cursor',{x:595,y:458,duration:.8,ease:'power1.inOut'},1.1);tl.to('#edit-prompt',{opacity:1,duration:.25},1.9);
+tl.to('#before',{opacity:0,duration:.5},2.65);tl.fromTo('#after',{clipPath:'inset(100% 0 0 0)',opacity:1},{opacity:1,clipPath:'inset(0% 0 0 0)',duration:1,ease:'power3.inOut'},3.1);
+tl.to(['#mask','#edit-prompt','#ic-cursor'],{opacity:0,duration:.4},4.5);tl.to('#scene',{scale:1.08,transformOrigin:'50% 45%',duration:1.1,ease:'power3.inOut'},4.9);
+tl.set({},{},6.8);IMM.life(tl);tl.seek(0);
+})();</script></body></html>

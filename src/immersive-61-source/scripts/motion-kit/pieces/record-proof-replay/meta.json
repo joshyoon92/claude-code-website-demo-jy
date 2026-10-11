@@ -1,0 +1,49 @@
+{
+  "slug": "record-proof-replay",
+  "title_ko": "같은 장면을 다시 확인하기",
+  "category": "technique",
+  "size": [1080, 830],
+  "duration": 7.4,
+  "key_at": [0.3, 2.3, 4.4, 6.9],
+  "uses": ["shorts", "ad", "longform", "web"],
+  "what": "동일한 시작점의 짧은 구간을 다시 보여 줍니다. 재생 전환을 명시해 반복된 장면이 다른 결과로 오해되지 않게 합니다.",
+  "how_to_use": "실제 녹화 파일은 immersive.py render record-proof-replay --media /absolute/file.mp4 --vars values.json으로 넣습니다. 좌표와 확대 배율은 작성자가 지정하며 실제 커서의 자동 인식이 아닙니다. 영상 음성은 의도적으로 제외하여 편집 시 원본 오디오를 따로 배치합니다. 설명용 샘플 데이터이며 실제 제품 성능을 주장하지 않습니다.",
+  "vars": ["recording", "headline", "note", "recording_aspect"],
+  "techniques": ["proof-replay", "deterministic", "source-bound"],
+  "pack": "immersive-2026-10",
+  "family": "recording-marketing",
+  "source_refs": [
+    "https://screen.studio/",
+    "https://www.ibm.com/design/language/animation/tips-and-techniques/"
+  ],
+  "beats": [
+    {
+      "at": 0.4,
+      "action": "맥락을 먼저 보여 준다"
+    },
+    {
+      "at": 2.2,
+      "action": "핵심 동작과 결과를 연결한다"
+    },
+    {
+      "at": 5.8,
+      "action": "결과를 읽을 수 있도록 정리한다"
+    }
+  ],
+  "distinction": "동일한 시작점의 짧은 구간을 다시 보여 줍니다. 재생 전환을 명시해 반복된 장면이 다른 결과로 오해되지 않게 합니다.",
+  "entry_state": "동작 전의 입력과 맥락",
+  "exit_state": "동작 결과와 전체 맥락",
+  "sfx_cues": [
+    {
+      "at": 1.3,
+      "type": "soft-whoosh"
+    },
+    {
+      "at": 4.8,
+      "type": "resolved-tick"
+    }
+  ],
+  "shorts_use": "기능을 실행한 증거와 결과를 하나의 짧은 장면으로 설명합니다.",
+  "evidence_note": "Original code/artwork; source references inform technique, not popularity. Default recording is an original simulated screen, visibly identified. Silent by design.",
+  "source_duration_min": 7.3
+}

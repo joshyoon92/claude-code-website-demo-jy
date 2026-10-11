@@ -1,0 +1,54 @@
+{
+  "slug": "demo-drag-asset-drop",
+  "title_ko": "이미지를 끌어 바로 적용",
+  "category": "technique",
+  "size": [1080, 830],
+  "duration": 6.5,
+  "key_at": [0.3, 2.0, 3.6, 5.9],
+  "uses": ["shorts", "ad", "longform", "web"],
+  "what": "An asset thumbnail remains the same object while it follows the cursor from a library, snaps into a drop zone and expands into the finished hero.",
+  "how_to_use": "드래그 앤 드롭 기능 또는 소재 적용법을 소개할 때. Variables: headline, prompt, action, result. This is an original simulated interface, not a recording of a commercial app.",
+  "vars": ["headline", "prompt", "action", "result"],
+  "techniques": ["drag-drop", "shared-object", "snap", "hero-expand"],
+  "pack": "immersive-2026-10",
+  "family": "screen-workflow",
+  "source_refs": ["https://screen.studio/", "https://jitter.video/templates/", "https://rive.app/"],
+  "beats": [
+    {
+      "at": 1.15,
+      "action": "라이브러리에서 이미지를 끌어낸다"
+    },
+    {
+      "at": 2.35,
+      "action": "드롭 영역에 놓는다"
+    },
+    {
+      "at": 2.55,
+      "action": "같은 이미지가 히어로 크기로 커진다"
+    },
+    {
+      "at": 3.65,
+      "action": "문구와 CTA가 붙는다"
+    }
+  ],
+  "distinction": "An asset thumbnail remains the same object while it follows the cursor from a library, snaps into a drop zone and expands into the finished hero.",
+  "sfx_cues": [
+    {
+      "at": 0.5,
+      "type": "soft-interface-tap"
+    },
+    {
+      "at": 2.1,
+      "type": "short-whoosh"
+    },
+    {
+      "at": 4.7,
+      "type": "resolved-tick"
+    }
+  ],
+  "shorts_use": "드래그 앤 드롭 기능 또는 소재 적용법을 소개할 때.",
+  "suggested_duration": 5.5,
+  "entry_state": "라이브러리와 빈 드롭 영역",
+  "exit_state": "DROP → HERO",
+  "evidence_note": "Technique references motivate attention and state transitions; no popularity or causal performance claim. All visual artwork and code are original."
+}

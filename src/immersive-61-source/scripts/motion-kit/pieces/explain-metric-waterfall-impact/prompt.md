@@ -1,0 +1,1 @@
+1080×830 크기의 6.8초 모션 그래픽을 만들어 주세요. 장면의 주제는 “어디에서 시간이 줄었는지”입니다. A waterfall decomposes a sample total into two explicit reductions and the remaining amount, so arithmetic is visible rather than a lone before/after number. 검정에 가까운 배경과 흰색 글자, 한 곳의 라임색 강조를 쓰고, 실제로 읽어야 할 결과는 1초 이상 보여 주세요. 텍스트·데이터는 교체 가능하게 하고, 어느 시간으로 이동해도 같은 프레임이 나오는 편집 가능한 HTML과 MP4로 제공해 주세요.

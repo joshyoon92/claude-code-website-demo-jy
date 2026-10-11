@@ -1,0 +1,75 @@
+{
+  "slug": "create-prompt-to-layout",
+  "title_ko": "한 줄의 요청이 화면 구조로",
+  "category": "technique",
+  "size": [1080, 830],
+  "duration": 6.8,
+  "key_at": [0.5, 2.5, 4.3, 6.2],
+  "uses": ["shorts", "ad", "longform"],
+  "what": "문장의 세 가지 요청이 제목·이미지·버튼 영역에 각각 연결된다. 골격선이 먼저 자리잡고 실제 글자와 원본 이미지가 채워져 하나의 랜딩 페이지가 완성된다.",
+  "how_to_use": "mk.py render create-prompt-to-layout --vars vars.json. headline prompt result image를 교체한다. 로컬 이미지 경로는 image에 넣고 해당 파일을 piece 폴더에 둔다.",
+  "vars": ["headline", "prompt", "result", "image"],
+  "pack": "immersive-2026-10",
+  "family": "creative-transform",
+  "source_refs": [
+    "https://jitter.video/template/the-prompt-text-to-image/",
+    "https://jitter.video/template/the-prompt-generative-ai-features/",
+    "https://gsap.com/docs/v3/GSAP/Timeline/",
+    "https://rive.app/docs/editor/animate-mode/interpolation-easing"
+  ],
+  "research_note": "공식 제품 데모의 입력→조작→결과 구조 및 seekable timeline 원리를 참고. 코드와 일러스트는 원본 제작이며 특정 도구의 실제 추론을 녹화한 영상이 아님.",
+  "beats": [
+    {
+      "time": 0,
+      "action": "세 영역을 요청하는 문장 확인"
+    },
+    {
+      "time": 1.2,
+      "action": "제목·이미지·버튼 토큰으로 분리"
+    },
+    {
+      "time": 1.8,
+      "action": "각 토큰을 실제 화면 영역에 배치"
+    },
+    {
+      "time": 3.15,
+      "action": "히어로 이미지 공개"
+    },
+    {
+      "time": 4.5,
+      "action": "완성된 랜딩 화면 유지"
+    }
+  ],
+  "distinction": "기존 terminal-agent-run의 텍스트 로그와 달리 요청의 각 단어가 그 결과 영역으로 이동하며 화면의 정보 구조를 직접 만든다.",
+  "sfx_cues": [
+    {
+      "time": 1,
+      "type": "soft-tap"
+    },
+    {
+      "time": 3.2,
+      "type": "short-whoosh"
+    },
+    {
+      "time": 5.4,
+      "type": "resolve-click"
+    }
+  ],
+  "audio": "silent; sfx_cues are editorial suggestions, not embedded audio",
+  "shorts_use": "AI·디자인 튜토리얼의 해당 기능 설명 직후 6.8초 삽입. 외부 자막은 Shorts 캡션 영역에 유지.",
+  "entry_state": "세 영역을 요청하는 문장 확인",
+  "exit_state": "완성된 랜딩 화면 유지",
+  "content_limits": {
+    "headline": "한글 22자 이내",
+    "word": "영문 3–8자 권장",
+    "prompt": "한글 24자 이내 권장",
+    "policy": "문자 수 한도를 넘으면 명시적으로 오류를 반환한다. 조용히 잘라내지 않는다."
+  },
+  "max_chars": {
+    "headline": 22,
+    "prompt": 24,
+    "result": 50,
+    "image": 512
+  },
+  "custom_media_note": "immersive.py의 --image로 로컬 PNG/JPEG/WebP를 넣습니다. 기본 벡터 그림의 내부 피사체 움직임은 교체한 이미지에 적용되지 않으며, 이미지→영상 변환 과정을 설명하는 장면입니다. SVG를 쓰려면 편집 소스에서 직접 연결합니다."
+}

@@ -1,0 +1,54 @@
+{
+  "slug": "demo-command-palette-dive",
+  "title_ko": "명령 한 줄로 장면을 열다",
+  "category": "technique",
+  "size": [1080, 830],
+  "duration": 6.5,
+  "key_at": [0.3, 2.0, 3.6, 5.9],
+  "uses": ["shorts", "ad", "longform", "web"],
+  "what": "A command palette types a search, selects one matching action, then expands that exact result into a working canvas.",
+  "how_to_use": "“단축키 하나로 시작”이라고 말한 직후 5–6초 삽입. Variables: headline, prompt, action, result. This is an original simulated interface, not a recording of a commercial app.",
+  "vars": ["headline", "prompt", "action", "result"],
+  "techniques": ["command-palette", "ime-typing", "shared-element-expansion", "focus-zoom"],
+  "pack": "immersive-2026-10",
+  "family": "screen-workflow",
+  "source_refs": ["https://screen.studio/", "https://jitter.video/templates/", "https://rive.app/"],
+  "beats": [
+    {
+      "at": 0.35,
+      "action": "명령 팔레트가 열린다"
+    },
+    {
+      "at": 0.95,
+      "action": "새 캔버스를 입력한다"
+    },
+    {
+      "at": 2.2,
+      "action": "검색 결과 하나를 선택한다"
+    },
+    {
+      "at": 3.5,
+      "action": "선택한 카드가 전체 캔버스로 확장된다"
+    }
+  ],
+  "distinction": "A command palette types a search, selects one matching action, then expands that exact result into a working canvas.",
+  "sfx_cues": [
+    {
+      "at": 0.5,
+      "type": "soft-interface-tap"
+    },
+    {
+      "at": 2.1,
+      "type": "short-whoosh"
+    },
+    {
+      "at": 4.7,
+      "type": "resolved-tick"
+    }
+  ],
+  "shorts_use": "“단축키 하나로 시작”이라고 말한 직후 5–6초 삽입.",
+  "suggested_duration": 5.5,
+  "entry_state": "프로젝트 목록",
+  "exit_state": "CANVAS READY",
+  "evidence_note": "Technique references motivate attention and state transitions; no popularity or causal performance claim. All visual artwork and code are original."
+}

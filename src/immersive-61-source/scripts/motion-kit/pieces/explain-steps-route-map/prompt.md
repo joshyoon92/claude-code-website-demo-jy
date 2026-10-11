@@ -1,0 +1,1 @@
+1080×830 크기의 6.0초 모션 그래픽을 만들어 주세요. 장면의 주제는 “작업이 어디로 이어지는지”입니다. A routed packet carries one task through three explicitly named stages on a spatial map; source and destination remain visible. 검정에 가까운 배경과 흰색 글자, 한 곳의 라임색 강조를 쓰고, 실제로 읽어야 할 결과는 1초 이상 보여 주세요. 텍스트·데이터는 교체 가능하게 하고, 어느 시간으로 이동해도 같은 프레임이 나오는 편집 가능한 HTML과 MP4로 제공해 주세요.
