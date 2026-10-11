@@ -1224,7 +1224,7 @@ button.index__row:hover,
 /* ───────────── About (paper) ───────────── */
 .about {
   display: grid;
-  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  grid-template-columns: minmax(0, 1fr);
   gap: clamp(2.5rem, 6vw, 6rem);
   align-items: center;
   padding-inline: max(
@@ -1235,13 +1235,6 @@ button.index__row:hover,
 .about > * {
   max-width: none;
   margin: 0;
-}
-.about__portrait img {
-  width: 100%;
-  aspect-ratio: 4 / 5;
-  object-fit: cover;
-  object-position: 50% 25%;
-  border-radius: var(--r-card);
 }
 .about__copy .display {
   font-size: clamp(2.25rem, 5vw, 4.5rem);

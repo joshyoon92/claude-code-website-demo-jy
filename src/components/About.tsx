@@ -1,13 +1,9 @@
-import portrait from "../assets/portrait.jpg";
 import { contact, skills } from "../data/career";
 import { Mark, Rail, Reveal } from "./ui";
 
 export default function About() {
   return (
     <section id="about" className="section about paper">
-      <Reveal className="about__portrait">
-        <img src={portrait} alt="Joshua Yoon" loading="lazy" />
-      </Reveal>
       <div className="about__copy">
         <Rail index={1} label="About me" />
         <Reveal>
