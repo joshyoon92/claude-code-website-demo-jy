@@ -1,0 +1,482 @@
+/* Admin dashboard — same charcoal + single-lime system as the portfolio
+   (see ../index.css), trimmed to what a data page needs. */
+
+@font-face {
+  font-family: 'Geist';
+  src: url('../assets/fonts/GeistVariable-latin.woff2') format('woff2');
+  font-weight: 100 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Geist Mono';
+  src: url('../assets/fonts/GeistMonoVariable-latin.woff2') format('woff2');
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+:root {
+  --ink: #0a0a0a;
+  --ink-1: #111111;
+  --ink-2: #141414;
+  --ink-3: #1a1a1a;
+  --line-1: #1e1e1e;
+  --line-2: #2a2a2a;
+  --line-3: #333333;
+  --fg-1: #ffffff;
+  --fg-2: #cccccc;
+  --fg-3: #a1a1a1;
+  --fg-4: #888888;
+  --lime: #d4f527;
+  --lime-ink: #0a0a0a;
+  --lime-soft: rgba(212, 245, 39, 0.14);
+  --bar-neutral: #3a3a3a;
+  --sans: 'Geist', -apple-system, 'Segoe UI', system-ui, sans-serif;
+  --mono: 'Geist Mono', ui-monospace, 'Cascadia Mono', Consolas, monospace;
+
+  color-scheme: dark;
+  font-family: var(--sans);
+  line-height: 1.5;
+  color: var(--fg-1);
+  background: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  background: var(--ink);
+}
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+button,
+input {
+  font: inherit;
+  color: inherit;
+}
+code {
+  font-family: var(--mono);
+  font-size: 0.85em;
+  color: var(--fg-2);
+}
+
+.mono {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--fg-4);
+}
+
+/* ---------- shell ---------- */
+.admin {
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 32px clamp(16px, 4vw, 48px) 64px;
+  display: grid;
+  /* minmax(0) so the wide table scrolls inside its panel instead of widening the page */
+  grid-template-columns: minmax(0, 1fr);
+  gap: 20px;
+}
+.admin__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--line-2);
+}
+.admin__head h1 {
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  margin-top: 6px;
+}
+.admin__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+.admin-center {
+  min-height: 100dvh;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 16px;
+  padding: 16px;
+}
+.admin-error {
+  max-width: min(640px, 90vw);
+  white-space: pre-wrap;
+  color: var(--fg-3);
+  font-size: 0.8rem;
+}
+
+/* ---------- controls ---------- */
+.btn {
+  border: 1px solid var(--line-3);
+  background: var(--ink-2);
+  border-radius: 999px;
+  padding: 7px 14px;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+.btn:hover {
+  border-color: var(--fg-4);
+}
+.btn--primary {
+  background: var(--lime);
+  border-color: var(--lime);
+  color: var(--lime-ink);
+  font-weight: 600;
+}
+.btn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+.check {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  color: var(--fg-3);
+  margin-right: 8px;
+  cursor: pointer;
+}
+.check input {
+  accent-color: var(--lime);
+}
+.seg {
+  display: inline-flex;
+  flex-wrap: wrap;
+  padding: 3px;
+  border: 1px solid var(--line-2);
+  border-radius: 999px;
+  background: var(--ink-1);
+}
+.seg button {
+  border: 0;
+  background: none;
+  border-radius: 999px;
+  padding: 5px 12px;
+  font-size: 0.82rem;
+  color: var(--fg-3);
+  cursor: pointer;
+}
+.seg button.is-on {
+  background: var(--ink-3);
+  color: var(--fg-1);
+  box-shadow: inset 0 0 0 1px var(--line-3);
+}
+.search {
+  background: var(--ink-1);
+  border: 1px solid var(--line-2);
+  border-radius: 999px;
+  padding: 7px 14px;
+  font-size: 0.85rem;
+  width: 200px;
+}
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+/* ---------- login ---------- */
+.login {
+  width: min(360px, calc(100vw - 32px));
+  display: grid;
+  gap: 14px;
+  padding: 28px;
+  border: 1px solid var(--line-2);
+  border-radius: 20px;
+  background: var(--ink-1);
+}
+.login h1 {
+  font-size: 1.6rem;
+  letter-spacing: -0.02em;
+}
+.login input {
+  background: var(--ink);
+  border: 1px solid var(--line-3);
+  border-radius: 10px;
+  padding: 10px 12px;
+}
+.login input:focus {
+  outline: 2px solid var(--lime);
+  outline-offset: 1px;
+}
+.login__error {
+  color: #ff8a7a;
+  font-size: 0.85rem;
+}
+
+/* ---------- tiles ---------- */
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 12px;
+}
+.tile {
+  padding: 20px;
+  border: 1px solid var(--line-2);
+  border-radius: 16px;
+  background: var(--ink-1);
+  display: grid;
+  gap: 2px;
+}
+.tile--accent {
+  border-color: var(--lime);
+  box-shadow: inset 0 0 0 1px var(--lime-soft);
+}
+.tile__value {
+  font-size: clamp(2.2rem, 5vw, 3rem);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  margin-top: 10px;
+  font-variant-numeric: tabular-nums;
+}
+.tile__unit {
+  color: var(--fg-4);
+  font-size: 0.85rem;
+}
+.tile__sub {
+  margin-top: 10px;
+  color: var(--fg-2);
+  font-size: 0.92rem;
+}
+.tile__note {
+  color: var(--fg-4);
+  font-size: 0.8rem;
+}
+
+/* ---------- panels ---------- */
+.panel {
+  border: 1px solid var(--line-2);
+  border-radius: 16px;
+  background: var(--ink-1);
+  padding: 20px;
+  min-width: 0;
+}
+.panel__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.panel h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.panel__sub {
+  color: var(--fg-4);
+  font-size: 0.8rem;
+  margin-bottom: 8px;
+}
+
+/* ---------- chart ---------- */
+.chart {
+  position: relative;
+  width: 100%;
+}
+.chart svg {
+  display: block;
+}
+.chart__grid {
+  stroke: var(--line-1);
+}
+.chart__axis {
+  stroke: var(--line-3);
+}
+.chart__tick {
+  fill: var(--fg-4);
+  font-family: var(--mono);
+  font-size: 10px;
+}
+.chart__bar {
+  fill: var(--lime);
+  opacity: 0.85;
+}
+.chart__bar.is-hover {
+  opacity: 1;
+}
+.chart__tip {
+  position: absolute;
+  transform: translate(-50%, -100%);
+  pointer-events: none;
+  background: var(--ink-3);
+  border: 1px solid var(--line-3);
+  border-radius: 10px;
+  padding: 8px 12px;
+  font-size: 0.8rem;
+  color: var(--fg-2);
+  white-space: nowrap;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+.chart__tip b {
+  color: var(--fg-1);
+  font-variant-numeric: tabular-nums;
+}
+.chart__tip-title {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--fg-4);
+  margin-bottom: 4px;
+}
+
+/* ---------- breakdowns ---------- */
+.breakdowns {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 12px;
+}
+.breakdown h3 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+.breakdown ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 4px;
+}
+.breakdown li {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 5px 8px;
+  font-size: 0.85rem;
+}
+.breakdown__bar {
+  position: absolute;
+  inset: 0 auto 0 0;
+  background: var(--bar-neutral);
+  opacity: 0.55;
+  border-radius: 0 4px 4px 0;
+}
+.breakdown__label {
+  position: relative;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--fg-2);
+}
+.breakdown__n {
+  position: relative;
+  font-variant-numeric: tabular-nums;
+  color: var(--fg-1);
+}
+
+/* ---------- grid ---------- */
+.grid__scroll {
+  overflow-x: auto;
+  border: 1px solid var(--line-2);
+  border-radius: 10px;
+}
+.grid {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.84rem;
+}
+.grid th,
+.grid td {
+  padding: 8px 12px;
+  text-align: left;
+  white-space: nowrap;
+  border-bottom: 1px solid var(--line-1);
+}
+.grid th {
+  position: sticky;
+  top: 0;
+  background: var(--ink-2);
+  padding: 0;
+}
+.grid th button {
+  width: 100%;
+  border: 0;
+  background: none;
+  padding: 9px 12px;
+  text-align: inherit;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--fg-4);
+  cursor: pointer;
+}
+.grid th button:hover {
+  color: var(--fg-1);
+}
+.grid .is-num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.grid__arrow {
+  display: inline-block;
+  width: 1em;
+  color: var(--fg-1);
+}
+.grid tbody tr:hover td {
+  background: var(--ink-2);
+}
+.grid td {
+  color: var(--fg-2);
+}
+.grid__empty {
+  text-align: center !important;
+  color: var(--fg-4) !important;
+  padding: 32px !important;
+}
+.grid__foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding-top: 10px;
+  font-size: 0.8rem;
+  color: var(--fg-4);
+}
+.grid__pager {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.grid__pager button {
+  border: 1px solid var(--line-3);
+  background: none;
+  border-radius: 999px;
+  padding: 3px 10px;
+  cursor: pointer;
+}
+.grid__pager button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+.tag {
+  margin-left: 6px;
+  padding: 1px 6px;
+  border-radius: 999px;
+  border: 1px solid var(--line-3);
+  font-size: 0.68rem;
+  color: var(--fg-3);
+}
