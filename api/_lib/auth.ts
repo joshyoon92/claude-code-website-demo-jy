@@ -5,7 +5,7 @@ const MAX_AGE = 60 * 60 * 24 * 7 // one week
 
 function password() {
   const p = process.env.ADMIN_PASSWORD
-  if (!p) throw new Error('ADMIN_PASSWORD is not set.')
+  if (!p) throw new Error('ADMIN_PASSWORD is not set. Add it in Vercel → Settings → Environment Variables, then redeploy.')
   return p
 }
 
@@ -50,6 +50,20 @@ export function isAuthed(request: Request) {
 export function hashIp(ip: string) {
   const salt = process.env.VISITOR_SALT ?? password()
   return createHmac('sha256', salt).update(ip).digest('hex').slice(0, 16)
+}
+
+// Turns a thrown error into a JSON 500 (also logged to Vercel's runtime logs).
+// Pass expose = false on public endpoints so internals aren't shown to visitors.
+export function withErrors(handler: (request: Request) => Promise<Response>, expose = true) {
+  return async (request: Request) => {
+    try {
+      return await handler(request)
+    } catch (err) {
+      console.error(err)
+      const message = err instanceof Error ? err.message : String(err)
+      return json({ error: expose ? message : 'Server error' }, { status: 500 })
+    }
+  }
 }
 
 export function json(data: unknown, init: ResponseInit = {}) {

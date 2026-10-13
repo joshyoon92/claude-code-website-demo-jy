@@ -52,6 +52,7 @@ interface ProjectData {
   program: string
   role: string
   summary: string
+  facts?: { label: string; value: string }[]
 }
 
 export interface Project extends ProjectData {
@@ -135,10 +136,19 @@ const projectData: ProjectData[] = [
     firm: 'Brininstool + Lynch',
     status: 'Completed',
     year: '2019',
-    program: '14-story residential · 263 units',
+    program: '14-story residential · 263 units · 300,680 SF',
     role: 'Project Architect · PD · SD · DD · CD · CA',
     summary:
-      'Fourteen stories with a fitness center, shared office and bar. Led the Planned Development process with CDOT, CFD and MOPD, then carried the project through SD, DD, CD and CA. Construction finished late 2019.',
+      'The Mason, a contemporary reinterpretation of Chicago’s exposed structural frame construction in the growing West Loop. The design acknowledges the area’s traditional industrial architecture while providing the amenities expected of new residential development, including a fitness center, shared office and bar. Led the Planned Development process with CDOT, CFD and MOPD, then carried the project through SD, DD, CD and CA. Construction finished late 2019.',
+    facts: [
+      { label: 'Firm role', value: 'Design Architect · Architect of Record · Interior Designer' },
+      {
+        label: 'Consultants',
+        value:
+          'SCA Consulting Engineers (Structural), Cosentini Associates (MEPFP), Eriksson Engineering (Civil), Shiner Acoustics (Acoustics)',
+      },
+      { label: 'Contractor', value: 'Power Construction' },
+    ],
   },
   {
     sheet: 'A-302',
@@ -147,22 +157,42 @@ const projectData: ProjectData[] = [
     location: 'Houston, Texas',
     firm: 'Brininstool + Lynch',
     status: 'Completed',
-    program: '8-story residential · 300 units',
+    year: '2022',
+    program: '8-story multifamily · 300 units · 440,450 SF',
     role: 'Project Architect · SD · DD · CD · CA',
     summary:
-      'Handled the foundation and building permits, then SD, DD and CD with civil, structural and MEP consultants, and CA coordination with the GC through construction.',
+      'Forth at Navigation, an eight-story, 300-unit multifamily community in Houston’s East End cultural district. A sleek glass and metal skin allows floor-to-ceiling windows in many units, with views of downtown. Handled the foundation and building permits, then SD, DD and CD with civil, structural and MEP consultants, and CA coordination with the GC through construction.',
+    facts: [
+      { label: 'Firm role', value: 'Design Architect · Architect of Record' },
+      {
+        label: 'Consultants',
+        value:
+          'SCA Engineers (Structural), Jordan & Skala Engineers (MEPFP), CAS Consulting & Services (Civil), Hitchcock Design Group (Landscape)',
+      },
+      { label: 'Contractor', value: 'Arch-Con Corporation' },
+    ],
   },
   {
     sheet: 'A-303',
     folder: 'grand',
-    name: '353 West Grand',
+    name: '369 West Grand',
     location: 'Chicago, Illinois',
     firm: 'Brininstool + Lynch',
     status: 'Completed',
-    program: '41-story residential · 356 units',
+    year: '2021',
+    program: '41-story residential · 356 units · 533,000 SF',
     role: 'Concept design · City approvals',
     summary:
-      'Developed the initial tower schemes; the grid concept was selected to move forward. Worked with the client, their counsel and City Hall to get through initial city approval.',
+      'A sleek, streamlined residential tower in Chicago’s River North. Amenity-rich floors and highly detailed units make everyday living feel like a stay in a high-end hotel. Developed the initial tower schemes; the grid concept was selected to move forward. Worked with the client, their counsel and City Hall to get through initial city approval.',
+    facts: [
+      { label: 'Firm role', value: 'Design Architect · Architect of Record' },
+      {
+        label: 'Consultants',
+        value:
+          'C.E. Anderson & Associates (Structural), Cosentini Associates (MEPFP), Eriksson Engineering (Civil), Daniel Weinbach & Partners (Landscape)',
+      },
+      { label: 'Contractor', value: 'Onni Group' },
+    ],
   },
   {
     sheet: 'A-304',
@@ -292,6 +322,36 @@ export const featured: FeaturedProject[] = [
       'CTBUH Best Tall Building, 200–299 m',
       'Chicago Athenaeum International Architecture Award',
     ],
+  },
+  {
+    id: 'grand',
+    sheet: 'A-303',
+    name: '369 West Grand',
+    subtitle: 'River North residential tower',
+    location: 'Chicago, Illinois',
+    year: '2021',
+    images: mediaFor('grand'),
+    body: [
+      'A sleek, elegant and streamlined tower of living that sets the standard for urban dwellers in Chicago’s River North.',
+      'With amenity-rich floors and highly detailed units, residents enjoy everyday living as if on vacation in a high-end hotel.',
+    ],
+    contribution:
+      'Concept design and city approvals: developed the initial tower schemes, from which the grid concept was selected to move forward, then worked with the client, their counsel and City Hall through initial city approval.',
+    stats: [
+      { label: 'Floors', value: '41' },
+      { label: 'Units', value: '356' },
+      { label: 'Area', value: '533,000', unit: 'SF' },
+      { label: 'Completed', value: '2021' },
+    ],
+    facts: [
+      { label: 'Firm', value: 'Brininstool + Lynch · Design Architect, Architect of Record' },
+      { label: 'Contractor', value: 'Onni Group' },
+      {
+        label: 'Consultants',
+        value: 'C.E. Anderson & Associates, Cosentini Associates, Eriksson Engineering, Daniel Weinbach & Partners',
+      },
+    ],
+    awards: [],
   },
 ]
 

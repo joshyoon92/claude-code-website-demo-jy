@@ -46,8 +46,9 @@ export default function CommandPalette({
       })),
       { id: 'diablos', label: 'Diablos Rojos Stadium', hint: 'Featured · Mexico City', group: 'Architecture', run: () => scrollTo('diablos') },
       { id: 'shanghai', label: 'Shanghai Financial Center', hint: 'Featured · Shanghai', group: 'Architecture', run: () => scrollTo('shanghai') },
+      { id: 'grand', label: '369 West Grand', hint: 'Featured · Chicago', group: 'Architecture', run: () => scrollTo('grand') },
       ...projects
-        .filter((p) => p.folder !== 'diablos' && p.folder !== 'shanghai')
+        .filter((p) => !['diablos', 'shanghai', 'grand'].includes(p.folder))
         .map<Item>((p) => ({
           id: p.sheet,
           label: p.name,

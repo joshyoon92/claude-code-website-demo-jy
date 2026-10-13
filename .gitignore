@@ -29,3 +29,6 @@ src/mcpmarket-me/.mcp.json
 # Vercel
 .vercel
 .env*.local
+
+# Full-size source images kept out of the build
+images/_originals/

@@ -115,6 +115,12 @@ export default function SheetIndex({ request }: { request?: { sheet: string; non
                         <dd>{p.year}</dd>
                       </div>
                     )}
+                    {p.facts?.map((f) => (
+                      <div key={f.label}>
+                        <dt>{f.label}</dt>
+                        <dd>{f.value}</dd>
+                      </div>
+                    ))}
                   </dl>
                   <p>{p.summary}</p>
                   {p.media.length > 0 && (

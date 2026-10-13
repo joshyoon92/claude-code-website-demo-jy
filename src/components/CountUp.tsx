@@ -34,5 +34,6 @@ export default function CountUp({ value, duration = 1400 }: { value: string; dur
   }, [target, duration])
 
   if (!Number.isFinite(target)) return <span ref={ref}>{value}</span>
-  return <span ref={ref}>{shown.toLocaleString('en-US')}</span>
+  // Only group digits when the source did, so a year stays "2021", not "2,021".
+  return <span ref={ref}>{value.includes(',') ? shown.toLocaleString('en-US') : shown}</span>
 }

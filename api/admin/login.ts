@@ -1,6 +1,6 @@
-import { checkPassword, clearedCookie, json, sessionCookie } from '../_lib/auth.js'
+import { checkPassword, clearedCookie, json, sessionCookie, withErrors } from '../_lib/auth.js'
 
-export async function POST(request: Request) {
+export const POST = withErrors(async (request: Request) => {
   let password = ''
   try {
     password = String((await request.json()).password ?? '')
@@ -14,7 +14,7 @@ export async function POST(request: Request) {
     return json({ error: 'Wrong password' }, { status: 401 })
   }
   return json({ ok: true }, { headers: { 'set-cookie': sessionCookie() } })
-}
+})
 
 // Sign out.
 export function DELETE() {

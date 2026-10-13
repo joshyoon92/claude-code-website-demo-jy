@@ -1,4 +1,4 @@
-import { hashIp } from './_lib/auth.js'
+import { hashIp, withErrors } from './_lib/auth.js'
 import { ensureSchema, sql } from './_lib/db.js'
 
 const BOT = /bot|crawl|spider|slurp|headless|lighthouse|pagespeed|preview|facebookexternalhit|embedly|curl|wget|python|go-http/i
@@ -38,7 +38,8 @@ function parseAgent(ua: string) {
   return { browser, os, device }
 }
 
-export async function POST(request: Request) {
+// Public endpoint: errors are logged but not echoed back to visitors.
+export const POST = withErrors(async (request: Request) => {
   const ua = request.headers.get('user-agent') ?? ''
   if (!ua || BOT.test(ua)) return new Response(null, { status: 204 })
 
@@ -65,4 +66,4 @@ export async function POST(request: Request) {
             ${clip(body.language, 32)}, ${clip(body.screen, 32)}, ${clip(ua, 500)})`
 
   return new Response(null, { status: 204 })
-}
+}, false)

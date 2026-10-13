@@ -53,6 +53,7 @@ export default function Contact() {
           <span className="rail">Architecture</span>
           <a href="#diablos">Diablos Rojos</a>
           <a href="#shanghai">Shanghai Financial Center</a>
+          <a href="#grand">369 West Grand</a>
           <a href="#architecture-index">All 11 projects</a>
         </nav>
         <div className="footer__col">

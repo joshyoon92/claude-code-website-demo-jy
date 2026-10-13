@@ -79,7 +79,16 @@ export default function AdminApp() {
     try {
       const res = await fetch(`/api/admin/stats?range=${days}&tz=${encodeURIComponent(TZ)}`)
       if (res.status === 401) return setState('login')
-      if (!res.ok) throw new Error(`${res.status} ${await res.text()}`)
+      if (!res.ok) {
+        const text = await res.text()
+        let message = text
+        try {
+          message = JSON.parse(text).error ?? text
+        } catch {
+          // not JSON (e.g. a platform error page): show it as-is
+        }
+        throw new Error(`${res.status}: ${message}`)
+      }
       setStats(await res.json())
       setState('ready')
     } catch (err) {

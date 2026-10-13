@@ -1,4 +1,4 @@
-import { isAuthed, json } from '../_lib/auth.js'
+import { isAuthed, json, withErrors } from '../_lib/auth.js'
 import { ensureSchema, sql } from '../_lib/db.js'
 
 const RANGES = new Set([7, 30, 90, 365, 0]) // 0 = all time
@@ -97,7 +97,7 @@ async function log(days: number) {
      LIMIT 1000`
 }
 
-export async function GET(request: Request) {
+export const GET = withErrors(async (request: Request) => {
   if (!isAuthed(request)) return json({ error: 'Unauthorized' }, { status: 401 })
 
   const params = new URL(request.url).searchParams
@@ -125,4 +125,4 @@ export async function GET(request: Request) {
     visitors: visitorRows,
     log: logRows,
   })
-}
+})
