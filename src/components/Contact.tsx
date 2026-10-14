@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { contact } from '../data/career'
+import { projects } from '../data/projects'
 import { Rail, Reveal } from './ui'
 
 export default function Contact() {
@@ -57,7 +58,7 @@ export default function Contact() {
           <a href="#diablos">Diablos Rojos</a>
           <a href="#shanghai">Shanghai Financial Center</a>
           <a href="#grand">369 West Grand</a>
-          <a href="#architecture-index">All 11 projects</a>
+          <a href="#architecture-index">All {projects.length} projects</a>
         </nav>
         <div className="footer__col">
           <span className="rail">Elsewhere</span>
