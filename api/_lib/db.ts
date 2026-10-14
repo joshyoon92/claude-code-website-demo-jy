@@ -1,10 +1,23 @@
 import { neon } from '@neondatabase/serverless'
 
-// Vercel's Neon integration injects DATABASE_URL (older Vercel Postgres
-// stores used POSTGRES_URL).
+// Vercel's Neon integration injects DATABASE_URL, but a custom prefix chosen
+// when connecting the store renames it (e.g. STORAGE_DATABASE_URL), and older
+// Vercel Postgres stores used POSTGRES_URL. Prefer the exact names, then any
+// pooled postgres:// connection string.
+function findUrl() {
+  const env = process.env
+  if (env.DATABASE_URL) return env.DATABASE_URL
+  if (env.POSTGRES_URL) return env.POSTGRES_URL
+  const candidates = Object.entries(env).filter(
+    ([key, value]) => /^postgres(ql)?:\/\//.test(value ?? '') && !/UNPOOLED|NON_POOLING/.test(key),
+  )
+  const byName = (suffix: string) => candidates.find(([key]) => key.endsWith(suffix))?.[1]
+  return byName('DATABASE_URL') ?? byName('POSTGRES_URL') ?? candidates[0]?.[1]
+}
+
 // Checked in ensureSchema() rather than at import, so a missing variable is
 // reported as a readable error instead of crashing the function.
-const url = process.env.DATABASE_URL ?? process.env.POSTGRES_URL
+const url = findUrl()
 
 export const sql = neon(url ?? 'postgresql://unset@localhost/unset')
 
@@ -12,8 +25,14 @@ export const sql = neon(url ?? 'postgresql://unset@localhost/unset')
 let ready: Promise<unknown> | undefined
 export function ensureSchema() {
   if (!url) {
+    // Names only, never values, so the error can't leak a secret.
+    const related = Object.keys(process.env).filter((k) => /DATABASE|POSTGRES|PG|NEON|STORAGE/.test(k))
     return Promise.reject(
-      new Error('DATABASE_URL is not set. Connect the Neon database to this Vercel project, then redeploy.'),
+      new Error(
+        'No database connection string found in this deployment. Connect the Neon database to this Vercel project ' +
+          '(Storage tab, with Production checked), then redeploy. ' +
+          `Related variables present: ${related.length ? related.join(', ') : 'none'}.`,
+      ),
     )
   }
   ready ??= (async () => {
