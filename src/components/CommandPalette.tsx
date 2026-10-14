@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from 'motion/react'
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { software } from '../data/career'
+import { contact, software } from '../data/career'
 import { projects } from '../data/projects'
 import { EASE } from './ui'
 
@@ -13,6 +13,16 @@ interface Item {
 }
 
 const scrollTo = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+
+// A real link click, so the download (and its analytics) behave like the buttons.
+function downloadResume() {
+  const a = document.createElement('a')
+  a.href = contact.resume
+  a.download = contact.resumeFile
+  document.body.append(a)
+  a.click()
+  a.remove()
+}
 
 // ⌘K / Ctrl+K palette (from the motion kit's demo-command-palette-dive):
 // type to filter, arrows to move, Enter to dive into the result.
@@ -37,6 +47,7 @@ export default function CommandPalette({
       { id: 'architecture', label: 'Projects · Architecture archive', hint: '02', group: 'Sections', run: () => scrollTo('architecture') },
       { id: 'path', label: 'Career Path', hint: '03', group: 'Sections', run: () => scrollTo('path') },
       { id: 'contact', label: 'Contact', hint: '04', group: 'Sections', run: () => scrollTo('contact') },
+      { id: 'resume', label: 'Download résumé', hint: 'PDF', group: 'Sections', run: downloadResume },
       ...software.map<Item>((s) => ({
         id: `sw-${s.id}`,
         label: s.title,

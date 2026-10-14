@@ -387,7 +387,9 @@ kbd {
 }
 .hero__stats {
   display: flex;
-  gap: 2.5rem;
+  /* wraps on narrow phones instead of pushing the page sideways */
+  flex-wrap: wrap;
+  gap: 1.5rem 2.5rem;
   margin: 3rem 0 0;
 }
 .hero__stats div {

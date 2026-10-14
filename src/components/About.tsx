@@ -75,6 +75,9 @@ export default function About() {
           >
             LinkedIn ↗
           </a>
+          <a className="btn btn--outline" href={contact.resume} download={contact.resumeFile}>
+            Download résumé ↓
+          </a>
           <a className="btn btn--outline" href="#contact">
             Get in touch
           </a>

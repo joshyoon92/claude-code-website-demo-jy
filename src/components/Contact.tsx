@@ -35,6 +35,9 @@ export default function Contact() {
           <a className="btn btn--ghost btn--lg" href={contact.linkedin} target="_blank" rel="noreferrer">
             LinkedIn ↗
           </a>
+          <a className="btn btn--ghost btn--lg" href={contact.resume} download={contact.resumeFile}>
+            Download résumé ↓
+          </a>
         </Reveal>
       </section>
 
@@ -62,10 +65,14 @@ export default function Contact() {
           <a href={contact.linkedin} target="_blank" rel="noreferrer">
             LinkedIn
           </a>
+          <a href={contact.resume} download={contact.resumeFile}>
+            Résumé (PDF)
+          </a>
         </div>
         <p className="footer__legal">
           © {new Date().getFullYear()} {contact.name}. Diablos images: Atelier FGP. Shanghai photography:
-          Qingyan Zhu.
+          Qingyan Zhu. This site uses anonymous, first-party analytics (a random ID stored in your browser); no ads or
+          third-party trackers.
         </p>
       </footer>
     </>

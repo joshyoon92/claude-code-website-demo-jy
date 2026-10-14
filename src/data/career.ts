@@ -1,6 +1,8 @@
 // Software career, education and contact details (from the resume and
 // LinkedIn). Architecture projects live in projects.ts.
 
+import resumeUrl from "../../images/Resume-Joshua Yoon.pdf?url";
+
 export type Track = "architecture" | "software" | "education";
 
 export interface CareerStop {
@@ -221,4 +223,7 @@ export const contact = {
   email: "joshyoon92@gmail.com",
   linkedin: "https://www.linkedin.com/in/jtyoon92/",
   location: "Chicago, Illinois",
+  resume: resumeUrl,
+  // Name the downloaded file sensibly instead of the hashed build name.
+  resumeFile: "Joshua-Yoon-Resume.pdf",
 };

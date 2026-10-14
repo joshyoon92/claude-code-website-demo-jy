@@ -26,9 +26,9 @@
   --fg-2: #cccccc;
   --fg-3: #a1a1a1;
   --fg-4: #888888;
-  --lime: #d4f527;
-  --lime-ink: #0a0a0a;
-  --lime-soft: rgba(212, 245, 39, 0.14);
+  --lime: #3b82f6;
+  --lime-ink: #ffffff;
+  --lime-soft: rgba(59, 130, 246, 0.18);
   --bar-neutral: #3a3a3a;
   --sans: 'Geist', -apple-system, 'Segoe UI', system-ui, sans-serif;
   --mono: 'Geist Mono', ui-monospace, 'Cascadia Mono', Consolas, monospace;
