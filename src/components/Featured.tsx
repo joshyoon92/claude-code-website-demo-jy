@@ -1,6 +1,7 @@
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import type { FeaturedProject } from '../data/projects'
+import { trackAction } from '../track'
 import CountUp from './CountUp'
 import Lightbox from './Lightbox'
 import { EASE, Mark, Rail, Reveal } from './ui'
@@ -42,6 +43,16 @@ export default function Featured({ project, withModel }: Props) {
   const [viewer, setViewer] = useState<number | null>(null)
   const reduce = useReducedMotion()
   const image = project.images[current]
+
+  // Analytics: a photo counts as viewed once picked (the first one shows by default).
+  const firstRender = useRef(true)
+  useEffect(() => {
+    if (firstRender.current) {
+      firstRender.current = false
+      return
+    }
+    trackAction('photo', project.name, project.images[current]?.caption)
+  }, [current, project])
 
   return (
     <section id={project.id} className="section featured">

@@ -17,12 +17,14 @@ export default function DataGrid<T>({
   rowKey,
   initialSort,
   query,
+  onRowClick,
 }: {
   rows: T[]
   columns: Column<T>[]
   rowKey: (row: T) => string
   initialSort: { key: string; desc: boolean }
   query: string
+  onRowClick?: (row: T) => void
 }) {
   const [sort, setSort] = useState(initialSort)
   const [page, setPage] = useState(0)
@@ -73,7 +75,11 @@ export default function DataGrid<T>({
           </thead>
           <tbody>
             {visible.map((r) => (
-              <tr key={rowKey(r)}>
+              <tr
+                key={rowKey(r)}
+                className={onRowClick ? 'is-clickable' : undefined}
+                onClick={onRowClick && (() => onRowClick(r))}
+              >
                 {columns.map((c) => (
                   <td key={c.key} className={c.numeric ? 'is-num' : undefined}>
                     {c.render ? c.render(r) : c.value(r)}

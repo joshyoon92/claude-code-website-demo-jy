@@ -56,6 +56,50 @@ export function ensureSchema() {
       )`
     await sql`CREATE INDEX IF NOT EXISTS visits_ts_idx ON visits (ts)`
     await sql`CREATE INDEX IF NOT EXISTS visits_visitor_idx ON visits (visitor_id)`
+    // Added after launch: campaign tags, finer location, and engagement that
+    // the page reports back while it's open (keyed by a per-page-load visit_key).
+    await sql`
+      ALTER TABLE visits
+        ADD COLUMN IF NOT EXISTS visit_key    text,
+        ADD COLUMN IF NOT EXISTS ref          text,
+        ADD COLUMN IF NOT EXISTS utm_source   text,
+        ADD COLUMN IF NOT EXISTS utm_medium   text,
+        ADD COLUMN IF NOT EXISTS utm_campaign text,
+        ADD COLUMN IF NOT EXISTS postal_code  text,
+        ADD COLUMN IF NOT EXISTS timezone     text,
+        ADD COLUMN IF NOT EXISTS duration_s   integer,
+        ADD COLUMN IF NOT EXISTS max_scroll   integer,
+        ADD COLUMN IF NOT EXISTS sections     text[]`
+    await sql`CREATE UNIQUE INDEX IF NOT EXISTS visits_key_idx ON visits (visit_key)`
+    // Actions within a visit: link clicks, projects opened, photos viewed.
+    await sql`
+      CREATE TABLE IF NOT EXISTS events (
+        id          bigserial PRIMARY KEY,
+        ts          timestamptz NOT NULL DEFAULT now(),
+        visit_key   text NOT NULL,
+        visitor_id  text NOT NULL,
+        type        text NOT NULL,
+        target      text,
+        label       text
+      )`
+    await sql`CREATE INDEX IF NOT EXISTS events_visit_idx ON events (visit_key)`
+    await sql`CREATE INDEX IF NOT EXISTS events_visitor_idx ON events (visitor_id, ts)`
+    // Browsers the admin has opened the dashboard from. Their visits are
+    // never recorded again, and the stats read through counted_visits so
+    // anything recorded before the exclusion is hidden too.
+    await sql`
+      CREATE TABLE IF NOT EXISTS excluded_visitors (
+        visitor_id  text PRIMARY KEY,
+        added       timestamptz NOT NULL DEFAULT now()
+      )`
+    await sql`
+      CREATE OR REPLACE VIEW counted_visits AS
+        SELECT * FROM visits v
+         WHERE NOT EXISTS (SELECT 1 FROM excluded_visitors e WHERE e.visitor_id = v.visitor_id)`
+    await sql`
+      CREATE OR REPLACE VIEW counted_events AS
+        SELECT * FROM events ev
+         WHERE NOT EXISTS (SELECT 1 FROM excluded_visitors e WHERE e.visitor_id = ev.visitor_id)`
   })().catch((err) => {
     ready = undefined
     throw err

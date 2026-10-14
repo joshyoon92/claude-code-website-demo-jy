@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { featured, projects, type Project } from '../data/projects'
+import { trackAction } from '../track'
 import Lightbox from './Lightbox'
 import { Rail, Reveal } from './ui'
 
@@ -28,6 +29,15 @@ export default function SheetIndex({ request }: { request?: { sheet: string; non
       document.getElementById(`row-${request.sheet}`)?.scrollIntoView({ behavior: 'smooth', block: 'center' }),
     )
   }, [request])
+
+  // Analytics: which projects get opened and which photos get looked at.
+  useEffect(() => {
+    const p = open && projects.find((x) => x.sheet === open)
+    if (p) trackAction('project', p.sheet, p.name)
+  }, [open])
+  useEffect(() => {
+    if (viewer) trackAction('photo', viewer.project.name, viewer.project.media[viewer.index]?.caption)
+  }, [viewer])
 
   const rows = useMemo(
     () => (firm === 'All' ? projects : projects.filter((p) => p.firm === firm)),

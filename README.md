@@ -18,7 +18,12 @@ npm run preview  # serve the production build
 `/admin` is a password-protected dashboard of who visits the site (weekly,
 monthly and all-time counts, a trend chart, breakdowns, and a visitor grid).
 
-- `src/track.ts` sends one beacon per page load to `api/track.ts` (production only).
+- `src/track.ts` sends a beacon per page load to `api/track.ts` (production only),
+  then engagement (time on page, scroll, sections viewed) and actions (link
+  clicks, projects opened, photos viewed) while the page is open.
+- Share links with `?ref=<name>` (or `utm_source` / `utm_campaign`) to label
+  visits by where the link was sent, e.g. `https://<site>/?ref=acme`.
+- Browsers that open `/admin` are excluded from all counts, past and future.
 - `api/` holds Vercel functions; visits are stored in Neon Postgres. The
   `visits` table is created automatically on first request.
 - The admin UI is a separate Vite entry (`admin.html` → `src/admin/`).

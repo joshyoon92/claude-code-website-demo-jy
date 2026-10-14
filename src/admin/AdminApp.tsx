@@ -1,8 +1,20 @@
 import { useCallback, useEffect, useState, type FormEvent } from 'react'
-import { NO_TRACK_KEY } from '../track'
+import { markAsOwner, visitorId } from '../track'
 import DataGrid, { type Column } from './DataGrid'
 import TrendChart from './TrendChart'
-import { countryName, fmtAgo, fmtDateTime, fmtNum, place, referrerHost, toCsv } from './format'
+import VisitorDetail, { ActionChips } from './VisitorDetail'
+import {
+  actionName,
+  countryName,
+  fmtAgo,
+  fmtDateTime,
+  fmtDuration,
+  fmtNum,
+  place,
+  referrerHost,
+  sectionName,
+  toCsv,
+} from './format'
 import type { Count, Stats, Visit, Visitor } from './types'
 
 const TZ = Intl.DateTimeFormat().resolvedOptions().timeZone
@@ -30,36 +42,46 @@ const VISITOR_COLUMNS: Column<Visitor>[] = [
       {r.visits > 1 && <span className="tag">returning</span>}
     </>
   ) },
+  { key: 'time', label: 'Time on site', value: (r) => r.total_time, numeric: true, render: (r) => fmtDuration(r.total_time) },
+  { key: 'sections', label: 'Sections', value: (r) => r.sections?.length ?? 0, numeric: true, render: (r) => (
+    <span title={r.sections?.map(sectionName).join(', ')}>{r.sections?.length ?? 0}</span>
+  ) },
+  { key: 'clicked', label: 'Clicked', value: (r) => (r.clicks ?? []).map(actionName).join(' '), render: (r) => <ActionChips clicks={r.clicks} /> },
+  { key: 'actions', label: 'Actions', value: (r) => r.actions, numeric: true },
+  { key: 'ref', label: 'Ref tag', value: (r) => r.ref ?? '', render: (r) => (r.ref ? <span className="tag tag--ref">{r.ref}</span> : <span className="muted">—</span>) },
+  { key: 'source', label: 'Came from', value: (r) => referrerHost(r.first_referrer) },
   { key: 'first', label: 'First seen', value: (r) => r.first_seen, render: (r) => fmtDateTime(r.first_seen) },
   { key: 'last', label: 'Last seen', value: (r) => r.last_seen, render: (r) => <span title={fmtDateTime(r.last_seen)}>{fmtAgo(r.last_seen)}</span> },
-  { key: 'source', label: 'Came from', value: (r) => referrerHost(r.first_referrer) },
+  { key: 'landing', label: 'Landed on', value: (r) => r.landing ?? '' },
+  { key: 'lang', label: 'Language', value: (r) => r.language ?? '' },
   { key: 'browser', label: 'Browser', value: (r) => r.browser ?? '' },
   { key: 'os', label: 'OS', value: (r) => r.os ?? '' },
   { key: 'device', label: 'Device', value: (r) => r.device ?? '' },
 ]
+
+const visitClicks = (r: Visit) => [...new Set((r.events ?? []).filter((e) => e.type === 'click').map((e) => e.target ?? ''))]
 
 const LOG_COLUMNS: Column<Visit>[] = [
   { key: 'time', label: 'Time', value: (r) => r.ts, render: (r) => fmtDateTime(r.ts) },
   { key: 'visitor', label: 'Visitor', value: (r) => r.visitor_id, render: (r) => <code title={r.visitor_id}>{shortId(r.visitor_id)}</code> },
   { key: 'location', label: 'Location', value: place },
-  { key: 'page', label: 'Page', value: (r) => r.path ?? '' },
+  { key: 'duration', label: 'Time on page', value: (r) => r.duration_s ?? 0, numeric: true, render: (r) => fmtDuration(r.duration_s) },
+  { key: 'scroll', label: 'Scrolled', value: (r) => r.max_scroll ?? 0, numeric: true, render: (r) => (r.max_scroll ? `${r.max_scroll}%` : '—') },
+  { key: 'sections', label: 'Sections', value: (r) => r.sections?.length ?? 0, numeric: true, render: (r) => (
+    <span title={r.sections?.map(sectionName).join(', ')}>{r.sections?.length ?? 0}</span>
+  ) },
+  { key: 'clicked', label: 'Clicked', value: (r) => visitClicks(r).map(actionName).join(' '), render: (r) => <ActionChips clicks={visitClicks(r)} /> },
+  { key: 'actions', label: 'Actions', value: (r) => r.events?.length ?? 0, numeric: true },
+  { key: 'page', label: 'Landed on', value: (r) => r.path ?? '' },
+  { key: 'ref', label: 'Ref tag', value: (r) => r.ref ?? '', render: (r) => (r.ref ? <span className="tag tag--ref">{r.ref}</span> : <span className="muted">—</span>) },
   { key: 'source', label: 'Referrer', value: (r) => referrerHost(r.referrer), render: (r) => (
     <span title={r.referrer ?? ''}>{referrerHost(r.referrer)}</span>
   ) },
+  { key: 'lang', label: 'Language', value: (r) => r.language ?? '' },
   { key: 'browser', label: 'Browser', value: (r) => r.browser ?? '' },
   { key: 'os', label: 'OS', value: (r) => r.os ?? '' },
   { key: 'device', label: 'Device', value: (r) => r.device ?? '' },
-  { key: 'screen', label: 'Screen', value: (r) => r.screen ?? '' },
-  { key: 'lang', label: 'Language', value: (r) => r.language ?? '' },
 ]
-
-function readNoTrack() {
-  try {
-    return localStorage.getItem(NO_TRACK_KEY) === '1'
-  } catch {
-    return false
-  }
-}
 
 function download(name: string, text: string) {
   const a = document.createElement('a')
@@ -77,7 +99,10 @@ export default function AdminApp() {
 
   const load = useCallback(async (days: number) => {
     try {
-      const res = await fetch(`/api/admin/stats?range=${days}&tz=${encodeURIComponent(TZ)}`)
+      // Sending this browser's visitor id lets the server exclude it from the counts.
+      const res = await fetch(`/api/admin/stats?range=${days}&tz=${encodeURIComponent(TZ)}`, {
+        headers: { 'x-visitor-id': visitorId() },
+      })
       if (res.status === 401) return setState('login')
       if (!res.ok) {
         const text = await res.text()
@@ -89,6 +114,8 @@ export default function AdminApp() {
         }
         throw new Error(`${res.status}: ${message}`)
       }
+      // Signed in, so this is the owner's browser: stop tracking it locally too.
+      markAsOwner()
       setStats(await res.json())
       setState('ready')
     } catch (err) {
@@ -170,20 +197,9 @@ function Dashboard({
   const [unit, setUnit] = useState<(typeof UNITS)[number]['unit']>('day')
   const [tab, setTab] = useState<'visitors' | 'log'>('visitors')
   const [query, setQuery] = useState('')
-  const [noTrack, setNoTrack] = useState(readNoTrack)
+  const [selected, setSelected] = useState<Visitor>()
   const s = stats.summary
   const b = stats.breakdowns
-
-  const toggleNoTrack = () => {
-    const next = !noTrack
-    try {
-      if (next) localStorage.setItem(NO_TRACK_KEY, '1')
-      else localStorage.removeItem(NO_TRACK_KEY)
-    } catch {
-      // storage blocked: nothing to persist
-    }
-    setNoTrack(next)
-  }
 
   const signOut = async () => {
     await fetch('/api/admin/login', { method: 'DELETE' })
@@ -195,7 +211,9 @@ function Dashboard({
       ? download('visitors.csv', toCsv(stats.visitors))
       : download('visit-log.csv', toCsv(stats.log))
 
+  const openVisitor = (id: string) => setSelected(stats.visitors.find((v) => v.visitor_id === id))
   const rangeLabel = RANGES.find((r) => r.days === range)!.label.toLowerCase()
+  const inRange = rangeLabel === 'all time' ? 'whole history' : `last ${rangeLabel}`
 
   return (
     <div className="admin">
@@ -205,10 +223,9 @@ function Dashboard({
           <h1>Who’s visiting</h1>
         </div>
         <div className="admin__actions">
-          <label className="check" title="Sets a flag in this browser so your own visits to the portfolio aren’t recorded">
-            <input type="checkbox" checked={noTrack} onChange={toggleNoTrack} />
-            Don’t count my visits from this browser
-          </label>
+          <span className="check" title="Every browser you open this dashboard in is excluded, including its earlier visits">
+            Your own visits are excluded automatically
+          </span>
           <button className="btn" onClick={reload}>Refresh</button>
           <button className="btn" onClick={signOut}>Sign out</button>
         </div>
@@ -222,8 +239,19 @@ function Dashboard({
           visits={s.all_visits}
           visitors={s.all_visitors}
           note={s.first_visit ? `since ${new Date(s.first_visit).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })}` : 'no visits yet'}
-          accent
         />
+        <div className="tile tile--accent">
+          <p className="mono">Engagement · this month</p>
+          <p className="tile__value">{fmtDuration(s.month_avg_time)}</p>
+          <p className="tile__unit">average time on site</p>
+          <p className="tile__sub">
+            <b>{fmtNum(s.month_contact_clicks)}</b> contact click{s.month_contact_clicks === 1 ? '' : 's'}
+            <span className="muted"> (email, LinkedIn, résumé)</span>
+          </p>
+          <p className="tile__note">
+            {fmtNum(s.month_actions)} actions · {s.month_avg_scroll ? `${s.month_avg_scroll}% average scroll` : 'no scroll data yet'}
+          </p>
+        </div>
       </section>
 
       <section className="panel">
@@ -242,13 +270,24 @@ function Dashboard({
         <Segmented options={RANGES.map((r) => ({ value: r.days, label: r.label }))} value={range} onChange={setRange} />
       </div>
 
+      <h2 className="group-title">Interest</h2>
       <section className="breakdowns">
-        <Breakdown title="Countries" rows={b.country} format={countryName} />
-        <Breakdown title="Referrers" rows={b.referrer} />
-        <Breakdown title="Pages" rows={b.path} />
-        <Breakdown title="Browsers" rows={b.browser} />
-        <Breakdown title="Operating systems" rows={b.os} />
-        <Breakdown title="Devices" rows={b.device} />
+        <Breakdown title="Clicked" unit="clicks" rows={b.actions} format={actionName} empty="No link clicks yet." />
+        <Breakdown title="Sections viewed" unit="visits" rows={b.sections} format={sectionName} />
+        <Breakdown title="Projects opened" unit="opens" rows={b.projects} empty="No projects opened yet." />
+        <Breakdown title="Photos viewed, by project" unit="photos" rows={b.photos} empty="No photos viewed yet." />
+      </section>
+
+      <h2 className="group-title">Audience</h2>
+      <section className="breakdowns">
+        <Breakdown title="Ref tags" unit="visits" rows={b.ref} empty="No tagged links used yet. Share links like ?ref=acme to label visits." />
+        <Breakdown title="Referrers" unit="visits" rows={b.referrer} />
+        <Breakdown title="Countries" unit="visits" rows={b.country} format={countryName} />
+        <Breakdown title="Landing pages" unit="visits" rows={b.path} />
+        <Breakdown title="Languages" unit="visits" rows={b.language} />
+        <Breakdown title="Browsers" unit="visits" rows={b.browser} />
+        <Breakdown title="Operating systems" unit="visits" rows={b.os} />
+        <Breakdown title="Devices" unit="visits" rows={b.device} />
       </section>
 
       <section className="panel">
@@ -268,15 +307,39 @@ function Dashboard({
         </div>
         <p className="panel__sub">
           {tab === 'visitors'
-            ? `One row per browser seen in the ${rangeLabel === 'all time' ? 'whole history' : `last ${rangeLabel}`} (most recent 1,000).`
-            : `Every page load in the ${rangeLabel === 'all time' ? 'whole history' : `last ${rangeLabel}`} (most recent 1,000).`}
+            ? `One row per browser seen in the ${inRange} (most recent 1,000). Click a row for everything that visitor did.`
+            : `Every page load in the ${inRange} (most recent 1,000). Click a row to open that visitor.`}
         </p>
         {tab === 'visitors' ? (
-          <DataGrid key="visitors" rows={stats.visitors} columns={VISITOR_COLUMNS} rowKey={(r) => r.visitor_id} initialSort={{ key: 'last', desc: true }} query={query} />
+          <DataGrid
+            key="visitors"
+            rows={stats.visitors}
+            columns={VISITOR_COLUMNS}
+            rowKey={(r) => r.visitor_id}
+            initialSort={{ key: 'last', desc: true }}
+            query={query}
+            onRowClick={(r) => setSelected(r)}
+          />
         ) : (
-          <DataGrid key="log" rows={stats.log} columns={LOG_COLUMNS} rowKey={(r) => String(r.id)} initialSort={{ key: 'time', desc: true }} query={query} />
+          <DataGrid
+            key="log"
+            rows={stats.log}
+            columns={LOG_COLUMNS}
+            rowKey={(r) => String(r.id)}
+            initialSort={{ key: 'time', desc: true }}
+            query={query}
+            onRowClick={(r) => openVisitor(r.visitor_id)}
+          />
         )}
       </section>
+
+      {selected && (
+        <VisitorDetail
+          visitor={selected}
+          visits={stats.log.filter((v) => v.visitor_id === selected.visitor_id)}
+          onClose={() => setSelected(undefined)}
+        />
+      )}
     </div>
   )
 }
@@ -288,7 +351,6 @@ function Tile({
   prev,
   prevLabel,
   note,
-  accent,
 }: {
   label: string
   visits: number
@@ -296,11 +358,10 @@ function Tile({
   prev?: number
   prevLabel?: string
   note?: string
-  accent?: boolean
 }) {
   const delta = prev === undefined ? undefined : visits - prev
   return (
-    <div className={`tile${accent ? ' tile--accent' : ''}`}>
+    <div className="tile">
       <p className="mono">{label}</p>
       <p className="tile__value">{fmtNum(visits)}</p>
       <p className="tile__unit">visits</p>
@@ -316,23 +377,35 @@ function Tile({
   )
 }
 
-function Breakdown({ title, rows, format }: { title: string; rows: Count[]; format?: (s: string) => string }) {
-  const max = Math.max(1, ...rows.map((r) => r.visits))
+function Breakdown({
+  title,
+  unit,
+  rows,
+  format,
+  empty = 'No data yet.',
+}: {
+  title: string
+  unit: string
+  rows: Count[]
+  format?: (s: string) => string
+  empty?: string
+}) {
+  const max = Math.max(1, ...rows.map((r) => r.count))
   return (
     <div className="panel breakdown">
       <h3>{title}</h3>
       {rows.length ? (
         <ul>
           {rows.map((r) => (
-            <li key={r.label} title={`${r.label}: ${r.visits} visits`}>
-              <span className="breakdown__bar" style={{ width: `${(r.visits / max) * 100}%` }} />
+            <li key={r.label} title={`${r.label}: ${r.count} ${unit}`}>
+              <span className="breakdown__bar" style={{ width: `${(r.count / max) * 100}%` }} />
               <span className="breakdown__label">{format ? format(r.label) : r.label}</span>
-              <span className="breakdown__n">{fmtNum(r.visits)}</span>
+              <span className="breakdown__n">{fmtNum(r.count)}</span>
             </li>
           ))}
         </ul>
       ) : (
-        <p className="panel__sub">No data yet.</p>
+        <p className="panel__sub">{empty}</p>
       )}
     </div>
   )
