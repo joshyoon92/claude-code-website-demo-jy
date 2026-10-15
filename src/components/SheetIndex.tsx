@@ -1,8 +1,10 @@
+import { AnimatePresence, LayoutGroup, motion, useReducedMotion } from 'motion/react'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { featured, projects, type Project } from '../data/projects'
 import { trackAction } from '../track'
 import Lightbox from './Lightbox'
-import { Rail, Reveal } from './ui'
+import { EASE, Rail, Reveal } from './ui'
+import { numberWord } from './words'
 
 const FIRMS = ['All', ...Array.from(new Set(projects.map((p) => p.firm)))]
 const featuredCover = new Map(featured.map((f) => [f.sheet, f.images[0].src]))
@@ -20,6 +22,7 @@ export default function SheetIndex({ request }: { request?: { sheet: string; non
   const [hovered, setHovered] = useState<Project | null>(null)
   const [viewer, setViewer] = useState<{ project: Project; index: number } | null>(null)
   const previewRef = useRef<HTMLDivElement>(null)
+  const reduce = useReducedMotion()
 
   useEffect(() => {
     if (!request) return
@@ -50,11 +53,13 @@ export default function SheetIndex({ request }: { request?: { sheet: string; non
   }
 
   return (
-    <section id="architecture-index" className="section index paper">
+    <section id="architecture-index" className="section index paper band">
       <div className="section__head">
         <Rail label="Architecture · All projects" />
         <Reveal>
-          <h2 className="display">Eleven projects, four practices.</h2>
+          <h2 className="display">
+            {numberWord(projects.length, true)} projects, {numberWord(FIRMS.length - 1)} practices.
+          </h2>
           <p className="section__lede">
             Filter by practice, open a row for scope and role, then step through the photographs and
             construction drawings.
@@ -63,6 +68,7 @@ export default function SheetIndex({ request }: { request?: { sheet: string; non
       </div>
 
       <div className="index__filters" role="toolbar" aria-label="Filter by practice">
+        <LayoutGroup id="index-filter">
         {FIRMS.map((f) => (
           <button
             key={f}
@@ -70,12 +76,16 @@ export default function SheetIndex({ request }: { request?: { sheet: string; non
             onClick={() => setFirm(f)}
             aria-pressed={firm === f}
           >
-            {f}
+            {firm === f && (
+              <motion.span className="chip__bg chip__bg--ink" layoutId="index-filter-bg" transition={{ duration: 0.35, ease: EASE }} />
+            )}
+            <span className="chip__text">{f}</span>
             <span className="chip__count">
               {f === 'All' ? projects.length : projects.filter((p) => p.firm === f).length}
             </span>
           </button>
         ))}
+        </LayoutGroup>
       </div>
 
       <div className="index__table" onPointerMove={onMove} onPointerLeave={() => setHovered(null)}>
@@ -86,11 +96,19 @@ export default function SheetIndex({ request }: { request?: { sheet: string; non
           <span className="hide-md">Practice</span>
           <span>Status</span>
         </div>
+        <AnimatePresence mode="popLayout" initial={false}>
         {rows.map((p) => {
           const isOpen = open === p.sheet
           return (
-            <div
+            // layout="position": rows slide into place when filtering, but their
+            // height (the CSS-driven expand) is never scaled.
+            <motion.div
               key={p.sheet}
+              layout={reduce ? false : 'position'}
+              initial={reduce ? false : { opacity: 0, x: -16 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={reduce ? { opacity: 0 } : { opacity: 0, x: 16 }}
+              transition={{ duration: 0.35, ease: EASE }}
               id={`row-${p.sheet}`}
               className={`index__item${isOpen ? ' is-open' : ''}`}
               onPointerEnter={() => setHovered(p)}
@@ -150,9 +168,10 @@ export default function SheetIndex({ request }: { request?: { sheet: string; non
                   )}
                 </div>
               </div>
-            </div>
+            </motion.div>
           )
         })}
+        </AnimatePresence>
       </div>
 
       <div ref={previewRef} className={`index__preview${hovered && open !== hovered.sheet && !viewer ? ' is-visible' : ''}`} aria-hidden="true">

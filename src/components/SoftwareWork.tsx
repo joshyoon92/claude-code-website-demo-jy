@@ -15,7 +15,7 @@ export default function SoftwareWork() {
 
   return (
     <section id="projects" className="section software">
-      <div className="section__head">
+      <div className="section__head" data-ghost="Code">
         <Rail index={2} label="Projects · Software engineering" />
         <Reveal>
           <h2 className="display">Software I’ve shipped.</h2>
@@ -50,7 +50,7 @@ export default function SoftwareWork() {
             <motion.article
               key={p.id}
               layout
-              className={`work-card${p.lead ? ' work-card--lead' : ''}`}
+              className={`work-card${p.lead ? ' work-card--lead band' : ''}`}
               initial={{ opacity: 0, y: 24, scale: 0.98 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, scale: 0.96 }}

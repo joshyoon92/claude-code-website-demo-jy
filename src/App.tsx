@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import About from './components/About'
 import ArchitectureIntro from './components/ArchitectureIntro'
+import Banner from './components/Banner'
 import CommandPalette from './components/CommandPalette'
 import Contact from './components/Contact'
 import Featured from './components/Featured'
@@ -40,6 +41,7 @@ function App() {
     <>
       <Nav onOpenPalette={() => setPaletteOpen(true)} />
       <main>
+        <Banner onOpenProject={openProject} />
         <Hero />
         <About />
         <SoftwareWork />

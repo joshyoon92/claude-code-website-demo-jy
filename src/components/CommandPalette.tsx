@@ -55,9 +55,9 @@ export default function CommandPalette({
         group: 'Software',
         run: () => scrollTo('projects'),
       })),
+      { id: 'grand', label: '369 West Grand', hint: 'Featured · Chicago', group: 'Architecture', run: () => scrollTo('grand') },
       { id: 'diablos', label: 'Diablos Rojos Stadium', hint: 'Featured · Mexico City', group: 'Architecture', run: () => scrollTo('diablos') },
       { id: 'shanghai', label: 'Shanghai Financial Center', hint: 'Featured · Shanghai', group: 'Architecture', run: () => scrollTo('shanghai') },
-      { id: 'grand', label: '369 West Grand', hint: 'Featured · Chicago', group: 'Architecture', run: () => scrollTo('grand') },
       ...projects
         .filter((p) => !['diablos', 'shanghai', 'grand'].includes(p.folder))
         .map<Item>((p) => ({

@@ -1,7 +1,19 @@
+import grandFlythrough from '../assets/video/grand-flythrough.mp4'
+import grandFlythroughPoster from '../assets/video/grand-flythrough-poster.jpg'
+
 const diablosImages = import.meta.glob<string>(
   '../../images/Diablos - Baseball stadium/*.{jpg,JPG}',
   { eager: true, import: 'default' },
 )
+
+// AI-generated from the project's renderings and photos; always labelled as such.
+export const grandVideo: Media = {
+  kind: 'video',
+  src: grandFlythroughPoster,
+  video: grandFlythrough,
+  caption: 'AI-generated flythrough',
+}
+
 const shanghaiImages = import.meta.glob<string>(
   '../../images/Shanghai Financial Exchange Plaza Shanghai China 2020/*.jpg',
   { eager: true, import: 'default' },
@@ -16,9 +28,12 @@ function ordered(images: Record<string, string>, leadFile: string): string[] {
 }
 
 export interface Media {
+  /** The image, or for a video its poster frame. */
   src: string
-  kind: 'photo' | 'drawing'
+  kind: 'photo' | 'drawing' | 'video'
   caption: string
+  /** Video file, when kind is "video". */
+  video?: string
 }
 
 // Images pulled from the portfolio PDF, one folder per project.
@@ -249,6 +264,37 @@ const projectData: ProjectData[] = [
 export const projects: Project[] = projectData.map((p) => ({ ...p, media: mediaFor(p.folder) }))
 
 export const featured: FeaturedProject[] = [
+  // Shown in this order on the page: West Grand leads.
+  {
+    id: 'grand',
+    sheet: 'A-303',
+    name: '369 West Grand',
+    subtitle: 'River North residential tower',
+    location: 'Chicago, Illinois',
+    year: '2021',
+    images: [grandVideo, ...mediaFor('grand')],
+    body: [
+      'A sleek, elegant and streamlined tower of living that sets the standard for urban dwellers in Chicago’s River North.',
+      'With amenity-rich floors and highly detailed units, residents enjoy everyday living as if on vacation in a high-end hotel.',
+    ],
+    contribution:
+      'Concept design and city approvals: developed the initial tower schemes, from which the grid concept was selected to move forward, then worked with the client, their counsel and City Hall through initial city approval.',
+    stats: [
+      { label: 'Floors', value: '41' },
+      { label: 'Units', value: '356' },
+      { label: 'Area', value: '533,000', unit: 'SF' },
+      { label: 'Completed', value: '2021' },
+    ],
+    facts: [
+      { label: 'Firm', value: 'Brininstool + Lynch · Design Architect, Architect of Record' },
+      { label: 'Contractor', value: 'Onni Group' },
+      {
+        label: 'Consultants',
+        value: 'C.E. Anderson & Associates, Cosentini Associates, Eriksson Engineering, Daniel Weinbach & Partners',
+      },
+    ],
+    awards: [],
+  },
   {
     id: 'diablos',
     sheet: 'A-402',
@@ -322,36 +368,6 @@ export const featured: FeaturedProject[] = [
       'CTBUH Best Tall Building, 200–299 m',
       'Chicago Athenaeum International Architecture Award',
     ],
-  },
-  {
-    id: 'grand',
-    sheet: 'A-303',
-    name: '369 West Grand',
-    subtitle: 'River North residential tower',
-    location: 'Chicago, Illinois',
-    year: '2021',
-    images: mediaFor('grand'),
-    body: [
-      'A sleek, elegant and streamlined tower of living that sets the standard for urban dwellers in Chicago’s River North.',
-      'With amenity-rich floors and highly detailed units, residents enjoy everyday living as if on vacation in a high-end hotel.',
-    ],
-    contribution:
-      'Concept design and city approvals: developed the initial tower schemes, from which the grid concept was selected to move forward, then worked with the client, their counsel and City Hall through initial city approval.',
-    stats: [
-      { label: 'Floors', value: '41' },
-      { label: 'Units', value: '356' },
-      { label: 'Area', value: '533,000', unit: 'SF' },
-      { label: 'Completed', value: '2021' },
-    ],
-    facts: [
-      { label: 'Firm', value: 'Brininstool + Lynch · Design Architect, Architect of Record' },
-      { label: 'Contractor', value: 'Onni Group' },
-      {
-        label: 'Consultants',
-        value: 'C.E. Anderson & Associates, Cosentini Associates, Eriksson Engineering, Daniel Weinbach & Partners',
-      },
-    ],
-    awards: [],
   },
 ]
 

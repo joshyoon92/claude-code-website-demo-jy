@@ -60,11 +60,15 @@ export default function Lightbox({ items, index, title, onClose, onIndex }: Prop
     }
   }, [go, onClose, reset, zoomAt])
 
+  // Videos aren't zoomable (zooming would also block their controls).
+  const isVideo = item.kind === 'video'
+
   // Non-passive wheel listener so the page doesn't scroll behind the viewer.
   useEffect(() => {
     const stage = stageRef.current!
     const onWheel = (e: WheelEvent) => {
       e.preventDefault()
+      if (isVideo) return
       const rect = stage.getBoundingClientRect()
       zoomAt(
         Math.exp(-e.deltaY * 0.0015),
@@ -74,7 +78,7 @@ export default function Lightbox({ items, index, title, onClose, onIndex }: Prop
     }
     stage.addEventListener('wheel', onWheel, { passive: false })
     return () => stage.removeEventListener('wheel', onWheel)
-  }, [zoomAt])
+  }, [zoomAt, isVideo])
 
   const onPointerDown = (e: React.PointerEvent) => {
     if (zoom === 1) return
@@ -90,6 +94,7 @@ export default function Lightbox({ items, index, title, onClose, onIndex }: Prop
     drag.current = null
   }
   const onDoubleClick = (e: React.MouseEvent) => {
+    if (isVideo) return
     const rect = stageRef.current!.getBoundingClientRect()
     if (zoom > 1) reset()
     else zoomAt(3, e.clientX - rect.left - rect.width / 2, e.clientY - rect.top - rect.height / 2)
@@ -120,20 +125,36 @@ export default function Lightbox({ items, index, title, onClose, onIndex }: Prop
         onPointerCancel={onPointerUp}
         onDoubleClick={onDoubleClick}
       >
-        <img
-          key={item.src}
-          src={item.src}
-          alt={item.caption}
-          draggable={false}
-          style={{ transform: `translate(${view.x}px, ${view.y}px) scale(${zoom})` }}
-        />
+        {item.kind === 'video' && item.video ? (
+          // Video plays with normal controls; zoom and pan are for images.
+          <video
+            key={item.src}
+            className="lightbox__video"
+            src={item.video}
+            poster={item.src}
+            aria-label={item.caption}
+            controls
+            autoPlay
+            muted
+            loop
+            playsInline
+          />
+        ) : (
+          <img
+            key={item.src}
+            src={item.src}
+            alt={item.caption}
+            draggable={false}
+            style={{ transform: `translate(${view.x}px, ${view.y}px) scale(${zoom})` }}
+          />
+        )}
       </div>
 
       <footer className="lightbox__tools">
         <button onClick={() => go(-1)} aria-label="Previous">
           ← Prev
         </button>
-        <div className="lightbox__zoom">
+        <div className="lightbox__zoom" hidden={item.kind === 'video'}>
           <button onClick={() => zoomAt(1 / 1.5)} aria-label="Zoom out">
             −
           </button>
@@ -143,7 +164,9 @@ export default function Lightbox({ items, index, title, onClose, onIndex }: Prop
           </button>
           <button onClick={reset}>Fit</button>
         </div>
-        <span className="lightbox__hint">Scroll to zoom · drag to pan · double-click to inspect</span>
+        <span className="lightbox__hint">
+          {item.kind === 'video' ? 'AI-generated from the project renderings and photos' : 'Scroll to zoom · drag to pan · double-click to inspect'}
+        </span>
         <button onClick={() => go(1)} aria-label="Next">
           Next →
         </button>

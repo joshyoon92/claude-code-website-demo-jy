@@ -86,8 +86,8 @@ The footer's project count and the command palette update automatically.
 
 ## 3. Featuring a project (only when asked)
 
-Add an object to `featured` in `projects.ts`, after the existing ones in
-chronological order. Use the existing three as templates:
+Add an object to `featured` in `projects.ts` (the array order is the page order;
+ask the user where it goes; West Grand leads). Use the existing three as templates:
 - `id`: the folder name (≤ 8 letters reads best; the shutter animation spells it).
 - `images: mediaFor('<folder>')`
 - `body`: the user's description, as 1–2 short paragraphs

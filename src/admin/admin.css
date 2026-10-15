@@ -26,9 +26,9 @@
   --fg-2: #cccccc;
   --fg-3: #a1a1a1;
   --fg-4: #888888;
-  --lime: #3b82f6;
+  --lime: #0a66c2; /* the site's dark-UI blue (LinkedIn blue) */
   --lime-ink: #ffffff;
-  --lime-soft: rgba(59, 130, 246, 0.18);
+  --lime-soft: rgba(10, 102, 194, 0.24);
   --bar-neutral: #3a3a3a;
   --sans: 'Geist', -apple-system, 'Segoe UI', system-ui, sans-serif;
   --mono: 'Geist Mono', ui-monospace, 'Cascadia Mono', Consolas, monospace;

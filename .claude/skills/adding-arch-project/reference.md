@@ -19,8 +19,8 @@ live state; use this for the conventions.
 | A-402 | diablos | Diablos Rojos Stadium | JAHN | Completed | 2019 | 20,000-seat ballpark · 80,000 m² | 2 photos, 1 drawing |
 | A-403 | shenzhen | Shenzhen Convention Center | JAHN | Competition | — | Convention masterplan · hotel · office · retail | 1 photo, 5 drawings |
 
-**Featured** (large showcase sections, in this order): `diablos` (2019),
-`shanghai` (2020, with the interactive massing model), `grand` (2021).
+**Featured** (large showcase sections, in this order): `grand` (2021, leads),
+`diablos` (2019), `shanghai` (2020, with the interactive massing model).
 Diablos and Shanghai also pull extra photos from their original folders
 (`images/Diablos - Baseball stadium/`, `images/Shanghai Financial Exchange
 Plaza Shanghai China 2020/`) via `import.meta.glob`; new projects don't need

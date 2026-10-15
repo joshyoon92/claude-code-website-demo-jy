@@ -32,7 +32,10 @@ export default function About() {
             rely on.
           </p>
         </Reveal>
+      </div>
 
+      {/* Second column: the facts, skills and next steps. */}
+      <div className="about__side">
         <Reveal delay={0.15}>
           <dl className="about__facts">
             <div>
@@ -78,7 +81,7 @@ export default function About() {
           <a className="btn btn--outline" href={contact.resume} download={contact.resumeFile}>
             Download résumé ↓
           </a>
-          <a className="btn btn--outline" href="#contact">
+          <a className="link-arrow" href="#contact">
             Get in touch
           </a>
         </Reveal>

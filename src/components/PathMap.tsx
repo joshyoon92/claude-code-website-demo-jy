@@ -27,7 +27,7 @@ export default function PathMap() {
 
   return (
     <section id="path" className="section path">
-      <div className="section__head">
+      <div className="section__head" data-ghost="Route">
         <Rail index={3} label="Career Path" />
         <Reveal>
           <h2 className="display">

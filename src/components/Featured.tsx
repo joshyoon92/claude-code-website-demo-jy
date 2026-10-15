@@ -2,6 +2,7 @@ import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { useEffect, useRef, useState } from 'react'
 import type { FeaturedProject } from '../data/projects'
 import { trackAction } from '../track'
+import AutoVideo from './AutoVideo'
 import CountUp from './CountUp'
 import Lightbox from './Lightbox'
 import { EASE, Mark, Rail, Reveal } from './ui'
@@ -71,6 +72,20 @@ export default function Featured({ project, withModel }: Props) {
           aria-label={`Open ${project.name} image ${current + 1} full screen`}
         >
           <AnimatePresence mode="popLayout" initial={false}>
+            {image.kind === 'video' && image.video ? (
+              // Fills the wide frame like the photos (see .featured__video in index.css).
+              <motion.span
+                key={image.src}
+                className="featured__video"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.5 }}
+              >
+                <AutoVideo src={image.video} poster={image.src} label={`${project.name}: ${image.caption}`} />
+                <span className="ai-badge">AI-generated</span>
+              </motion.span>
+            ) : (
             <motion.img
               key={image.src}
               src={image.src}
@@ -83,6 +98,7 @@ export default function Featured({ project, withModel }: Props) {
                 scale: { duration: 14, times: [0, 0.08, 1], ease: 'linear' },
               }}
             />
+            )}
           </AnimatePresence>
           <span className="featured__stage-meta">
             <span>{String(current + 1).padStart(2, '0')}</span>

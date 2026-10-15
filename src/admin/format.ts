@@ -24,7 +24,8 @@ export function fmtDuration(s: number | null | undefined) {
 
 // Section ids on the portfolio page → readable names.
 const SECTION_NAMES: Record<string, string> = {
-  top: 'Intro',
+  top: 'Top banner',
+  intro: 'Intro',
   about: 'About',
   projects: 'Software work',
   architecture: 'Architecture intro',
