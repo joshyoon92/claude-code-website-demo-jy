@@ -40,12 +40,12 @@
   --paper-line: #d4d2cb;
   --paper-body: #0b0b0c;
   --paper-mute: #5e5c58;
-  --olive: #1428a0;
+  --olive: #0a66c2;
 
-  /* the accent: Samsung blue (the token names are historical) */
-  --lime: #1428a0;
+  /* the accent: LinkedIn blue (the token names are historical) */
+  --lime: #0a66c2;
   --lime-ink: #ffffff;
-  --lime-soft: rgba(20, 40, 160, 0.16);
+  --lime-soft: rgba(10, 102, 194, 0.16);
 
   /* read by the wireframe canvas */
   --line: #6f6d68;
@@ -95,8 +95,8 @@
   --paper-line: #2e2e31;
   --paper-body: #f2f1ed;
   --paper-mute: #9a9994;
-  --olive: #6ea8e8;
-  /* LinkedIn blue: brighter, so it still reads on black */
+  --olive: #0a66c2;
+  /* LinkedIn blue, same as the light theme */
   --lime: #0a66c2;
   --lime-soft: rgba(10, 102, 194, 0.24);
   --line-faint: #27272a;
@@ -292,7 +292,7 @@ kbd {
 }
 @keyframes pulse {
   70% {
-    box-shadow: 0 0 0 10px rgba(20, 40, 160, 0);
+    box-shadow: 0 0 0 10px rgba(10, 102, 194, 0);
   }
 }
 
@@ -423,7 +423,7 @@ kbd {
   align-items: center;
   gap: 1.35rem;
 }
-/* icon over a tiny label, like the reference headers */
+/* icon-only actions */
 .nav__icon {
   display: inline-flex;
   flex-direction: column;
@@ -431,12 +431,6 @@ kbd {
   gap: 0.2rem;
   color: var(--fg-1);
   transition: color 0.2s, transform 0.2s var(--ease);
-}
-.nav__icon span {
-  font: 500 0.56rem var(--mono);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--fg-3);
 }
 .nav__icon:hover {
   color: var(--lime);
@@ -1790,126 +1784,157 @@ button.index__row:hover,
   line-height: 0.95;
   letter-spacing: -0.055em;
 }
-.contact__actions {
-  display: flex;
-  gap: 0.75rem;
-  flex-wrap: wrap;
-  margin-top: 2.5rem;
-}
-.contact__actions .btn--lime {
-  font-family: var(--mono);
-  font-size: 0.95rem;
-  letter-spacing: 0;
-}
-
-/* Footer (editorial): icon strip, compact links, the name edge to edge, a
-   slim legal line. Lives in a .band, so it is light-on-black. */
-.footer {
-  margin: 0;
-  padding: 0 max(var(--gutter), calc((100% - var(--max)) / 2 + var(--gutter)))
-    calc(1.5rem + env(safe-area-inset-bottom, 0px));
-  border-top: 1px solid var(--line-1);
-  font-size: 0.92rem;
-  color: var(--fg-3);
-  overflow: hidden;
-}
-.footer__strip {
+/* Contact strip: four equal cells split by hairlines, like a feature row. */
+.contact__strip {
   list-style: none;
-  margin: 0;
+  margin: 3rem 0 0;
   padding: 0;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  border-bottom: 1px solid var(--line-1);
+  border-block: 1px solid var(--line-1);
 }
-.footer__strip li {
+.contact__strip li {
+  position: relative;
   display: flex;
-  padding: 1.6rem 1.25rem;
   border-left: 1px solid var(--line-1);
 }
-.footer__strip li:first-child {
-  padding-left: 0;
+.contact__strip li:first-child {
   border-left: 0;
 }
-.footer__strip li,
-.footer__strip a {
+.contact__cell {
+  position: relative;
+  flex: 1;
+  display: flex;
   align-items: center;
   gap: 0.9rem;
-  color: var(--fg-1);
-}
-.footer__strip a {
-  display: flex;
   min-width: 0;
-  transition: color 0.2s;
+  padding: 1.9rem 1.25rem;
+  color: var(--fg-1);
+  transition: background-color 0.25s var(--ease), color 0.25s var(--ease);
 }
-.footer__strip a:hover {
-  color: var(--lime);
-}
-.footer__strip svg {
+.contact__cell svg {
   flex: none;
   width: 22px;
   height: 22px;
 }
-.footer__strip span {
+.contact__cell span {
   display: grid;
-  gap: 0.15rem;
+  gap: 0.2rem;
   min-width: 0;
-  font-size: 0.82rem;
+  font-size: 0.85rem;
   color: var(--fg-3);
   overflow-wrap: anywhere;
 }
-.footer__strip b {
+.contact__cell b {
   font: 600 0.68rem var(--mono);
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--fg-1);
 }
-.footer__cols {
-  display: grid;
-  grid-template-columns: minmax(0, 2fr) repeat(2, minmax(0, 1fr));
-  gap: 2rem;
-  padding: 3rem 0 2.5rem;
+.contact__cell i {
+  position: absolute;
+  top: 0.85rem;
+  right: 1rem;
+  font-style: normal;
+  font-size: 0.85rem;
+  opacity: 0.55;
+}
+/* links invert on hover: a solid ink tile */
+a.contact__cell:hover {
+  background: var(--fg-1);
+  color: var(--ink);
+}
+a.contact__cell:hover span,
+a.contact__cell:hover b {
+  color: inherit;
+}
+.contact__copy {
+  position: absolute;
+  top: 0.7rem;
+  right: 0.75rem;
+  padding: 0.2rem 0.55rem;
+  border: 1px solid var(--line-2);
+  border-radius: 999px;
+  background: transparent;
+  font: 500 0.6rem var(--mono);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg-3);
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+}
+.contact__copy:hover {
+  color: var(--fg-1);
+  border-color: var(--fg-1);
+}
+a.contact__cell:hover + .contact__copy {
+  color: var(--ink);
+  border-color: var(--ink);
+}
+@media (max-width: 900px) {
+  .contact__strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .contact__strip li:nth-child(3) {
+    border-left: 0;
+  }
+  .contact__strip li:nth-child(n + 3) {
+    border-top: 1px solid var(--line-1);
+  }
+}
+@media (max-width: 640px) {
+  .contact__strip {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .contact__strip li {
+    border-left: 0;
+    border-top: 1px solid var(--line-1);
+  }
+  .contact__strip li:first-child {
+    border-top: 0;
+  }
+}
+
+/* Footer: slim, light-on-black (.band). Blurb and one row of links, then legal. */
+.footer {
+  margin: 0;
+  padding: 2.5rem max(var(--gutter), calc((100% - var(--max)) / 2 + var(--gutter)))
+    calc(1.5rem + env(safe-area-inset-bottom, 0px));
+  border-top: 1px solid var(--line-1);
+  font-size: 0.92rem;
+  color: var(--fg-3);
+}
+.footer__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1.25rem 3rem;
+  flex-wrap: wrap;
 }
 .footer__blurb {
   margin: 0;
-  font: 500 0.78rem/1.7 var(--mono);
+  font: 500 0.72rem/1.7 var(--mono);
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--fg-2);
 }
-.footer__col {
+.footer__nav {
   display: flex;
-  flex-direction: column;
-  gap: 0.55rem;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
 }
-.footer__col .rail {
-  margin-bottom: 0.35rem;
-}
-.footer__col a {
-  width: fit-content;
+.footer__nav a {
   transition: color 0.2s;
-  overflow-wrap: anywhere;
 }
-.footer__col a:hover {
+.footer__nav a:hover {
   color: var(--fg-1);
-}
-/* the name, filling the width like the references' giant wordmarks */
-.footer__word {
-  margin: 0;
-  font-size: min(13.4vw, 13.4rem);
-  font-weight: 700;
-  line-height: 0.78;
-  letter-spacing: -0.065em;
-  text-transform: uppercase;
-  white-space: nowrap;
-  color: var(--fg-1);
-  user-select: none;
 }
 .footer__bottom {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
   gap: 2rem;
-  margin-top: 1.75rem;
+  margin-top: 2rem;
   padding-top: 1.25rem;
   border-top: 1px solid var(--line-1);
 }
@@ -1939,36 +1964,7 @@ button.index__row:hover,
 .footer__top:hover svg {
   transform: translateY(-3px);
 }
-@media (max-width: 900px) {
-  .footer__strip {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-  .footer__strip li:nth-child(3) {
-    padding-left: 0;
-    border-left: 0;
-  }
-  .footer__strip li:nth-child(n + 3) {
-    border-top: 1px solid var(--line-1);
-  }
-  .footer__cols {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-  .footer__blurb {
-    grid-column: 1 / -1;
-  }
-}
 @media (max-width: 640px) {
-  .footer__strip {
-    grid-template-columns: minmax(0, 1fr);
-  }
-  .footer__strip li {
-    padding-left: 0;
-    border-left: 0;
-    border-top: 1px solid var(--line-1);
-  }
-  .footer__strip li:first-child {
-    border-top: 0;
-  }
   .footer__bottom {
     flex-direction: column;
     align-items: flex-start;
@@ -2384,8 +2380,5 @@ button.index__row:hover,
   .nav__actions {
     grid-column: 2;
     gap: 1.1rem;
-  }
-  .nav__icon span {
-    display: none;
   }
 }

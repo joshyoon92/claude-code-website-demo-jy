@@ -77,15 +77,12 @@ export default function Nav({ onOpenPalette }: { onOpenPalette: () => void }) {
       <div className="nav__actions">
         <button type="button" className="nav__icon" onClick={onOpenPalette} aria-label="Search (Ctrl K)" title="Search · Ctrl K">
           <SearchIcon />
-          <span>Search</span>
         </button>
         <a className="nav__icon" href={contact.resume} download={contact.resumeFile} aria-label="Download résumé" title="Download résumé">
           <ResumeIcon />
-          <span>Résumé</span>
         </a>
         <a className="nav__icon" href="#contact" aria-label="Contact" title="Contact">
           <MailIcon />
-          <span>Contact</span>
         </a>
         <a
           className="nav__icon nav__icon--brand"

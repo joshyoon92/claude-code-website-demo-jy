@@ -27,87 +27,70 @@ export default function Contact() {
             For engineering roles, collaborations, or questions about moving from architecture into software.
           </p>
         </Reveal>
-        <Reveal delay={0.1} className="contact__actions">
-          <a className="btn btn--lime btn--lg" href={`mailto:${contact.email}`}>
-            {contact.email}
-          </a>
-          <button className="btn btn--ghost btn--lg" onClick={copy}>
-            {copied ? 'Copied ✓' : 'Copy email'}
-          </button>
-          <a className="btn btn--ghost btn--lg" href={contact.linkedin} target="_blank" rel="noreferrer">
-            LinkedIn ↗
-          </a>
-          <a className="btn btn--ghost btn--lg" href={contact.resume} download={contact.resumeFile}>
-            Download résumé ↓
-          </a>
+        {/* One contact strip (feature-row style): every way to reach me, once. */}
+        <Reveal delay={0.1}>
+          <ul className="contact__strip">
+            <li>
+              <div className="contact__cell">
+                <PinIcon />
+                <span>
+                  <b>Based in</b>
+                  {contact.location}
+                </span>
+              </div>
+            </li>
+            <li>
+              <a className="contact__cell" href={`mailto:${contact.email}`}>
+                <MailIcon />
+                <span>
+                  <b>Email</b>
+                  {contact.email}
+                </span>
+              </a>
+              <button className="contact__copy" onClick={copy}>
+                {copied ? 'Copied ✓' : 'Copy'}
+              </button>
+            </li>
+            <li>
+              <a className="contact__cell" href={contact.linkedin} target="_blank" rel="noreferrer">
+                <LinkedInIcon />
+                <span>
+                  <b>LinkedIn</b>
+                  /in/jtyoon92
+                </span>
+                <i aria-hidden="true">↗</i>
+              </a>
+            </li>
+            <li>
+              <a className="contact__cell" href={contact.resume} download={contact.resumeFile}>
+                <ResumeIcon />
+                <span>
+                  <b>Résumé</b>
+                  Download PDF
+                </span>
+                <i aria-hidden="true">↓</i>
+              </a>
+            </li>
+          </ul>
         </Reveal>
       </section>
 
-      {/* Editorial footer: an icon strip, compact links, the name set edge to
-          edge, and a slim legal line. */}
+      {/* Slim footer: blurb, one row of links, legal line. */}
       <footer className="footer band">
-        <ul className="footer__strip">
-          <li>
-            <PinIcon />
-            <span>
-              <b>Based in</b>
-              {contact.location}
-            </span>
-          </li>
-          <li>
-            <a href={`mailto:${contact.email}`}>
-              <MailIcon />
-              <span>
-                <b>Email</b>
-                {contact.email}
-              </span>
-            </a>
-          </li>
-          <li>
-            <a href={contact.linkedin} target="_blank" rel="noreferrer">
-              <LinkedInIcon />
-              <span>
-                <b>LinkedIn</b>
-                /in/jtyoon92
-              </span>
-            </a>
-          </li>
-          <li>
-            <a href={contact.resume} download={contact.resumeFile}>
-              <ResumeIcon />
-              <span>
-                <b>Résumé</b>
-                Download PDF
-              </span>
-            </a>
-          </li>
-        </ul>
-
-        <div className="footer__cols">
+        <div className="footer__row">
           <p className="footer__blurb">
-            Senior Software Engineer at JPMorgan Chase.
-            <br />
-            Formerly an architect. Built this site.
+            Senior Software Engineer at JPMorgan Chase. Formerly an architect. Built this site.
           </p>
-          <nav className="footer__col" aria-label="Site">
-            <span className="rail">Site</span>
+          <nav className="footer__nav" aria-label="Footer">
             <a href="#about">About</a>
             <a href="#projects">Work</a>
             <a href="#path">Career path</a>
-            <a href="#contact">Contact</a>
-          </nav>
-          <nav className="footer__col" aria-label="Architecture">
-            <span className="rail">Architecture</span>
             <a href="#grand">369 West Grand</a>
             <a href="#diablos">Diablos Rojos</a>
-            <a href="#shanghai">Shanghai Financial Center</a>
+            <a href="#shanghai">Shanghai</a>
             <a href="#architecture-index">All {projects.length} projects</a>
           </nav>
         </div>
-
-        <p className="footer__word" aria-hidden="true">
-          Joshua Yoon
-        </p>
 
         <div className="footer__bottom">
           <p className="footer__legal">
