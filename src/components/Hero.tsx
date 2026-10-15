@@ -103,9 +103,9 @@ export default function Hero() {
   });
 
   return (
-    <section id="intro" ref={ref} className="hero">
+    <section id="top" ref={ref} className="hero">
       <div className="hero__stage" ref={stageRef} onPointerMove={onPointerMove} onPointerLeave={onPointerLeave}>
-        <h2 className="sr-only">Joshua Yoon</h2>
+        <h1 className="sr-only">Joshua Yoon</h1>
         <motion.p className="hero__kicker" {...rise(0.05)}>
           Software
           <br />
@@ -136,22 +136,24 @@ export default function Hero() {
           />
         </motion.div>
 
-        <motion.div className="hero__intro" {...rise(0.15)}>
-          <p className="hero__tagline">
+        {/* Not animated itself: a moving or fading wrapper would cut the
+            tagline off from the figure it blends against (see .hero__tagline). */}
+        <div className="hero__intro">
+          <motion.p className="hero__tagline" {...rise(0.15)}>
             Nearly seven years designing buildings, from Chicago high-rises to a
             ballpark in Mexico City. <Mark delay={0.8}>Now I build software</Mark>:
             backend platforms, data pipelines and AI-assisted workflows at JPMorgan
             Chase.
-          </p>
-          <div className="hero__ctas">
+          </motion.p>
+          <motion.div className="hero__ctas" {...rise(0.15)}>
             <a href="#projects" className="btn btn--solid">
               See engineering work
             </a>
             <a href="#architecture" className="link-arrow">
               Architecture archive
             </a>
-          </div>
-        </motion.div>
+          </motion.div>
+        </div>
 
         <motion.p className="hero__now" {...rise(0.25)}>
           <span className="live-dot" aria-hidden="true" /> Now

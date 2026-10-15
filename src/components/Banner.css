@@ -11,13 +11,13 @@
   --g-mute: #6f6d68;
   --g-line: #cfcdc6;
   --g-grid: rgba(11, 11, 12, 0.045);
-  /* code colours, read on the dark code cards */
-  --code-str: #e8c48a; /* warm sand: the drawing-room colour */
-  --code-num: #f2a37a;
+  /* code colours, read on the white code cards */
+  --code-str: #9a5b12; /* deep sand: the drawing-room colour */
+  --code-num: #b5461c;
 
   position: relative;
   min-height: min(100svh, 940px);
-  padding: calc(var(--nav-h) + 1.5rem) var(--gutter) 1.5rem;
+  padding: clamp(2.5rem, 6vh, 4rem) var(--gutter) 1.5rem;
   display: grid;
   grid-template-rows: auto minmax(0, 1fr) auto;
   overflow: hidden;
@@ -238,7 +238,7 @@
 
 /* Code cards: the engineer's side of each building. */
 .gcard--code {
-  background: #070b14;
+  background: #f2f2f0;
   border: 1px solid rgba(10, 102, 194, 0.45);
   text-align: left;
 }
@@ -256,7 +256,7 @@
   align-items: center;
   gap: 4px;
   padding: 8px 10px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid var(--line-1);
   font: calc(var(--cw) / 18) var(--mono);
   color: var(--fg-4);
 }
@@ -422,7 +422,7 @@
 }
 .gdetail__media--code {
   width: min(92vw, 560px);
-  background: #070b14;
+  background: #f2f2f0;
   border: 1px solid rgba(10, 102, 194, 0.45);
 }
 .gdetail__codebar {
@@ -430,7 +430,7 @@
   align-items: center;
   gap: 6px;
   padding: 0.7rem 1rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid var(--line-1);
   font: 0.75rem var(--mono);
   color: var(--fg-4);
 }

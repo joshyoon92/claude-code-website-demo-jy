@@ -37,8 +37,30 @@ const around = (j: number, spin: number, n: number) => ((((j - spin) % n) + n + 
 /** Fades a card out as it nears the wrap point, so with few cards it never visibly jumps ends. */
 const edge = (ad: number, n: number) => clamp((n / 2 - ad) / 0.6, 0, 1)
 
-const ringRadius = (st: Stage) => clamp(st.w * 0.46, st.cw * 2.8, 680)
-const ringStep = (st: Stage) => (st.cw * 1.2) / ringRadius(st)
+// Ring radius to the card centers, in card widths. Each card leans with the
+// curve, and the step between neighbours is set so their inner bottom corners
+// just meet: the bottom edges trace a polygon around the center (~24° apart
+// at 3 card widths; a smaller radius gives a steeper angle).
+const RING_RADIUS = 3
+const ringRadius = (st: Stage) => st.cw * RING_RADIUS
+const ringStep = (st: Stage) => 2 * Math.atan(st.cw / (2 * (ringRadius(st) - st.ch / 2)))
+/** The ring's fixed center; every card orbits it at the same radius. */
+const ringCenterY = (st: Stage) => -st.h * 0.06 + ringRadius(st)
+const wrapAngle = (a: number) => a - Math.PI * 2 * Math.round(a / (Math.PI * 2))
+const helixRadius = (st: Stage) => Math.min(st.w * 0.3, 420)
+
+/**
+ * Eases a point toward a target around a fixed center, by angle and radius
+ * separately. (u, v) is the offset from the center, with u = r·sin(a) and
+ * v = r·cos(a); returns the new (u, v).
+ */
+function orbitEase(u: number, v: number, tu: number, tv: number, k: number): [number, number] {
+  const ca = Math.atan2(u, v)
+  const cr = Math.hypot(u, v)
+  const a = ca + wrapAngle(Math.atan2(tu, tv) - ca) * k
+  const r = cr + (Math.hypot(tu, tv) - cr) * k
+  return [r * Math.sin(a), r * Math.cos(a)]
+}
 
 // The filter (all / architect / engineer) decides which cards take part:
 // j is a card's slot among the n visible cards.
@@ -63,15 +85,17 @@ function pose(mode: Mode, j: number, n: number, spin: number, st: Stage, active:
       }
     }
     case 'ring': {
-      // A wide arc facing the viewer, front card at the top. Neighbours sit a
-      // card width plus a 20% gap apart along the arc; cards past ~118° fade
-      // out, so the ring never has to close and the gaps stay even.
+      // A wide arc facing the viewer, front card at the top. Neighbours fan out
+      // from the center with their inner corners touching (see RING_RADIUS);
+      // cards past ~118° fade out, so the ring never has to close. The frame loop eases ring cards around the center by angle,
+      // so they stay on the circle while it turns. A tiny z step keeps the card
+      // nearest the front on top where they overlap.
       const r = ringRadius(st)
       const t = d * ringStep(st)
       return {
         x: r * Math.sin(t),
-        y: -h * 0.06 + r * (1 - Math.cos(t)),
-        z: 0,
+        y: ringCenterY(st) - r * Math.cos(t),
+        z: -ad * 2,
         rx: 0,
         ry: 0,
         rz: t * DEG,
@@ -80,7 +104,7 @@ function pose(mode: Mode, j: number, n: number, spin: number, st: Stage, active:
       }
     }
     case 'helix': {
-      const r = Math.min(w * 0.3, 420)
+      const r = helixRadius(st)
       const turns = n > 8 ? 2 : 1
       const t = (d / n) * Math.PI * 2 * turns
       // Spread the coil over the stage height (minus a card) so it never leaves it.
@@ -366,9 +390,25 @@ export default function Banner({ onOpenProject }: { onOpenProject: (sheet: strin
         t.s *= 0.9
         t.z -= 260
       }
-      c.x += (t.x - c.x) * k
-      c.y += (t.y - c.y) * k
-      c.z += (t.z - c.z) * k
+      // Ring and helix cards orbit a fixed center, so they ease in polar terms:
+      // the angle turns and the radius settles separately, and a fast drag
+      // swings cards along the circle instead of cutting across it (which
+      // would pull them inward).
+      if (m === 'ring' && slot >= 0) {
+        const cy = ringCenterY(st) // the ring turns in the screen plane
+        ;[c.x, c.y] = orbitEase(c.x, cy - c.y, t.x, cy - t.y, k)
+        c.y = cy - c.y
+        c.z += (t.z - c.z) * k
+      } else if (m === 'helix' && slot >= 0) {
+        const r = helixRadius(st) // the helix turns about a vertical axis behind the front card
+        ;[c.x, c.z] = orbitEase(c.x, c.z + r, t.x, t.z + r, k)
+        c.z -= r
+        c.y += (t.y - c.y) * k
+      } else {
+        c.x += (t.x - c.x) * k
+        c.y += (t.y - c.y) * k
+        c.z += (t.z - c.z) * k
+      }
       c.rx += (t.rx - c.rx) * k
       c.ry += (t.ry - c.ry) * k
       c.rz += (t.rz - c.rz) * k
@@ -446,7 +486,7 @@ export default function Banner({ onOpenProject }: { onOpenProject: (sheet: strin
       if (Math.abs(dx) > 4) d.moved = true
       d.x = e.clientX
       const st = stage.current
-      const perCard = modeRef.current === 'ring' ? st.cw * 1.2 : st.cw * 0.55
+      const perCard = modeRef.current === 'ring' ? ringRadius(st) * ringStep(st) : st.cw * 0.55
       spin.current -= dx / perCard
     }
     const up = () => {
@@ -495,7 +535,7 @@ export default function Banner({ onOpenProject }: { onOpenProject: (sheet: strin
   }
 
   return (
-    <section id="top" ref={sectionRef} className="gallery" aria-label="Architecture and software gallery">
+    <section id="gallery" ref={sectionRef} className="gallery" aria-label="Architecture and software gallery">
       <header className="gallery__head">
         <LayoutGroup id="gallery-filter">
           <div className="gallery__live" role="group" aria-label="Show work">
@@ -530,9 +570,9 @@ export default function Banner({ onOpenProject }: { onOpenProject: (sheet: strin
           </div>
         </LayoutGroup>
         {/* The engineer is the headline; the buildings are the proof of a first career. */}
-        <h1 className="gallery__title">
-          <span className="gallery__name">Joshua Yoon,</span> Senior Software Engineer
-        </h1>
+        <h2 className="gallery__title">
+          <span className="gallery__name"></span> Senior Software Engineer
+        </h2>
         <p className="gallery__lede">
           I build backend platforms at JPMorgan Chase, and I designed and built this site. The buildings are from my
           first career, as an architect.

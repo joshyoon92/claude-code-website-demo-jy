@@ -41,8 +41,8 @@ function App() {
     <>
       <Nav onOpenPalette={() => setPaletteOpen(true)} />
       <main>
-        <Banner onOpenProject={openProject} />
         <Hero />
+        <Banner onOpenProject={openProject} />
         <About />
         <SoftwareWork />
         <ArchitectureIntro />

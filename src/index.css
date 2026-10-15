@@ -72,12 +72,10 @@
 }
 
 /* ───────────── Scopes ─────────────
-   The dark scheme: black bands, the image viewer, and code "screens".
+   The dark scheme: black bands and the image viewer.
    Re-declaring the tokens flips everything inside to light-on-black. */
 .band,
-.lightbox,
-.gcard--code,
-.gdetail__media--code {
+.lightbox {
   --ink: #0b0b0c;
   --ink-1: #141415;
   --ink-2: #1a1a1c;
@@ -452,9 +450,10 @@ kbd {
 /* ───────────── Hero (editorial intro) ───────────── */
 /* An oversized surname behind the cut-out portrait, with small copy pinned to
    the corners; a black stats band closes the section. */
+/* The first section: it clears the fixed nav. */
 .hero {
   overflow: hidden;
-  border-top: 1px solid var(--line-1);
+  padding-top: var(--nav-h);
 }
 .hero__stage {
   position: relative;
@@ -466,6 +465,8 @@ kbd {
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   grid-template-rows: auto 1fr auto;
   isolation: isolate;
+  /* the tagline's blend needs an opaque paper backdrop inside this group */
+  background: var(--ink);
 }
 .hero__word {
   position: absolute;
@@ -517,9 +518,12 @@ kbd {
   pointer-events: none;
   filter: drop-shadow(0 30px 40px rgba(11, 11, 12, 0.18));
 }
+/* .hero__intro itself stays out of this list: a z-index would make it its own
+   stacking context, and the tagline could no longer blend with the figure. */
 .hero__kicker,
 .hero__now,
-.hero__intro {
+.hero__tagline,
+.hero__ctas {
   position: relative;
   z-index: 3;
 }
@@ -555,15 +559,25 @@ kbd {
   grid-row: 3;
   align-self: end;
   max-width: 24rem;
-  /* paper behind the copy keeps it readable where the figure passes */
-  padding: 1rem 1rem 0 0;
-  background: linear-gradient(to right, var(--ink) 88%, transparent);
+  padding-top: 1rem;
 }
+/* The tagline inverts against whatever is behind it: white text in
+   "difference" mode reads near-black on the paper and turns light where it
+   crosses the dark clothes in the figure. */
 .hero__tagline {
   margin: 0 0 1.5rem;
   font-size: clamp(1rem, 1.25vw, 1.12rem);
   line-height: 1.55;
-  color: var(--fg-2);
+  color: #ffffff;
+  mix-blend-mode: difference;
+}
+/* The highlight is inverted too, so it is pre-inverted against the paper
+   (#ebeae6 − #0a66c2 = #e18424) to come out LinkedIn blue with paper text. */
+.hero__tagline .mark {
+  color: #000000;
+}
+.hero__tagline .mark__fill {
+  background: #e18424;
 }
 .hero__ctas {
   display: flex;
@@ -663,19 +677,24 @@ kbd {
   .hero__kicker {
     grid-row: 1;
   }
+  /* The word and the figure share a row, so the figure always stands in front
+     of the word, which sits behind the shoulders as on wide screens. */
   .hero__word {
     position: relative;
     grid-row: 2;
+    grid-column: 1;
+    align-self: start;
     top: auto;
     translate: 0;
     z-index: 0;
     font-size: 33vw;
-    margin-bottom: -16vw; /* the figure overlaps the bottom of the word */
+    margin-top: calc(min(78svh, 560px) * 0.2);
   }
   .hero__figure-wrap {
     position: relative;
     inset: auto;
-    grid-row: 3;
+    grid-row: 2;
+    grid-column: 1;
     justify-self: center;
   }
   .hero__figure {
@@ -685,14 +704,13 @@ kbd {
     height: min(78svh, 560px);
   }
   .hero__intro {
-    grid-row: 4;
+    grid-row: 3;
     max-width: none;
     padding: 0;
-    background: none;
   }
   .hero__now {
     grid-column: 1;
-    grid-row: 5;
+    grid-row: 4;
     justify-self: start;
     text-align: left;
     margin-bottom: 2rem;
