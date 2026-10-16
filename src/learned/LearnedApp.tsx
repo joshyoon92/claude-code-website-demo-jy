@@ -1,4 +1,4 @@
-import { motion, useScroll, useSpring } from 'motion/react'
+import { LayoutGroup, motion, useScroll, useSpring } from 'motion/react'
 import { useEffect, useMemo, useState } from 'react'
 import portrait from '../assets/portrait.jpg'
 import Cursor from '../components/Cursor'
@@ -67,13 +67,16 @@ export default function LearnedApp() {
           </div>
 
           {tags.length > 2 && (
-            <div className="software__filters" role="toolbar" aria-label="Filter by topic">
+            <LayoutGroup id="learned-filter"><div className="software__filters" role="toolbar" aria-label="Filter by topic">
               {tags.map((t) => (
                 <button key={t} className={`chip chip--dark${tag === t ? ' is-active' : ''}`} onClick={() => setTag(t)} aria-pressed={tag === t}>
+                  {tag === t && (
+                    <motion.span className="chip__bg" layoutId="learned-filter-bg" transition={{ duration: 0.35, ease: EASE }} />
+                  )}
                   <span className="chip__text">{t}</span>
                 </button>
               ))}
-            </div>
+            </div></LayoutGroup>
           )}
 
           {posts === undefined && <p className="learned-page__empty">Loading…</p>}
@@ -87,7 +90,7 @@ export default function LearnedApp() {
           <div className="feed">
             {shown.map((p, i) => (
               <Reveal key={p.id} delay={Math.min(i, 3) * 0.05}>
-                <PostCard post={p} onTag={setTag} />
+                <PostCard post={p} number={posts!.length - posts!.indexOf(p)} featured={p === posts![0]} onTag={setTag} />
               </Reveal>
             ))}
           </div>
@@ -102,7 +105,7 @@ export default function LearnedApp() {
 const SEE_MORE_AT = 320
 
 // One note, laid out like a post on LinkedIn or X: author, text, media, reactions.
-function PostCard({ post, onTag }: { post: Post; onTag: (tag: string) => void }) {
+function PostCard({ post, number, featured, onTag }: { post: Post; number: number; featured: boolean; onTag: (tag: string) => void }) {
   const [expanded, setExpanded] = useState(false)
   const [picker, setPicker] = useState(false)
   const [mine, setMine] = useState(post.mine)
@@ -147,13 +150,21 @@ function PostCard({ post, onTag }: { post: Post; onTag: (tag: string) => void })
   const active = REACTIONS.find((r) => r.emoji === mine)
 
   return (
-    <article id={`post-${post.id}`} className="post">
-      <header className="post__head">
-        <img className="post__avatar" src={portrait} alt="" width={48} height={48} />
+    <article id={`post-${post.id}`} className={`post${featured ? ' band' : ''}`}>
+      <div className="post__top">
+        <p className="rail">
+          <span className="rail__count">No. {String(number).padStart(2, '0')}</span>
+          <span className="rail__dot" aria-hidden="true">·</span>
+          <time dateTime={post.week_of}>Week of {fmtWeek(post.week_of)}</time>
+        </p>
+        {featured && <p className="rail">Latest</p>}
+      </div>
+
+      <header className="post__author">
+        <img className="post__avatar" src={portrait} alt="" width={44} height={44} />
         <div>
           <p className="post__name">{contact.name}</p>
           <p className="post__role">Senior Software Engineer · JPMorgan Chase</p>
-          <time className="post__time" dateTime={post.week_of}>Week of {fmtWeek(post.week_of)}</time>
         </div>
       </header>
 

@@ -2495,103 +2495,143 @@ html.has-cursor :is(input, textarea, select, [contenteditable="true"]) {
   color: var(--fg-3);
   border-top: 1px solid var(--line-2);
 }
-/* A feed of posts, in the manner of LinkedIn or X. */
+/* A feed of notes, set like the work cards: hairline frames, square corners,
+   mono labels, uppercase display titles. The newest note is a black band. */
 .feed {
   display: grid;
   gap: 1.25rem;
-  max-width: 40rem;
-  margin: 0 auto;
+  max-width: 50rem;
 }
 .post {
-  background: var(--paper-1);
-  color: var(--paper-body);
-  border: 1px solid var(--line-1);
-  padding: 1.25rem 1.25rem 0.5rem;
-  scroll-margin-top: calc(var(--nav-h) + 1rem);
-}
-.post__head {
+  position: relative;
   display: flex;
-  gap: 0.75rem;
-  align-items: flex-start;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  border: 1px solid var(--line-1);
+  background: var(--ink-1);
+  color: var(--fg-1);
+  scroll-margin-top: calc(var(--nav-h) + 1rem);
+  transition:
+    border-color 0.3s,
+    background 0.3s;
 }
-.post__head p {
+.post:hover {
+  border-color: var(--line-3);
+}
+.post.band {
+  background: var(--ink);
+}
+.post__top {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.post__top .rail {
   margin: 0;
 }
+.post__author {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
 .post__avatar {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  flex: none;
   object-fit: cover;
   object-position: top;
-  flex: none;
+  border: 1px solid var(--line-2);
+}
+.post__name,
+.post__role {
+  margin: 0;
 }
 .post__name {
-  font-weight: 650;
-  letter-spacing: -0.01em;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
 }
-.post__role,
-.post__time {
-  font-size: 0.8rem;
-  color: var(--paper-mute);
-}
-.post__time {
-  display: block;
-}
-.post__body {
-  margin-top: 1rem;
+.post__role {
+  font: 500 0.68rem var(--mono);
+  letter-spacing: 0.06em;
+  color: var(--fg-5);
 }
 .post__body h2 {
-  margin: 0 0 0.6rem;
-  font-size: 1.15rem;
-  line-height: 1.25;
-  letter-spacing: -0.02em;
+  margin: 0 0 1rem;
+  font-size: clamp(1.5rem, 3.2vw, 2.4rem);
+  font-weight: 700;
+  line-height: 0.98;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
 }
 .post__body p {
-  margin: 0 0 0.75rem;
+  max-width: 40rem;
+  margin: 0 0 0.85rem;
+  color: var(--fg-3);
+  line-height: 1.6;
   white-space: pre-line;
-  line-height: 1.55;
 }
 .post__more,
 .post__tags button {
   background: none;
   border: 0;
   padding: 0;
-  font: inherit;
   cursor: pointer;
 }
 .post__more {
   display: block;
-  margin: -0.25rem 0 0.75rem;
-  color: var(--paper-mute);
+  margin: -0.25rem 0 0.85rem;
+  font: 500 0.7rem var(--mono);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg-1);
+  border-bottom: 1px solid var(--line-3);
 }
 .post__more:hover {
   color: var(--lime);
-  text-decoration: underline;
+  border-color: var(--lime);
 }
-.post__tags {
+.post__body .post__tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.25rem 0.75rem;
+  gap: 0.4rem 1rem;
+  margin: 1.25rem 0 0;
 }
 .post__tags button {
+  font: 500 0.7rem var(--mono);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   color: var(--lime);
-  font-weight: 600;
+}
+.post.band .post__tags button {
+  color: var(--fg-2);
 }
 .post__tags button:hover {
+  color: var(--fg-1);
   text-decoration: underline;
+  text-underline-offset: 3px;
 }
 .post .learned__files {
-  margin: 0.5rem 0 1rem;
+  margin: 0;
+}
+.post .learned__images a {
+  background: var(--ink-2);
+  border-color: var(--line-1);
+}
+.post .learned__file {
+  max-width: none;
 }
 .post__summary {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.6rem;
   margin: 0;
-  padding: 0.5rem 0;
-  font-size: 0.85rem;
-  color: var(--paper-mute);
-  border-bottom: 1px solid var(--line-1);
+  font: 500 0.72rem var(--mono);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--fg-4);
 }
 .post__stack {
   display: inline-flex;
@@ -2599,13 +2639,12 @@ html.has-cursor :is(input, textarea, select, [contenteditable="true"]) {
 .post__stack span {
   display: grid;
   place-items: center;
-  width: 20px;
-  height: 20px;
-  margin-left: -4px;
-  font-size: 0.7rem;
-  background: var(--paper);
-  border: 1px solid var(--line-1);
-  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  margin-left: -1px;
+  font-size: 0.72rem;
+  background: var(--ink-2);
+  border: 1px solid var(--line-2);
 }
 .post__stack span:first-child {
   margin-left: 0;
@@ -2614,56 +2653,68 @@ html.has-cursor :is(input, textarea, select, [contenteditable="true"]) {
   display: flex;
   justify-content: space-between;
   gap: 0.25rem;
-  padding: 0.25rem 0;
+  margin: 0 calc(-1 * clamp(1.25rem, 3vw, 2rem)) calc(-1 * clamp(1.25rem, 3vw, 2rem));
+  padding: 0 calc(clamp(1.25rem, 3vw, 2rem) - 0.9rem);
+  border-top: 1px solid var(--line-1);
 }
 .post__react {
   position: relative;
   display: flex;
-  gap: 0.25rem;
 }
 .post__btn {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
-  padding: 0.55rem 0.8rem;
+  gap: 0.5rem;
+  min-height: 52px;
+  padding: 0 0.9rem;
   background: none;
   border: 0;
-  font: 600 0.85rem var(--sans);
-  color: var(--paper-mute);
+  font: 500 0.7rem var(--mono);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg-3);
   cursor: pointer;
-  transition: background 0.2s, color 0.2s;
+  transition:
+    background 0.2s,
+    color 0.2s;
 }
 .post__btn:hover {
-  background: var(--paper-2);
-  color: var(--paper-body);
+  background: var(--ink-2);
+  color: var(--fg-1);
 }
 .post__btn.is-on {
-  color: var(--lime);
+  color: var(--fg-1);
+  box-shadow: inset 0 -2px 0 var(--lime);
+}
+.post__btn span[aria-hidden] {
+  font-size: 1rem;
+  letter-spacing: 0;
 }
 .post__picker {
   position: absolute;
-  bottom: calc(100% + 0.25rem);
-  left: 0;
+  bottom: calc(100% + 0.5rem);
+  left: 0.5rem;
   z-index: 2;
   display: flex;
-  gap: 0.15rem;
-  padding: 0.35rem 0.5rem;
-  background: var(--paper-1);
-  border: 1px solid var(--line-2);
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
+  padding: 0.25rem;
+  background: var(--ink-1);
+  border: 1px solid var(--fg-1);
   animation: pickerIn 0.18s var(--ease, ease-out);
 }
 .post__picker button {
-  padding: 0.2rem 0.3rem;
+  padding: 0.35rem 0.5rem;
   background: none;
   border: 0;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   line-height: 1;
   cursor: pointer;
-  transition: transform 0.15s;
+  transition:
+    transform 0.15s,
+    background 0.15s;
 }
 .post__picker button:hover {
-  transform: translateY(-4px) scale(1.2);
+  background: var(--ink-2);
+  transform: translateY(-3px);
 }
 @keyframes pickerIn {
   from {
