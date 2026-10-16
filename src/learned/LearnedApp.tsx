@@ -1,9 +1,11 @@
 import { motion, useScroll, useSpring } from 'motion/react'
 import { useEffect, useMemo, useState } from 'react'
+import portrait from '../assets/portrait.jpg'
 import Cursor from '../components/Cursor'
 import { LinkedInIcon, MailIcon, ResumeIcon } from '../components/icons'
 import { EASE, Mark, Rail, Reveal } from '../components/ui'
 import { contact } from '../data/career'
+import { visitorId } from '../track'
 import { fmtSize, fmtWeek, isImage, paragraphs, type LearnedFile } from '../data/learned'
 
 interface Post {
@@ -13,7 +15,18 @@ interface Post {
   body: string
   tags: string[]
   files: LearnedFile[]
+  reactions: Record<string, number>
+  mine: string | null
 }
+
+// The reactions a visitor can leave; the first is the plain "Like".
+const REACTIONS = [
+  { emoji: '👍', label: 'Like' },
+  { emoji: '❤️', label: 'Love' },
+  { emoji: '💡', label: 'Insightful' },
+  { emoji: '🔥', label: 'Fire' },
+  { emoji: '👏', label: 'Applaud' },
+]
 
 const fileUrl = (f: LearnedFile) => `/api/learned-file?id=${f.id}`
 
@@ -24,7 +37,7 @@ export default function LearnedApp() {
   const [tag, setTag] = useState('All')
 
   useEffect(() => {
-    fetch('/api/learned')
+    fetch(`/api/learned?v=${encodeURIComponent(visitorId())}`)
       .then((r) => (r.ok ? r.json() : { posts: [] }))
       .then((j) => setPosts(j.posts ?? []))
       .catch(() => setPosts([]))
@@ -71,38 +84,128 @@ export default function LearnedApp() {
             </div>
           )}
 
-          <ol className="learned__list">
+          <div className="feed">
             {shown.map((p, i) => (
-              <Reveal key={p.id} delay={Math.min(i, 3) * 0.05} className="learned__item">
-                <article id={`post-${p.id}`} className="learned__article">
-                  <time className="learned__week rail" dateTime={p.week_of}>
-                    Week of {fmtWeek(p.week_of)}
-                  </time>
-                  <div>
-                    <h2>{p.title}</h2>
-                    {paragraphs(p.body).map((para, j) => (
-                      <p key={j}>{para}</p>
-                    ))}
-                    <Attachments files={p.files} />
-                    {p.tags.length > 0 && (
-                      <ul className="learned__tags">
-                        {p.tags.map((t) => (
-                          <li key={t}>
-                            <button className="chip" onClick={() => setTag(t)}>{t}</button>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                  </div>
-                </article>
+              <Reveal key={p.id} delay={Math.min(i, 3) * 0.05}>
+                <PostCard post={p} onTag={setTag} />
               </Reveal>
             ))}
-          </ol>
+          </div>
         </section>
       </main>
       <Footer />
       <Cursor />
     </>
+  )
+}
+
+const SEE_MORE_AT = 320
+
+// One note, laid out like a post on LinkedIn or X: author, text, media, reactions.
+function PostCard({ post, onTag }: { post: Post; onTag: (tag: string) => void }) {
+  const [expanded, setExpanded] = useState(false)
+  const [picker, setPicker] = useState(false)
+  const [mine, setMine] = useState(post.mine)
+  const [counts, setCounts] = useState(post.reactions)
+  const [copied, setCopied] = useState(false)
+
+  const paras = paragraphs(post.body)
+  const long = post.body.length > SEE_MORE_AT
+  const shownParas = expanded || !long ? paras : [post.body.slice(0, SEE_MORE_AT).replace(/\s+\S*$/, '').trim() + '…']
+
+  // Optimistic: update the numbers now, tell the server in the background.
+  const react = (emoji: string | null) => {
+    setPicker(false)
+    if (emoji === mine) emoji = null
+    setCounts((c) => {
+      const next = { ...c }
+      if (mine) next[mine] = Math.max(0, (next[mine] ?? 1) - 1)
+      if (emoji) next[emoji] = (next[emoji] ?? 0) + 1
+      return next
+    })
+    setMine(emoji)
+    fetch('/api/react', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ postId: post.id, visitorId: visitorId(), emoji }),
+    }).catch(() => {})
+  }
+
+  const share = async () => {
+    const url = `${location.origin}/learned#post-${post.id}`
+    try {
+      await navigator.clipboard.writeText(url)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 1800)
+    } catch {
+      window.prompt('Copy this link', url)
+    }
+  }
+
+  const top = Object.entries(counts).filter(([, n]) => n > 0).sort((a, b) => b[1] - a[1])
+  const total = top.reduce((sum, [, n]) => sum + n, 0)
+  const active = REACTIONS.find((r) => r.emoji === mine)
+
+  return (
+    <article id={`post-${post.id}`} className="post">
+      <header className="post__head">
+        <img className="post__avatar" src={portrait} alt="" width={48} height={48} />
+        <div>
+          <p className="post__name">{contact.name}</p>
+          <p className="post__role">Senior Software Engineer · JPMorgan Chase</p>
+          <time className="post__time" dateTime={post.week_of}>Week of {fmtWeek(post.week_of)}</time>
+        </div>
+      </header>
+
+      <div className="post__body">
+        <h2>{post.title}</h2>
+        {shownParas.map((para, j) => (
+          <p key={j}>{para}</p>
+        ))}
+        {long && !expanded && (
+          <button className="post__more" onClick={() => setExpanded(true)}>…see more</button>
+        )}
+        {post.tags.length > 0 && (
+          <p className="post__tags">
+            {post.tags.map((t) => (
+              <button key={t} onClick={() => onTag(t)}>#{t.replace(/\s+/g, '')}</button>
+            ))}
+          </p>
+        )}
+      </div>
+
+      <Attachments files={post.files} />
+
+      {total > 0 && (
+        <p className="post__summary" aria-label={`${total} reaction${total === 1 ? '' : 's'}`}>
+          <span className="post__stack" aria-hidden="true">
+            {top.slice(0, 3).map(([e]) => <span key={e}>{e}</span>)}
+          </span>
+          {total}
+        </p>
+      )}
+
+      <footer className="post__actions">
+        <div className="post__react">
+          {picker && (
+            <div className="post__picker" role="menu" aria-label="Choose a reaction">
+              {REACTIONS.map((r) => (
+                <button key={r.emoji} role="menuitem" title={r.label} aria-label={r.label} onClick={() => react(r.emoji)}>{r.emoji}</button>
+              ))}
+            </div>
+          )}
+          <button className={`post__btn${mine ? ' is-on' : ''}`} onClick={() => react(mine ? null : '👍')} aria-pressed={Boolean(mine)}>
+            <span aria-hidden="true">{mine ?? '👍'}</span> {active?.label ?? 'Like'}
+          </button>
+          <button className="post__btn" onClick={() => setPicker((o) => !o)} aria-expanded={picker} aria-label="More reactions">
+            <span aria-hidden="true">😊</span> React
+          </button>
+        </div>
+        <button className="post__btn" onClick={share}>
+          <span aria-hidden="true">↗</span> {copied ? 'Link copied' : 'Share'}
+        </button>
+      </footer>
+    </article>
   )
 }
 
@@ -148,11 +251,11 @@ function Header() {
       <nav className="nav__links" aria-label="Sections">
         <a href="/#about">About</a>
         <a href="/#projects">Work</a>
+        <a href="/#path">Path</a>
         <a href="/learned" className="is-active" aria-current="page">
           Learned
           <motion.span className="nav__underline" layoutId="nav-underline" transition={{ duration: 0.35, ease: EASE }} />
         </a>
-        <a href="/#path">Path</a>
       </nav>
       <a href="/" className="nav__logo" aria-label="Joshua Yoon, back to the portfolio">
         Joshua Yoon

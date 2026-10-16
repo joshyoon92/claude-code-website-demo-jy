@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState, type ChangeEvent, type FormEvent } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState, type ChangeEvent, type FormEvent } from 'react'
 import { fmtSize, fmtWeek, isImage, paragraphs, type LearnedFile } from '../data/learned'
 import { fmtAgo } from './format'
 
@@ -14,6 +14,7 @@ interface Post {
 }
 
 const LINKEDIN_LIMIT = 3000
+const EMOJI = ['💡', '🔥', '🚀', '🐛', '✅', '🧠', '📚', '⚡', '🎯', '🙌', '👀', '🛠️', '📈', '😅', '🤔', '🎉']
 const MAX_FILE_BYTES = 3 * 1024 * 1024
 const MAX_FILES = 6
 const ALLOWED = ['image/png', 'image/jpeg', 'image/webp', 'image/gif', 'application/pdf', 'text/plain', 'text/markdown', 'application/zip']
@@ -79,6 +80,7 @@ export default function LearnedAdmin() {
   const [message, setMessage] = useState('')
   const [filter, setFilter] = useState<'all' | 'live' | 'draft'>('all')
   const [open, setOpen] = useState<number>()
+  const bodyRef = useRef<HTMLTextAreaElement>(null)
 
   const load = useCallback(async () => {
     const res = await fetch('/api/admin/learned').catch(() => undefined)
@@ -94,6 +96,18 @@ export default function LearnedAdmin() {
     if (res?.ok) return (await res.json()) as { id?: number }
     setMessage((await res?.json().catch(() => undefined))?.error ?? 'That didn’t work. Try again.')
     return undefined
+  }
+
+  // Types an emoji where the cursor is in the text.
+  const addEmoji = (emoji: string) => {
+    const el = bodyRef.current
+    const at = el?.selectionStart ?? draft.body.length
+    const end = el?.selectionEnd ?? at
+    setDraft({ ...draft, body: draft.body.slice(0, at) + emoji + draft.body.slice(end) })
+    requestAnimationFrame(() => {
+      el?.focus()
+      el?.setSelectionRange(at + emoji.length, at + emoji.length)
+    })
   }
 
   const reset = () => {
@@ -212,7 +226,10 @@ export default function LearnedAdmin() {
             <input type="date" aria-label="Week of" value={draft.weekOf} onChange={(e) => setDraft({ ...draft, weekOf: e.target.value })} required />
             <input placeholder="Title, e.g. Why my Postgres query was slow" value={draft.title} maxLength={200} onChange={(e) => setDraft({ ...draft, title: e.target.value })} required />
           </div>
-          <textarea placeholder="What happened, what you learned, what you’ll do differently…" value={draft.body} onChange={(e) => setDraft({ ...draft, body: e.target.value })} required />
+          <textarea ref={bodyRef} placeholder="What happened, what you learned, what you’ll do differently…" value={draft.body} onChange={(e) => setDraft({ ...draft, body: e.target.value })} required />
+          <div className="emoji-bar" role="group" aria-label="Insert emoji">
+            {EMOJI.map((e) => <button key={e} type="button" onClick={() => addEmoji(e)}>{e}</button>)}
+          </div>
           <input placeholder="Tags, comma separated (React, SQL, Testing)" value={draft.tags} onChange={(e) => setDraft({ ...draft, tags: e.target.value })} />
 
           <div className="attach">

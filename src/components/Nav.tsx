@@ -12,8 +12,8 @@ const LINKS = [
     label: 'Work',
     sections: ['projects', 'architecture', 'diablos', 'shanghai', 'grand', 'architecture-index'],
   },
-  { href: '/learned', label: 'Learned', sections: [] as string[] },
   { href: '#path', label: 'Path', sections: ['path'] },
+  { href: '/learned', label: 'Learned', sections: [] as string[] },
 ]
 
 // The section crossing the middle of the screen.

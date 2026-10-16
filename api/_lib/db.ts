@@ -125,6 +125,15 @@ export function ensureSchema() {
         data     text NOT NULL
       )`
     await sql`CREATE INDEX IF NOT EXISTS learning_files_post_idx ON learning_files (post_id)`
+    // One emoji reaction per visitor per post (changeable, removable). Visitors are the anonymous browser ids.
+    await sql`
+      CREATE TABLE IF NOT EXISTS learning_reactions (
+        post_id     bigint NOT NULL REFERENCES learnings(id) ON DELETE CASCADE,
+        visitor_id  text NOT NULL,
+        emoji       text NOT NULL,
+        ts          timestamptz NOT NULL DEFAULT now(),
+        PRIMARY KEY (post_id, visitor_id)
+      )`
     await sql`
       CREATE OR REPLACE VIEW counted_visits AS
         SELECT * FROM visits v

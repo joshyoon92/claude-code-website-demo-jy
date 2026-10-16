@@ -790,3 +790,22 @@ code {
 .btn--danger:hover {
   background: rgba(255, 107, 107, 0.12);
 }
+
+.emoji-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+}
+.emoji-bar button {
+  padding: 4px 6px;
+  background: none;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  font-size: 1.15rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.emoji-bar button:hover {
+  background: var(--ink-3);
+  border-color: var(--line-2);
+}
