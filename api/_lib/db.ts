@@ -92,6 +92,15 @@ export function ensureSchema() {
         visitor_id  text PRIMARY KEY,
         added       timestamptz NOT NULL DEFAULT now()
       )`
+    // How each browser was excluded: 'admin' (opened the dashboard) or 'manual'
+    // (added by ID in the dashboard). Older rows have no source.
+    await sql`ALTER TABLE excluded_visitors ADD COLUMN IF NOT EXISTS source text`
+    // One-time admin chores that must not repeat (e.g. a seed the admin can later undo).
+    await sql`
+      CREATE TABLE IF NOT EXISTS admin_flags (
+        key   text PRIMARY KEY,
+        done  timestamptz NOT NULL DEFAULT now()
+      )`
     await sql`
       CREATE OR REPLACE VIEW counted_visits AS
         SELECT * FROM visits v

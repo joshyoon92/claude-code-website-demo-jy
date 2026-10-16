@@ -1,10 +1,13 @@
 import { AnimatePresence, LayoutGroup, motion, useReducedMotion } from 'motion/react'
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { lazy, Suspense, useEffect, useMemo, useRef, useState } from 'react'
 import { featured, projects, type Project } from '../data/projects'
 import { trackAction } from '../track'
 import Lightbox from './Lightbox'
 import { EASE, Rail, Reveal } from './ui'
 import { numberWord } from './words'
+
+// The map carries the world outline, so it loads in its own chunk.
+const WorkMap = lazy(() => import('./WorkMap'))
 
 const FIRMS = ['All', ...Array.from(new Set(projects.map((p) => p.firm)))]
 const featuredCover = new Map(featured.map((f) => [f.sheet, f.images[0].src]))
@@ -65,6 +68,12 @@ export default function SheetIndex({ request }: { request?: { sheet: string; non
             construction drawings.
           </p>
         </Reveal>
+      </div>
+
+      <div className="index__map">
+        <Suspense fallback={null}>
+          <WorkMap />
+        </Suspense>
       </div>
 
       <div className="index__filters" role="toolbar" aria-label="Filter by practice">

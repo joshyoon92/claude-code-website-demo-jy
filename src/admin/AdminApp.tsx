@@ -15,7 +15,7 @@ import {
   sectionName,
   toCsv,
 } from './format'
-import type { Count, Stats, Visit, Visitor } from './types'
+import type { Count, Excluded, Stats, Visit, Visitor } from './types'
 
 const TZ = Intl.DateTimeFormat().resolvedOptions().timeZone
 const RANGES = [
@@ -333,6 +333,8 @@ function Dashboard({
         )}
       </section>
 
+      <ExcludedPanel rows={stats.excluded} reload={reload} />
+
       {selected && (
         <VisitorDetail
           visitor={selected}
@@ -341,6 +343,120 @@ function Dashboard({
         />
       )}
     </div>
+  )
+}
+
+// Browsers hidden from every count. Release one that isn't you and its visits
+// count again; add one by the short ID shown in the visitor table.
+function ExcludedPanel({ rows, reload }: { rows: Excluded[]; reload: () => void }) {
+  const [id, setId] = useState('')
+  const [busy, setBusy] = useState<string>()
+  const [message, setMessage] = useState('')
+  const self = visitorId()
+
+  const call = async (method: 'POST' | 'DELETE', body: object, key: string) => {
+    setBusy(key)
+    setMessage('')
+    const res = await fetch('/api/admin/exclusions', {
+      method,
+      headers: { 'content-type': 'application/json', 'x-visitor-id': self },
+      body: JSON.stringify(body),
+    }).catch(() => undefined)
+    setBusy(undefined)
+    if (!res?.ok) {
+      const error = await res?.json().then((j) => j.error).catch(() => undefined)
+      setMessage(error ?? 'That didn’t work. Try again.')
+      return false
+    }
+    reload()
+    return true
+  }
+
+  const exclude = async (e: FormEvent) => {
+    e.preventDefault()
+    if (await call('POST', { id }, 'add')) {
+      setMessage(`Excluded ${id.trim().slice(0, 8)}.`)
+      setId('')
+    }
+  }
+  const release = async (r: Excluded) => {
+    if (await call('DELETE', { visitorId: r.visitor_id }, r.visitor_id)) setMessage(`Released ${shortId(r.visitor_id)}.`)
+  }
+
+  const how = (r: Excluded) =>
+    r.visitor_id === self ? 'This browser' : r.source === 'admin' ? 'Opened the dashboard' : r.source === 'manual' ? 'Added by ID' : 'Earlier exclusion'
+
+  return (
+    <section className="panel excluded">
+      <div className="panel__head">
+        <div>
+          <h2>Excluded visitors ({fmtNum(rows.length)})</h2>
+          <p className="panel__sub">
+            Hidden from every number on this page, and their new visits aren’t recorded. Release any that aren’t
+            you: their earlier visits count again. Visits made while excluded were never saved.
+          </p>
+        </div>
+        <form className="admin__actions" onSubmit={exclude}>
+          <input
+            className="search"
+            placeholder="Visitor ID, e.g. b89d494e"
+            aria-label="Visitor ID to exclude"
+            value={id}
+            onChange={(e) => setId(e.target.value)}
+          />
+          <button className="btn" disabled={!id.trim() || busy === 'add'}>
+            {busy === 'add' ? 'Excluding…' : 'Exclude'}
+          </button>
+        </form>
+      </div>
+      {message && (
+        <p className="excluded__message" role="status">
+          {message}
+        </p>
+      )}
+      {rows.length ? (
+        <div className="excluded__scroll">
+          <table className="excluded__table">
+            <thead>
+              <tr>
+                <th>Visitor</th>
+                <th>How</th>
+                <th>Location</th>
+                <th>Device</th>
+                <th className="num">Visits</th>
+                <th>Last seen</th>
+                <th />
+              </tr>
+            </thead>
+            <tbody>
+              {rows.map((r) => (
+                <tr key={r.visitor_id}>
+                  <td>
+                    <code title={r.visitor_id}>{shortId(r.visitor_id)}</code>
+                  </td>
+                  <td>{how(r)}</td>
+                  <td>{place(r)}</td>
+                  <td>{[r.device, r.browser, r.os].filter(Boolean).join(' · ') || <span className="muted">—</span>}</td>
+                  <td className="num">{fmtNum(r.visits)}</td>
+                  <td>{r.last_seen ? <span title={fmtDateTime(r.last_seen)}>{fmtAgo(r.last_seen)}</span> : <span className="muted">never</span>}</td>
+                  <td className="num">
+                    {r.visitor_id === self ? (
+                      <span className="tag">you</span>
+                    ) : (
+                      <button className="btn" disabled={busy === r.visitor_id} onClick={() => release(r)}>
+                        {busy === r.visitor_id ? 'Releasing…' : 'Release'}
+                      </button>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      ) : (
+        <p className="panel__sub">Nobody is excluded.</p>
+      )}
+    </section>
   )
 }
 

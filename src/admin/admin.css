@@ -634,3 +634,36 @@ code {
   font-size: 0.72rem;
   color: var(--fg-4);
 }
+
+/* ---------- excluded visitors ---------- */
+.excluded {
+  margin-top: 20px;
+}
+.excluded__message {
+  margin-bottom: 10px;
+  font-size: 0.85rem;
+  color: var(--fg-2);
+}
+.excluded__scroll {
+  overflow-x: auto;
+}
+.excluded__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+.excluded__table th,
+.excluded__table td {
+  padding: 8px 12px 8px 0;
+  border-bottom: 1px solid var(--line-2);
+  text-align: left;
+  white-space: nowrap;
+}
+.excluded__table th {
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--fg-4);
+}
+.excluded__table .num {
+  text-align: right;
+}

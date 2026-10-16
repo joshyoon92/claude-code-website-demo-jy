@@ -90,4 +90,21 @@ export type Stats = {
   breakdowns: Record<BreakdownKey, Count[]>
   visitors: Visitor[]
   log: Visit[]
+  excluded: Excluded[]
+}
+
+/** A browser hidden from every count, and how it got there. */
+export type Excluded = {
+  visitor_id: string
+  /** 'admin': opened the dashboard. 'manual': added by ID. null: from before this was recorded. */
+  source: 'admin' | 'manual' | null
+  added: string
+  visits: number
+  last_seen: string | null
+  city: string | null
+  region: string | null
+  country: string | null
+  browser: string | null
+  os: string | null
+  device: string | null
 }

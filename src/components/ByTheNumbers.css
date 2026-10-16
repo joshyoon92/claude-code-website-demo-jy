@@ -108,16 +108,10 @@
 }
 
 /* ── Skyline ── */
-.sky-scroll {
-  overflow-x: auto;
-  padding-top: 6rem; /* room for the tip above the tallest tower */
-  margin-top: -6rem;
-}
 .sky {
   --sky-h: clamp(240px, 32vw, 380px);
   --floor: calc(var(--sky-h) / var(--sky-max));
   position: relative;
-  min-width: 640px;
   display: grid;
   grid-auto-flow: column;
   grid-auto-columns: minmax(0, 1fr);
@@ -207,14 +201,8 @@
 }
 
 /* ── Map ── */
-.map-scroll {
-  overflow-x: auto;
-  padding-top: 7rem; /* room for a tip above the northern dots */
-  margin-top: -7rem;
-}
 .map {
   position: relative;
-  min-width: 720px; /* below this, the map scrolls sideways instead of shrinking */
   width: 100%;
   max-width: 100%;
 }
@@ -234,6 +222,8 @@
 }
 .map__dot {
   position: absolute;
+  width: var(--d);
+  height: var(--d);
   translate: -50% -50%;
   padding: 0;
   border: 2px solid var(--ink); /* a paper ring keeps dots apart where they meet */
@@ -266,146 +256,17 @@
   right: calc(var(--r) + 6px);
 }
 
-/* ── How it's read ── */
-.pipe__picker {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-  margin-bottom: 1.25rem;
-}
-.pipe__picker button {
-  padding: 0.4rem 0.7rem;
-  border: 1px solid var(--line-2);
-  background: none;
-  font: 500 0.72rem var(--mono);
-  letter-spacing: 0.04em;
-  color: var(--fg-3);
-}
-.pipe__picker button:hover {
-  border-color: var(--fg-1);
-  color: var(--fg-1);
-}
-.pipe__picker button.is-on {
-  border-color: var(--lime);
-  background: var(--lime);
-  color: var(--lime-ink);
-}
-.pipe {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1.3fr);
-  align-items: center;
-  gap: 1.5rem;
-}
-.pipe__label {
-  display: block;
-  margin-bottom: 0.75rem;
-  font: 500 0.66rem var(--mono);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--fg-4);
-}
-.pipe__in q {
-  display: block;
-  font-size: clamp(1.1rem, 2vw, 1.5rem);
-  font-weight: 500;
-  letter-spacing: -0.02em;
-  line-height: 1.3;
-  quotes: "“" "”";
-}
-.pipe__arrow {
-  font: 1.5rem var(--mono);
-  color: var(--lime);
-}
-.pipe__out {
-  margin: 0;
-  padding: 1rem 1.25rem;
-  background: var(--ink-1);
-  border: 1px solid var(--line-1);
-  font: 0.8rem/1.5 var(--mono);
-}
-.pipe__out div {
-  display: grid;
-  grid-template-columns: 6.5rem minmax(0, auto) minmax(0, 1fr);
-  gap: 0.75rem;
-  padding: 0.3rem 0;
-  border-top: 1px solid var(--line-1);
-}
-.pipe__out dt {
-  color: var(--fg-4);
-}
-.pipe__out dd {
-  margin: 0;
-  color: var(--fg-1);
-  font-variant-numeric: tabular-nums;
-}
-.pipe__out .pipe__from {
-  color: var(--lime);
-  overflow-wrap: anywhere;
-}
-.pipe__out .is-empty dd {
-  color: var(--fg-5);
-}
-.pipe__table {
-  margin-top: 1.5rem;
-}
-.pipe__table summary {
-  font: 500 0.72rem var(--mono);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--fg-2);
-  cursor: pointer;
-}
-.pipe__scroll {
-  overflow-x: auto;
-  margin-top: 1rem;
-}
-.pipe__table table {
-  width: 100%;
-  min-width: 640px;
-  border-collapse: collapse;
-  font-size: 0.85rem;
-}
-.pipe__table th,
-.pipe__table td {
-  padding: 0.5rem 0.75rem 0.5rem 0;
-  border-bottom: 1px solid var(--line-1);
-  text-align: left;
-}
-.pipe__table th {
-  font: 500 0.66rem var(--mono);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--fg-4);
-}
-.pipe__table .num {
-  text-align: right;
-  font-variant-numeric: tabular-nums;
-}
-
-@media (max-width: 760px) {
-  .pipe {
-    grid-template-columns: minmax(0, 1fr);
-  }
-  .pipe__arrow {
-    rotate: 90deg;
-    justify-self: start;
-  }
-}
-
 /* ── Construction budgets ── */
 .cost {
+  --label-room: 7rem; /* space after the scale for the value labels */
   display: grid;
   gap: 0.6rem;
-  overflow-x: auto;
-  padding-top: 6rem; /* room for a tip above the first bar */
-  margin-top: -6rem;
 }
 .cost__row {
   display: grid;
   grid-template-columns: minmax(8rem, 13rem) minmax(0, 1fr) 4.5rem;
   align-items: center;
   gap: 1rem;
-  min-width: 600px;
 }
 .cost__name {
   font-size: 0.85rem;
@@ -415,7 +276,7 @@
 .cost__axis {
   position: relative;
   height: 1rem;
-  margin-right: 7rem; /* the same label room as the tracks */
+  margin-right: var(--label-room);
 }
 .cost__axis span {
   position: absolute;
@@ -430,7 +291,7 @@
 .cost__track {
   position: relative;
   height: 26px;
-  margin-right: 7rem; /* room for the value after the longest bar */
+  margin-right: var(--label-room); /* room for the value after the longest bar */
   background-repeat: no-repeat;
 }
 .cost__bar {
@@ -478,7 +339,7 @@
   position: absolute;
   top: -4px;
   bottom: -4px;
-  left: calc(100% - 7rem - 18px);
+  left: calc(100% - var(--label-room) - 18px);
   width: 7px;
   background: var(--ink);
   transform: skewX(-20deg);
@@ -497,4 +358,143 @@
   font: 500 0.68rem var(--mono);
   letter-spacing: 0.06em;
   color: var(--fg-4);
+}
+
+/* Phone-only parts: hidden on wider screens. */
+.sky__num,
+.sky__key,
+.map__label-num,
+.map__key {
+  display: none;
+}
+
+/* ── Phones: every chart fits the screen, nothing scrolls sideways ── */
+@media (max-width: 640px) {
+  /* Budgets: name and team on one line, the bar full width beneath. */
+  .cost {
+    --label-room: 4rem;
+    gap: 0.9rem;
+  }
+  .cost__row {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0.3rem 0.75rem;
+  }
+  .cost__name {
+    text-align: left;
+    font-size: 0.8rem;
+  }
+  .cost__track {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    height: 20px;
+  }
+  .cost__value {
+    font-size: 0.72rem;
+  }
+  .cost__value em {
+    display: none; /* the break mark says it is off scale */
+  }
+  .cost__row--axis > span {
+    display: none;
+  }
+  .cost__row--axis .cost__axis {
+    grid-column: 1 / -1;
+  }
+
+  /* Skyline: columns keep their scale; names move to a numbered key. */
+  .sky {
+    --sky-h: 220px;
+    gap: 0.3rem;
+    padding-left: 2rem;
+  }
+  .sky__grid span {
+    font-size: 0.55rem;
+  }
+  .sky__name,
+  .sky__year {
+    display: none;
+  }
+  .sky__num {
+    display: block;
+    margin-top: 0.5rem;
+    font: 600 0.62rem var(--mono);
+    color: var(--fg-3);
+  }
+  .sky__count {
+    font-size: 0.58rem;
+  }
+  .sky__key {
+    display: grid;
+    gap: 0.35rem;
+    margin: 1.25rem 0 0;
+    padding: 0;
+    list-style: none;
+    font-size: 0.8rem;
+  }
+  .sky__key li {
+    display: grid;
+    grid-template-columns: 1.75rem minmax(0, 1fr) auto;
+    gap: 0.5rem;
+    align-items: baseline;
+  }
+  .sky__key span,
+  .sky__key em {
+    font: 500 0.68rem var(--mono);
+    font-style: normal;
+    color: var(--fg-4);
+  }
+
+  /* Map: smaller dots, numbers instead of names, a key beneath. */
+  .map__dot {
+    width: calc(var(--d) * 0.55);
+    height: calc(var(--d) * 0.55);
+    border-width: 1.5px;
+  }
+  .map__label {
+    left: calc(var(--r) * 0.55 + 3px);
+  }
+  .is-left .map__label {
+    right: calc(var(--r) * 0.55 + 3px);
+  }
+  .map__label-full {
+    display: none;
+  }
+  .map__label-num {
+    display: inline;
+    font-weight: 700;
+    font-size: 0.62rem;
+  }
+  .map__key {
+    display: grid;
+    gap: 0.35rem;
+    margin: 1rem 0 0;
+    padding: 0;
+    list-style: none;
+    font-size: 0.8rem;
+  }
+  .map__key li {
+    display: grid;
+    grid-template-columns: 1.75rem minmax(0, 1fr) auto;
+    gap: 0.5rem;
+    align-items: baseline;
+  }
+  .map__key span,
+  .map__key em {
+    font: 500 0.68rem var(--mono);
+    font-style: normal;
+    color: var(--fg-4);
+  }
+  .map__key b {
+    font-weight: 500;
+  }
+
+  /* Hover cards stay inside the screen. */
+  .tip {
+    max-width: min(16rem, 70vw);
+  }
+}
+
+/* The map under the project index heading (SheetIndex). */
+.index__map .nums__figure {
+  margin: 0 0 clamp(3rem, 6vw, 4.5rem);
 }

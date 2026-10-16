@@ -33,8 +33,9 @@ const BREAKDOWNS = {
 const BREAKDOWN_KEYS = Object.keys(BREAKDOWNS) as (keyof typeof BREAKDOWNS)[]
 
 // The admin's own visitor IDs (first 8 characters, as shown on the dashboard),
-// from devices that never opened the dashboard. Add more here to hide them.
-const OWN_VISITORS = ['7fda5b6a', 'b89d494e', 'd628a49a', '237fcda4', '405d9ef2']
+// excluded once. After that the dashboard's "Excluded visitors" panel owns the
+// list, so a visitor released there stays released.
+const SEED_OWN_VISITORS = ['7fda5b6a', 'b89d494e', 'd628a49a', '237fcda4', '405d9ef2']
 
 // Clicks that mean someone wants to get in touch.
 const CONTACT_TARGETS = ['email', 'linkedin', 'resume', 'phone']
@@ -154,6 +155,24 @@ async function log(days: number) {
   )
 }
 
+// Everyone currently excluded, with enough about each to tell whether it's the admin.
+async function excluded() {
+  return sql`
+    SELECT e.visitor_id, e.source, e.added,
+           count(v.id)::int AS visits,
+           max(v.ts) AS last_seen,
+           (array_agg(v.city    ORDER BY v.ts DESC))[1] AS city,
+           (array_agg(v.region  ORDER BY v.ts DESC))[1] AS region,
+           (array_agg(v.country ORDER BY v.ts DESC))[1] AS country,
+           (array_agg(v.browser ORDER BY v.ts DESC))[1] AS browser,
+           (array_agg(v.os      ORDER BY v.ts DESC))[1] AS os,
+           (array_agg(v.device  ORDER BY v.ts DESC))[1] AS device
+      FROM excluded_visitors e
+      LEFT JOIN visits v ON v.visitor_id = e.visitor_id
+     GROUP BY e.visitor_id, e.source, e.added
+     ORDER BY max(v.ts) DESC NULLS LAST`
+}
+
 export const GET = withErrors(async (request: Request) => {
   if (!isAuthed(request)) return json({ error: 'Unauthorized' }, { status: 401 })
 
@@ -166,20 +185,23 @@ export const GET = withErrors(async (request: Request) => {
 
   // The admin's own browser: exclude it (past and future) before counting.
   const self = request.headers.get('x-visitor-id')?.slice(0, 64)
-  if (self) await sql`INSERT INTO excluded_visitors (visitor_id) VALUES (${self}) ON CONFLICT DO NOTHING`
-  // The admin's other browsers and devices, by the short ID the dashboard shows.
-  await sql`
-    INSERT INTO excluded_visitors (visitor_id)
-    SELECT DISTINCT visitor_id FROM visits WHERE left(visitor_id, 8) = ANY(${OWN_VISITORS}::text[])
-    ON CONFLICT DO NOTHING`
+  if (self) await sql`INSERT INTO excluded_visitors (visitor_id, source) VALUES (${self}, 'admin') ON CONFLICT DO NOTHING`
+  const [seeded] = await sql`INSERT INTO admin_flags (key) VALUES ('seed-own-visitors') ON CONFLICT DO NOTHING RETURNING key`
+  if (seeded) {
+    await sql`
+      INSERT INTO excluded_visitors (visitor_id, source)
+      SELECT DISTINCT visitor_id, 'manual' FROM visits WHERE left(visitor_id, 8) = ANY(${SEED_OWN_VISITORS}::text[])
+      ON CONFLICT DO NOTHING`
+  }
 
-  const [summary, day, week, month, visitorRows, logRows, ...breakdowns] = await Promise.all([
+  const [summary, day, week, month, visitorRows, logRows, excludedRows, ...breakdowns] = await Promise.all([
     totals(tz),
     series(tz, 'day'),
     series(tz, 'week'),
     series(tz, 'month'),
     visitors(days),
     log(days),
+    excluded(),
     ...BREAKDOWN_KEYS.map((k) => breakdown(BREAKDOWNS[k], days)),
   ])
 
@@ -191,5 +213,6 @@ export const GET = withErrors(async (request: Request) => {
     breakdowns: Object.fromEntries(BREAKDOWN_KEYS.map((k, i) => [k, breakdowns[i]])),
     visitors: visitorRows,
     log: logRows,
+    excluded: excludedRows,
   })
 })
