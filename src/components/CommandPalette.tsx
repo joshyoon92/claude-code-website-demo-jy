@@ -45,6 +45,7 @@ export default function CommandPalette({
       { id: 'about', label: 'About me', hint: '01', group: 'Sections', run: () => scrollTo('about') },
       { id: 'projects', label: 'Projects · Software engineering', hint: '02', group: 'Sections', run: () => scrollTo('projects') },
       { id: 'architecture', label: 'Projects · Architecture archive', hint: '02', group: 'Sections', run: () => scrollTo('architecture') },
+      { id: 'learned', label: 'What I learned · Weekly notes', hint: 'Page', group: 'Sections', run: () => location.assign('/learned') },
       { id: 'path', label: 'Career Path', hint: '03', group: 'Sections', run: () => scrollTo('path') },
       { id: 'contact', label: 'Contact', hint: '04', group: 'Sections', run: () => scrollTo('contact') },
       { id: 'resume', label: 'Download résumé', hint: 'PDF', group: 'Sections', run: downloadResume },

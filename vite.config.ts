@@ -17,6 +17,14 @@ function siteMeta(): Plugin {
   const url = siteUrl()
   return {
     name: 'site-meta',
+    // Dev only: Vercel's rewrites don't run, so serve the extra pages at their clean URLs.
+    configureServer(server) {
+      server.middlewares.use((req, _res, next) => {
+        const path = req.url?.split('?')[0]
+        if (path === '/learned' || path === '/admin') req.url = `${path}.html`
+        next()
+      })
+    },
     transformIndexHtml: (html) => html.replaceAll('__SITE_URL__', url),
     generateBundle() {
       this.emitFile({
@@ -31,6 +39,7 @@ function siteMeta(): Plugin {
           '<?xml version="1.0" encoding="UTF-8"?>\n' +
           '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
           `  <url><loc>${url}/</loc><lastmod>${new Date().toISOString().slice(0, 10)}</lastmod></url>\n` +
+          `  <url><loc>${url}/learned</loc><lastmod>${new Date().toISOString().slice(0, 10)}</lastmod></url>\n` +
           '</urlset>\n',
       })
     },
@@ -46,6 +55,7 @@ export default defineConfig({
       input: {
         main: resolve(import.meta.dirname, 'index.html'),
         admin: resolve(import.meta.dirname, 'admin.html'),
+        learned: resolve(import.meta.dirname, 'learned.html'),
       },
     },
   },

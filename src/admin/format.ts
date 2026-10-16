@@ -33,6 +33,7 @@ const SECTION_NAMES: Record<string, string> = {
   shanghai: 'Shanghai Financial Center',
   grand: '369 West Grand',
   'architecture-index': 'Project index',
+  learned: 'What I learned',
   path: 'Career path',
   contact: 'Contact',
 }

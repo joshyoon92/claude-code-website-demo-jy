@@ -101,6 +101,30 @@ export function ensureSchema() {
         key   text PRIMARY KEY,
         done  timestamptz NOT NULL DEFAULT now()
       )`
+    // "What I learned" posts: written in the admin, shown on the site, shared to LinkedIn.
+    await sql`
+      CREATE TABLE IF NOT EXISTS learnings (
+        id               bigserial PRIMARY KEY,
+        created          timestamptz NOT NULL DEFAULT now(),
+        updated          timestamptz NOT NULL DEFAULT now(),
+        week_of          date NOT NULL,
+        title            text NOT NULL,
+        body             text NOT NULL,
+        tags             text[] NOT NULL DEFAULT '{}',
+        published        boolean NOT NULL DEFAULT false,
+        linkedin_posted  timestamptz
+      )`
+    // Files attached to a post, stored as base64 text (small images, PDFs) so no separate file store is needed.
+    await sql`
+      CREATE TABLE IF NOT EXISTS learning_files (
+        id       bigserial PRIMARY KEY,
+        post_id  bigint NOT NULL REFERENCES learnings(id) ON DELETE CASCADE,
+        name     text NOT NULL,
+        type     text NOT NULL,
+        size     integer NOT NULL,
+        data     text NOT NULL
+      )`
+    await sql`CREATE INDEX IF NOT EXISTS learning_files_post_idx ON learning_files (post_id)`
     await sql`
       CREATE OR REPLACE VIEW counted_visits AS
         SELECT * FROM visits v

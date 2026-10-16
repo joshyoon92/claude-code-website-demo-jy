@@ -2484,3 +2484,104 @@ html.has-cursor :is(input, textarea, select, [contenteditable="true"]) {
 .cursor-anchor svg {
   display: block;
 }
+
+/* ───────────── What I learned (own page, /learned) ───────────── */
+.learned-page {
+  padding-top: calc(var(--nav-h) + clamp(4rem, 10vh, 7rem));
+  min-height: 100vh;
+}
+.learned-page__empty {
+  padding: 3rem 0;
+  color: var(--fg-3);
+  border-top: 1px solid var(--line-2);
+}
+.learned__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--line-2);
+}
+.learned__item {
+  border-bottom: 1px solid var(--line-2);
+}
+.learned__article {
+  display: grid;
+  grid-template-columns: minmax(9rem, 14rem) 1fr;
+  gap: 1rem 3rem;
+  padding: 2.25rem 0;
+  scroll-margin-top: calc(var(--nav-h) + 1rem);
+}
+.learned__week {
+  margin: 0;
+}
+.learned__article h2 {
+  margin: 0 0 1rem;
+  font-size: clamp(1.4rem, 2.6vw, 2.1rem);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+.learned__article p {
+  max-width: 44rem;
+  margin: 0 0 1rem;
+  color: var(--fg-3);
+  white-space: pre-line;
+}
+.learned__files {
+  display: grid;
+  gap: 0.6rem;
+  margin: 1.5rem 0;
+}
+.learned__images {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+  gap: 0.6rem;
+}
+.learned__images a {
+  display: block;
+  background: var(--paper-1);
+  border: 1px solid var(--line-1);
+}
+.learned__images img {
+  display: block;
+  width: 100%;
+  max-height: 22rem;
+  object-fit: contain;
+}
+.learned__file {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  max-width: 44rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--line-2);
+  transition: border-color 0.2s, background 0.2s;
+}
+.learned__file:hover {
+  border-color: var(--fg-1);
+  background: var(--ink-1);
+}
+.learned__file .rail {
+  margin: 0;
+  white-space: nowrap;
+}
+.learned__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  list-style: none;
+  margin: 1.25rem 0 0;
+  padding: 0;
+}
+.learned__tags .chip {
+  background: none;
+  color: inherit;
+  cursor: pointer;
+}
+.learned__tags .chip:hover {
+  border-color: var(--fg-1);
+}
+@media (max-width: 720px) {
+  .learned__article {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState, type FormEvent } from 'react'
 import { markAsOwner, visitorId } from '../track'
 import DataGrid, { type Column } from './DataGrid'
+import LearnedAdmin from './LearnedAdmin'
 import TrendChart from './TrendChart'
 import VisitorDetail, { ActionChips } from './VisitorDetail'
 import {
@@ -195,6 +196,7 @@ function Dashboard({
   reload: () => void
 }) {
   const [unit, setUnit] = useState<(typeof UNITS)[number]['unit']>('day')
+  const [view, setView] = useState<'stats' | 'learned'>('stats')
   const [tab, setTab] = useState<'visitors' | 'log'>('visitors')
   const [query, setQuery] = useState('')
   const [selected, setSelected] = useState<Visitor>()
@@ -223,6 +225,11 @@ function Dashboard({
           <h1>Who’s visiting</h1>
         </div>
         <div className="admin__actions">
+          <Segmented
+            options={[{ value: 'stats' as const, label: 'Visitors' }, { value: 'learned' as const, label: 'What I learned' }]}
+            value={view}
+            onChange={setView}
+          />
           <span className="check" title="Every browser you open this dashboard in is excluded, including its earlier visits">
             Your own visits are excluded automatically
           </span>
@@ -231,6 +238,10 @@ function Dashboard({
         </div>
       </header>
 
+      {view === 'learned' ? (
+        <LearnedAdmin />
+      ) : (
+        <>
       <section className="tiles">
         <Tile label="This week" visits={s.week_visits} visitors={s.week_visitors} prev={s.prev_week_visits} prevLabel="last week" />
         <Tile label="This month" visits={s.month_visits} visitors={s.month_visitors} prev={s.prev_month_visits} prevLabel="last month" />
@@ -334,6 +345,9 @@ function Dashboard({
       </section>
 
       <ExcludedPanel rows={stats.excluded} reload={reload} />
+
+        </>
+      )}
 
       {selected && (
         <VisitorDetail
