@@ -140,9 +140,9 @@ export default function Hero() {
             tagline off from the figure it blends against (see .hero__tagline). */}
         <div className="hero__intro">
           <motion.p className="hero__tagline" {...rise(0.15)}>
-            Nearly seven years designing buildings, from Chicago high-rises to a
+            Over seven years designing buildings, from Chicago high-rises to a
             ballpark in Mexico City. <Mark delay={0.8}>Now I build software</Mark>:
-            backend platforms, data pipelines and AI-assisted workflows at JPMorgan
+            frontend & backend platforms, data pipelines and AI-assisted workflows at JPMorgan
             Chase.
           </motion.p>
           <motion.div className="hero__ctas" {...rise(0.15)}>

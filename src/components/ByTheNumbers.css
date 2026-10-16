@@ -1,0 +1,500 @@
+/* "By the numbers" dashboard (ByTheNumbers.tsx). Ink on paper like the rest of
+   the site; LinkedIn blue only marks what is hovered or selected. Completed work
+   is solid, unbuilt work is outlined, so status never rests on colour alone. */
+
+.nums__note {
+  margin: 1rem 0 0;
+  font: 500 0.72rem/1.6 var(--mono);
+  letter-spacing: 0.06em;
+  color: var(--fg-4);
+}
+.nums__figure {
+  margin: clamp(4rem, 8vw, 6rem) 0 0;
+}
+.nums__caption {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem 2rem;
+  padding-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--fg-1);
+}
+.nums__caption h3 {
+  margin: 0;
+  font-size: clamp(1.25rem, 2.2vw, 1.75rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+.nums__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font: 500 0.7rem var(--mono);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--fg-3);
+}
+.nums__legend li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.swatch {
+  width: 14px;
+  height: 14px;
+  background: var(--fg-1);
+}
+.swatch--unbuilt {
+  background: none;
+  border: 1.5px dashed var(--fg-1);
+}
+.dot-key {
+  border-radius: 50%;
+  background: var(--fg-1);
+}
+.dot-key--unbuilt {
+  background: none;
+  border: 1.5px solid var(--fg-1);
+}
+.nums__lede {
+  max-width: 40rem;
+  margin: 0 0 1.25rem;
+  color: var(--fg-3);
+}
+.nums__lede code {
+  font: 0.9em var(--mono);
+}
+
+/* Hover/focus card shared by the skyline and the map. */
+.tip {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  z-index: 5;
+  translate: -50% 4px;
+  display: grid;
+  gap: 0.15rem;
+  width: max-content;
+  max-width: 16rem;
+  padding: 0.6rem 0.75rem;
+  background: var(--fg-1);
+  color: var(--ink);
+  font: 400 0.78rem/1.45 var(--sans);
+  text-align: left;
+  white-space: normal;
+  pointer-events: none;
+  opacity: 0;
+  transition:
+    opacity 0.15s,
+    translate 0.15s;
+}
+.tip b {
+  font-weight: 600;
+}
+.tip__sum {
+  margin-top: 0.2rem;
+  font: 500 0.7rem var(--mono);
+  letter-spacing: 0.04em;
+}
+:is(.sky__bldg, .map__dot):is(:hover, :focus-visible) .tip {
+  opacity: 1;
+  translate: -50% 0;
+}
+
+/* ── Skyline ── */
+.sky-scroll {
+  overflow-x: auto;
+  padding-top: 6rem; /* room for the tip above the tallest tower */
+  margin-top: -6rem;
+}
+.sky {
+  --sky-h: clamp(240px, 32vw, 380px);
+  --floor: calc(var(--sky-h) / var(--sky-max));
+  position: relative;
+  min-width: 640px;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  gap: 0.75rem;
+  padding-left: 2.75rem; /* the floor scale */
+}
+.sky__grid {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: var(--sky-h);
+  pointer-events: none;
+}
+.sky__grid span {
+  position: absolute;
+  left: 0;
+  right: 0;
+  border-top: 1px solid var(--line-1);
+  font: 500 0.62rem var(--mono);
+  letter-spacing: 0.06em;
+  color: var(--fg-5);
+  line-height: 0;
+  padding-top: 0;
+}
+.sky__col {
+  position: relative;
+  display: grid;
+  grid-template-rows: var(--sky-h) auto auto;
+  justify-items: center;
+  min-width: 0;
+}
+.sky__bldg {
+  position: relative;
+  align-self: end;
+  width: min(100%, 64px);
+  height: calc(var(--floors) * var(--floor));
+  padding: 0;
+  border: 0;
+  /* one slab per floor */
+  background: repeating-linear-gradient(
+    to top,
+    var(--fg-1) 0 calc(var(--floor) - 1.5px),
+    var(--ink) calc(var(--floor) - 1.5px) var(--floor)
+  );
+  transition: filter 0.2s;
+}
+.sky__bldg.is-unbuilt {
+  background: repeating-linear-gradient(
+    to top,
+    transparent 0 calc(var(--floor) - 1px),
+    var(--line-2) calc(var(--floor) - 1px) var(--floor)
+  );
+  outline: 1.5px dashed var(--fg-1);
+  outline-offset: -1.5px;
+}
+.sky__bldg:is(:hover, :focus-visible) {
+  background: repeating-linear-gradient(
+    to top,
+    var(--lime) 0 calc(var(--floor) - 1.5px),
+    var(--ink) calc(var(--floor) - 1.5px) var(--floor)
+  );
+  outline: none;
+}
+.sky__count {
+  position: absolute;
+  top: -1.4rem;
+  left: 50%;
+  translate: -50% 0;
+  font: 600 0.68rem var(--mono);
+  color: var(--fg-2);
+}
+.sky__name {
+  margin-top: 0.75rem;
+  max-width: 100%;
+  font-size: 0.78rem;
+  font-weight: 500;
+  line-height: 1.3;
+  text-align: center;
+  text-wrap: balance;
+}
+.sky__year {
+  margin-top: 0.2rem;
+  font: 500 0.66rem var(--mono);
+  letter-spacing: 0.08em;
+  color: var(--fg-4);
+}
+
+/* ── Map ── */
+.map-scroll {
+  overflow-x: auto;
+  padding-top: 7rem; /* room for a tip above the northern dots */
+  margin-top: -7rem;
+}
+.map {
+  position: relative;
+  min-width: 720px; /* below this, the map scrolls sideways instead of shrinking */
+  width: 100%;
+  max-width: 100%;
+}
+.map svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.map path {
+  fill: var(--ink-3);
+}
+.map__place {
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+.map__dot {
+  position: absolute;
+  translate: -50% -50%;
+  padding: 0;
+  border: 2px solid var(--ink); /* a paper ring keeps dots apart where they meet */
+  border-radius: 50%;
+  background: var(--fg-1);
+  transition: background-color 0.2s;
+}
+.is-unbuilt .map__dot {
+  background: var(--ink);
+  border: 1.5px solid var(--fg-1);
+}
+.map__dot:is(:hover, :focus-visible) {
+  background: var(--lime);
+  border-color: var(--ink);
+}
+.map__label {
+  position: absolute;
+  left: calc(var(--r) + 6px); /* clear of the dot, whatever its size */
+  top: 0;
+  translate: 0 -50%;
+  white-space: nowrap;
+  font: 500 0.68rem var(--mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--fg-2);
+  pointer-events: none;
+}
+.is-left .map__label {
+  left: auto;
+  right: calc(var(--r) + 6px);
+}
+
+/* ── How it's read ── */
+.pipe__picker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 1.25rem;
+}
+.pipe__picker button {
+  padding: 0.4rem 0.7rem;
+  border: 1px solid var(--line-2);
+  background: none;
+  font: 500 0.72rem var(--mono);
+  letter-spacing: 0.04em;
+  color: var(--fg-3);
+}
+.pipe__picker button:hover {
+  border-color: var(--fg-1);
+  color: var(--fg-1);
+}
+.pipe__picker button.is-on {
+  border-color: var(--lime);
+  background: var(--lime);
+  color: var(--lime-ink);
+}
+.pipe {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1.3fr);
+  align-items: center;
+  gap: 1.5rem;
+}
+.pipe__label {
+  display: block;
+  margin-bottom: 0.75rem;
+  font: 500 0.66rem var(--mono);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg-4);
+}
+.pipe__in q {
+  display: block;
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+  quotes: "“" "”";
+}
+.pipe__arrow {
+  font: 1.5rem var(--mono);
+  color: var(--lime);
+}
+.pipe__out {
+  margin: 0;
+  padding: 1rem 1.25rem;
+  background: var(--ink-1);
+  border: 1px solid var(--line-1);
+  font: 0.8rem/1.5 var(--mono);
+}
+.pipe__out div {
+  display: grid;
+  grid-template-columns: 6.5rem minmax(0, auto) minmax(0, 1fr);
+  gap: 0.75rem;
+  padding: 0.3rem 0;
+  border-top: 1px solid var(--line-1);
+}
+.pipe__out dt {
+  color: var(--fg-4);
+}
+.pipe__out dd {
+  margin: 0;
+  color: var(--fg-1);
+  font-variant-numeric: tabular-nums;
+}
+.pipe__out .pipe__from {
+  color: var(--lime);
+  overflow-wrap: anywhere;
+}
+.pipe__out .is-empty dd {
+  color: var(--fg-5);
+}
+.pipe__table {
+  margin-top: 1.5rem;
+}
+.pipe__table summary {
+  font: 500 0.72rem var(--mono);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--fg-2);
+  cursor: pointer;
+}
+.pipe__scroll {
+  overflow-x: auto;
+  margin-top: 1rem;
+}
+.pipe__table table {
+  width: 100%;
+  min-width: 640px;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+.pipe__table th,
+.pipe__table td {
+  padding: 0.5rem 0.75rem 0.5rem 0;
+  border-bottom: 1px solid var(--line-1);
+  text-align: left;
+}
+.pipe__table th {
+  font: 500 0.66rem var(--mono);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--fg-4);
+}
+.pipe__table .num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 760px) {
+  .pipe {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .pipe__arrow {
+    rotate: 90deg;
+    justify-self: start;
+  }
+}
+
+/* ── Construction budgets ── */
+.cost {
+  display: grid;
+  gap: 0.6rem;
+  overflow-x: auto;
+  padding-top: 6rem; /* room for a tip above the first bar */
+  margin-top: -6rem;
+}
+.cost__row {
+  display: grid;
+  grid-template-columns: minmax(8rem, 13rem) minmax(0, 1fr) 4.5rem;
+  align-items: center;
+  gap: 1rem;
+  min-width: 600px;
+}
+.cost__name {
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-align: right;
+}
+.cost__axis {
+  position: relative;
+  height: 1rem;
+  margin-right: 7rem; /* the same label room as the tracks */
+}
+.cost__axis span {
+  position: absolute;
+  translate: -50% 0;
+  font: 500 0.62rem var(--mono);
+  letter-spacing: 0.06em;
+  color: var(--fg-5);
+}
+.cost__axis span:first-child {
+  translate: 0 0;
+}
+.cost__track {
+  position: relative;
+  height: 26px;
+  margin-right: 7rem; /* room for the value after the longest bar */
+  background-repeat: no-repeat;
+}
+.cost__bar {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: var(--w);
+  min-width: 3px;
+  padding: 0;
+  border: 0;
+  background: var(--fg-1);
+  transition: background-color 0.2s;
+}
+.cost__bar.is-unbuilt {
+  background: var(--ink);
+  outline: 1.5px dashed var(--fg-1);
+  outline-offset: -1.5px;
+}
+.cost__bar:is(:hover, :focus-visible) {
+  background: var(--lime);
+  outline: none;
+}
+.cost__bar .tip {
+  left: min(50%, 8rem);
+}
+.cost__bar:is(:hover, :focus-visible) .tip {
+  opacity: 1;
+  translate: -50% 0;
+}
+.cost__value {
+  position: absolute;
+  top: 50%;
+  left: calc(var(--w) + 8px);
+  translate: 0 -50%;
+  white-space: nowrap;
+  font: 600 0.8rem var(--mono);
+  font-variant-numeric: tabular-nums;
+  pointer-events: none;
+}
+/* Off scale: the bar runs past the axis, with a break mark, and its label sits inside. */
+.cost__track.is-over {
+  margin-right: 0;
+}
+.cost__track.is-over::after {
+  content: "";
+  position: absolute;
+  top: -4px;
+  bottom: -4px;
+  left: calc(100% - 7rem - 18px);
+  width: 7px;
+  background: var(--ink);
+  transform: skewX(-20deg);
+  pointer-events: none;
+}
+.cost__track.is-over .cost__value {
+  left: 0.75rem; /* inside the bar, clear of the break mark at the scale's end */
+  color: var(--ink);
+}
+.cost__value em {
+  font: 400 0.7rem var(--mono);
+  font-style: normal;
+  opacity: 0.8;
+}
+.cost__team {
+  font: 500 0.68rem var(--mono);
+  letter-spacing: 0.06em;
+  color: var(--fg-4);
+}

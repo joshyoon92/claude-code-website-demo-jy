@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react'
+import { lazy, Suspense, useCallback, useEffect, useState } from 'react'
 import About from './components/About'
 import ArchitectureIntro from './components/ArchitectureIntro'
 import Banner from './components/Banner'
@@ -12,6 +12,9 @@ import PathMap from './components/PathMap'
 import SheetIndex from './components/SheetIndex'
 import SoftwareWork from './components/SoftwareWork'
 import { featured } from './data/projects'
+
+// The dashboard carries the world map outline, so it loads in its own chunk.
+const ByTheNumbers = lazy(() => import('./components/ByTheNumbers'))
 
 function App() {
   const [paletteOpen, setPaletteOpen] = useState(false)
@@ -47,6 +50,9 @@ function App() {
         <About />
         <SoftwareWork />
         <ArchitectureIntro />
+        <Suspense fallback={<div className="section" style={{ minHeight: '100vh' }} />}>
+          <ByTheNumbers onOpenProject={openProject} />
+        </Suspense>
         {featured.map((project) => (
           <Featured key={project.id} project={project} withModel={project.id === 'shanghai'} />
         ))}

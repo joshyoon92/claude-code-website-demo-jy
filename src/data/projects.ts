@@ -111,12 +111,17 @@ const projectData: ProjectData[] = [
     name: 'Demeter 4.Zero',
     location: 'Woodridge, Illinois',
     firm: 'Tom Lee Studio',
-    status: 'Under Construction',
+    status: 'Completed',
     year: '2024–25',
-    program: '2-story manufacturing · 54,371 GSF',
-    role: 'SD · DD · CD',
+    program: '2-story office / manufacturing · 54,371 GSF',
+    role: 'Project Architect · SD · DD · CD',
     summary:
       'A two-story facility integrating functionality with a modern industrial aesthetic. Worked through Schematic Design, Design Development and Construction Documentation, refining spatial organization, technical detailing and code compliance from concept to build-ready set.',
+    facts: [
+      { label: 'Construction cost', value: '$10.6 million' },
+      { label: 'Team', value: '3 architects' },
+      { label: 'Scope', value: 'Managed the Revit model; coordinated the structural, civil and MEP consultants' },
+    ],
   },
   {
     sheet: 'A-102',
@@ -130,6 +135,10 @@ const projectData: ProjectData[] = [
     role: 'Project Architect · SD · DD',
     summary:
       'A three-level residence balancing contemporary living with contextual character. Focused on spatial layout, material selection and façade articulation within a compact footprint.',
+    facts: [
+      { label: 'Construction cost', value: '$700,000' },
+      { label: 'Schedule', value: 'Designed in 2 months' },
+    ],
   },
   {
     sheet: 'A-201',
@@ -139,10 +148,16 @@ const projectData: ProjectData[] = [
     firm: 'Gensler',
     status: 'Completed',
     year: '2021',
-    program: 'Free-standing restaurant · 451 m² · 96 seats',
+    program: 'Free-standing restaurant · 432 m² · 96 seats',
     role: 'Project Architect · SD · DD · CD',
     summary:
       'A single-storey restaurant on the P13 LE template, tuned for high-volume service and drive-through efficiency, adapted to local zoning and the Ontario Building Code while keeping brand design integrity.',
+    facts: [
+      { label: 'Construction cost', value: '$2 million' },
+      { label: 'Team', value: 'Led a team of 3' },
+      { label: 'Schedule', value: '3 months, SD through CD (alongside Appleby)' },
+      { label: 'Scope', value: 'Technical documentation in Revit for the full drawing set' },
+    ],
   },
   {
     sheet: 'A-202',
@@ -152,10 +167,15 @@ const projectData: ProjectData[] = [
     firm: 'Gensler',
     status: 'Completed',
     year: '2021',
-    program: 'Free-standing restaurant · P13 SE Large',
-    role: 'Project Architect',
+    program: 'Free-standing restaurant · P13 SE Large · 403 m²',
+    role: 'Project Architect · SD · DD · CD',
     summary:
       'A single-storey restaurant on the P13 SE Large prototype with a drive-through layout, keeping flexibility in kitchen planning and seating for site conditions. Adapted the prototype to Ontario’s washroom and accessibility codes while preserving the brand’s operational efficiency and design identity.',
+    facts: [
+      { label: 'Construction cost', value: '$2 million' },
+      { label: 'Team', value: 'Led a team of 3' },
+      { label: 'Schedule', value: '3 months, SD through CD (alongside Cambridge)' },
+    ],
   },
   {
     sheet: 'A-301',
@@ -165,11 +185,15 @@ const projectData: ProjectData[] = [
     firm: 'Brininstool + Lynch',
     status: 'Completed',
     year: '2019',
-    program: '14-story residential · 263 units · 300,680 SF',
+    program: '14-story residential · 264 units · 300,680 SF',
     role: 'Project Architect · PD · SD · DD · CD · CA',
     summary:
       'The Mason, a contemporary reinterpretation of Chicago’s exposed structural frame construction in the growing West Loop. The design acknowledges the area’s traditional industrial architecture while providing the amenities expected of new residential development, including a fitness center, shared office and bar. Led the Planned Development process with CDOT, CFD and MOPD, then carried the project through SD, DD, CD and CA. Construction finished late 2019.',
     facts: [
+      { label: 'Construction cost', value: '$64 million' },
+      { label: 'Team', value: 'Architect team of 6; 15 across client, contractor and consultants' },
+      { label: 'Schedule', value: '19-month construction' },
+      { label: 'Outcome', value: 'The client brought 4 more projects to the firm' },
       { label: 'Firm role', value: 'Design Architect · Architect of Record · Interior Designer' },
       {
         label: 'Consultants',
@@ -188,10 +212,13 @@ const projectData: ProjectData[] = [
     status: 'Completed',
     year: '2022',
     program: '8-story multifamily · 300 units · 440,450 SF',
-    role: 'Project Architect · SD · DD · CD · CA',
+    role: 'Project Architect · Feasibility · SD · DD · CD · CA',
     summary:
       'Forth at Navigation, an eight-story, 300-unit multifamily community in Houston’s East End cultural district. A sleek glass and metal skin allows floor-to-ceiling windows in many units, with views of downtown. Handled the foundation and building permits, then SD, DD and CD with civil, structural and MEP consultants, and CA coordination with the GC through construction.',
     facts: [
+      { label: 'Construction cost', value: '$61 million' },
+      { label: 'Team', value: 'Managed a team of 9' },
+      { label: 'Schedule', value: '6 months to groundbreaking' },
       { label: 'Firm role', value: 'Design Architect · Architect of Record' },
       {
         label: 'Consultants',
@@ -210,7 +237,7 @@ const projectData: ProjectData[] = [
     status: 'Completed',
     year: '2021',
     program: '41-story residential · 356 units · 533,000 SF',
-    role: 'Concept design · City approvals',
+    role: 'Concept design · Feasibility · PD process · SD · DD',
     summary:
       'A sleek, streamlined residential tower in Chicago’s River North. Amenity-rich floors and highly detailed units make everyday living feel like a stay in a high-end hotel. Developed the initial tower schemes; the grid concept was selected to move forward. Worked with the client, their counsel and City Hall to get through initial city approval.',
     facts: [
@@ -242,11 +269,21 @@ const projectData: ProjectData[] = [
     location: 'Shanghai, China',
     firm: 'JAHN',
     status: 'Completed',
-    year: '2020',
-    program: '3 office towers · 406,000 m²',
+    year: '2021',
+    program: '3 office towers · 550,000 m²',
     role: 'CD · Interior package',
     summary:
       'Three headquarters towers joined by a 130 m sky bridge. Responsible for construction development and the interior package: plans, sections, interior elevations and details.',
+    facts: [
+      { label: 'Construction cost', value: '$2 billion' },
+      {
+        label: 'Client',
+        value: 'Shanghai Stock Exchange, China Financial Futures Exchange, China Securities and Clearing Corporation',
+      },
+      { label: 'Program', value: 'Headquarters, office, museum, performance hall, exhibition, conference and retail' },
+      { label: 'Design Architect', value: 'Atelier FGP + JAHN' },
+      { label: 'Executive Architect', value: 'SIADR' },
+    ],
   },
   {
     sheet: 'A-402',
@@ -260,6 +297,10 @@ const projectData: ProjectData[] = [
     role: 'DD · CD',
     summary:
       'The first stadium built in Mexico City in 50 years. Responsible for partial plans and sections of the VIP boxes and crowd seating, interior elevations, wall sections and details.',
+    facts: [
+      { label: 'Construction cost', value: '$150 million' },
+      { label: 'Team', value: 'Design team of 10' },
+    ],
   },
   {
     sheet: 'A-403',
@@ -343,6 +384,7 @@ export const featured: FeaturedProject[] = [
     ],
     facts: [
       { label: 'Client', value: 'Alfredo Harp Helú' },
+      { label: 'Team', value: 'Design team of 10' },
       { label: 'Design Architect', value: 'Atelier FGP + Taller ADG' },
       { label: 'Consultants', value: 'Werner Sobek, Populous, RWDI, Musco +9' },
     ],
@@ -360,7 +402,7 @@ export const featured: FeaturedProject[] = [
     name: 'Shanghai Financial Center',
     subtitle: 'Shanghai Financial Exchange Plaza',
     location: 'Shanghai, China',
-    year: '2020',
+    year: '2021',
     images: [
       ...photos(ordered(shanghaiImages, '1660751163465.jpg'), 'Photograph · Qingyan Zhu'),
       ...mediaFor('shanghai'),
@@ -374,13 +416,22 @@ export const featured: FeaturedProject[] = [
     stats: [
       { label: 'Height', value: '230', unit: 'm' },
       { label: 'Floors', value: '31' },
-      { label: 'Area', value: '406,000', unit: 'm²' },
-      { label: 'Sky bridge', value: '130', unit: 'm' },
+      { label: 'Area', value: '550,000', unit: 'm²' },
+      { label: 'Cost', value: '2', unit: 'B USD' },
     ],
     facts: [
-      { label: 'Type', value: 'Headquarters · Office' },
+      {
+        label: 'Client',
+        value: 'Shanghai Stock Exchange, China Financial Futures Exchange, China Securities and Clearing Corporation',
+      },
+      { label: 'Program', value: 'Headquarters, office, museum, performance hall, exhibition, conference and retail' },
+      { label: 'Design Architect', value: 'Atelier FGP + JAHN' },
+      { label: 'Executive Architect', value: 'SIADR' },
+      {
+        label: 'Consultants',
+        value: 'Werner Sobek, WSP, Rainer Schmidt Landscape, L-Plan, Lerch Bates, Yann Kersalé, RWDI',
+      },
       { label: 'Certification', value: 'LEED Gold' },
-      { label: 'Collaborators', value: 'JAHN + Atelier FGP' },
       { label: 'Photography', value: 'Qingyan Zhu' },
     ],
     awards: [

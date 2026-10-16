@@ -12,7 +12,7 @@ const FINE_POINTER = '(hover: hover) and (pointer: fine)'
 const CLICKABLE = 'a, button, [role="button"], [role="tab"], summary, label'
 const NATIVE = 'input, textarea, select, [contenteditable="true"]'
 const SIZE = 88 // the labelled circle; the dot states are this, scaled down
-const SCALE = { dot: 12 / SIZE, link: 34 / SIZE, label: 1, none: 0 } as const
+const SCALE = { dot: 12 / SIZE, link: 34 / SIZE, label: 1, none: 0, scroll: 52 / SIZE } as const
 type Mode = keyof typeof SCALE
 const PRESS = 1.2 // how much bigger the cursor gets while the button is held
 
@@ -79,6 +79,9 @@ export default function Cursor() {
   const [state, setState] = useState<{ mode: Mode; label: string; dark: boolean }>({ mode: 'dot', label: '', dark: false })
   const [visible, setVisible] = useState(false)
   const [pressed, setPressed] = useState(false)
+  // Wheel-click autoscroll: where it started, and which way the page is moving.
+  const [anchor, setAnchor] = useState<{ x: number; y: number } | null>(null)
+  const [dir, setDir] = useState<-1 | 0 | 1>(0)
   const lastTarget = useRef<Element | null>(null)
 
   const x = useMotionValue(-100)
@@ -139,9 +142,110 @@ export default function Cursor() {
     }
   }, [enabled, x, y])
 
+  // Our own wheel-click autoscroll, in place of the browser's: its arrow icon
+  // is drawn by the browser and can't be styled. Click the wheel to start;
+  // the page scrolls faster the further the pointer is from where it started.
+  // Click again, press Esc or turn the wheel to stop; or hold the wheel, drag,
+  // and let go. Wheel-clicking a link still opens it in a new tab.
+  useEffect(() => {
+    if (!enabled) return
+    const DEAD = 14 // px around the anchor where nothing moves
+    let active: { x: number; y: number } | null = null
+    let swallowClick = false
+    let raf = 0
+    let last = 0
+
+    const stop = () => {
+      if (!active) return
+      active = null
+      cancelAnimationFrame(raf)
+      setAnchor(null)
+      setDir(0)
+    }
+    const tick = (t: number) => {
+      if (!active) return
+      const dt = last ? Math.min(t - last, 50) : 16
+      last = t
+      const dy = y.get() - active.y
+      const past = Math.abs(dy) - DEAD
+      setDir(past > 0 ? (Math.sign(dy) as -1 | 1) : 0)
+      if (past > 0) {
+        const speed = Math.min((past / 10) ** 1.5, 60) // px per 16 ms
+        window.scrollBy({ top: Math.sign(dy) * speed * (dt / 16), behavior: 'instant' })
+      }
+      raf = requestAnimationFrame(tick)
+    }
+    const onMouseDown = (e: MouseEvent) => {
+      if (active) {
+        // Any click ends autoscroll and does nothing else.
+        e.preventDefault()
+        swallowClick = true
+        stop()
+        return
+      }
+      if (e.button !== 1) return
+      if ((e.target as Element).closest('a, ' + NATIVE)) return
+      e.preventDefault() // keeps the browser's own autoscroll from starting
+      active = { x: e.clientX, y: e.clientY }
+      last = 0
+      setAnchor(active)
+      raf = requestAnimationFrame(tick)
+    }
+    const onMouseUp = (e: MouseEvent) => {
+      // Held and dragged: letting go ends it. A plain click leaves it running.
+      if (active && e.button === 1 && Math.abs(e.clientY - active.y) > DEAD * 2) stop()
+    }
+    const onClick = (e: MouseEvent) => {
+      if (!swallowClick) return
+      swallowClick = false
+      e.preventDefault()
+      e.stopPropagation()
+    }
+    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && stop()
+
+    addEventListener('mousedown', onMouseDown, { capture: true })
+    addEventListener('mouseup', onMouseUp, { capture: true })
+    addEventListener('click', onClick, { capture: true })
+    addEventListener('auxclick', onClick, { capture: true })
+    addEventListener('keydown', onKey)
+    addEventListener('wheel', stop, { passive: true })
+    addEventListener('blur', stop)
+    return () => {
+      stop()
+      removeEventListener('mousedown', onMouseDown, { capture: true })
+      removeEventListener('mouseup', onMouseUp, { capture: true })
+      removeEventListener('click', onClick, { capture: true })
+      removeEventListener('auxclick', onClick, { capture: true })
+      removeEventListener('keydown', onKey)
+      removeEventListener('wheel', stop)
+      removeEventListener('blur', stop)
+    }
+  }, [enabled, y])
+
   if (!enabled) return null
-  const { mode, label, dark } = state
+  const { label, dark } = state
+  const mode: Mode = anchor ? 'scroll' : state.mode
   return (
+    <>
+    <AnimatePresence>
+      {anchor && (
+        <motion.div
+          className="cursor-anchor"
+          style={{ left: anchor.x, top: anchor.y }}
+          initial={{ scale: 0.4, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          exit={{ scale: 0.4, opacity: 0 }}
+          transition={{ type: 'spring', bounce: 0.3, visualDuration: 0.25 }}
+          aria-hidden="true"
+        >
+          <svg viewBox="0 0 36 36" width="36" height="36">
+            <circle cx="18" cy="18" r="16" fill="none" stroke="#fff" strokeWidth="1.5" />
+            <path d="M13 13.5 18 8.5 23 13.5M13 22.5 18 27.5 23 22.5" fill="none" stroke="#fff" strokeWidth="1.75" />
+            <circle cx="18" cy="18" r="1.75" fill="#fff" />
+          </svg>
+        </motion.div>
+      )}
+    </AnimatePresence>
     <motion.div
       className={`cursor cursor--${mode}${dark ? ' is-dark' : ''}`}
       style={{ x: reduce ? x : sx, y: reduce ? y : sy }}
@@ -172,8 +276,32 @@ export default function Cursor() {
               {label}
             </motion.span>
           )}
+          {mode === 'scroll' && (
+            // One chevron pointing the way the page moves; both while it rests.
+            <motion.svg
+              key="scroll"
+              className="cursor__arrow"
+              viewBox="0 0 88 88"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.15 }}
+            >
+              <motion.path
+                d="M30 40 44 26 58 40"
+                animate={{ opacity: dir === 1 ? 0 : 1, y: dir === -1 ? 11 : 0 }}
+                transition={{ duration: 0.2 }}
+              />
+              <motion.path
+                d="M30 48 44 62 58 48"
+                animate={{ opacity: dir === -1 ? 0 : 1, y: dir === 1 ? -11 : 0 }}
+                transition={{ duration: 0.2 }}
+              />
+            </motion.svg>
+          )}
         </AnimatePresence>
       </motion.span>
     </motion.div>
+    </>
   )
 }

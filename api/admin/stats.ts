@@ -32,6 +32,10 @@ const BREAKDOWNS = {
 }
 const BREAKDOWN_KEYS = Object.keys(BREAKDOWNS) as (keyof typeof BREAKDOWNS)[]
 
+// The admin's own visitor IDs (first 8 characters, as shown on the dashboard),
+// from devices that never opened the dashboard. Add more here to hide them.
+const OWN_VISITORS = ['b89d494e', '405d9ef2']
+
 // Clicks that mean someone wants to get in touch.
 const CONTACT_TARGETS = ['email', 'linkedin', 'resume', 'phone']
 
@@ -163,6 +167,11 @@ export const GET = withErrors(async (request: Request) => {
   // The admin's own browser: exclude it (past and future) before counting.
   const self = request.headers.get('x-visitor-id')?.slice(0, 64)
   if (self) await sql`INSERT INTO excluded_visitors (visitor_id) VALUES (${self}) ON CONFLICT DO NOTHING`
+  // The admin's other browsers and devices, by the short ID the dashboard shows.
+  await sql`
+    INSERT INTO excluded_visitors (visitor_id)
+    SELECT DISTINCT visitor_id FROM visits WHERE left(visitor_id, 8) = ANY(${OWN_VISITORS}::text[])
+    ON CONFLICT DO NOTHING`
 
   const [summary, day, week, month, visitorRows, logRows, ...breakdowns] = await Promise.all([
     totals(tz),

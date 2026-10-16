@@ -39,7 +39,7 @@ export const PROJECTS: Record<ProjectId, ProjectInfo> = {
     name: '180 N Ada',
     place: 'Chicago',
     year: '2019',
-    blurb: 'The Mason: a West Loop take on Chicago’s exposed structural frame, 263 units over 14 stories.',
+    blurb: 'The Mason: a West Loop take on Chicago’s exposed structural frame, 264 units over 14 stories.',
     link: { sheet: 'A-301' },
   },
   diablos: {
@@ -52,7 +52,7 @@ export const PROJECTS: Record<ProjectId, ProjectInfo> = {
   shanghai: {
     name: 'Shanghai Financial Center',
     place: 'Shanghai',
-    year: '2020',
+    year: '2021',
     blurb: 'Three exchange headquarters joined by a 130-meter sky bridge.',
     link: { section: 'shanghai' },
   },

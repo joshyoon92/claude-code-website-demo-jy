@@ -55,13 +55,13 @@
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: #ef4444;
-  box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.6);
+  background: var(--lime); /* LinkedIn blue, the gallery's one accent */
+  box-shadow: 0 0 0 0 rgba(10, 102, 194, 0.6);
   animation: gallery-live 2s ease-out infinite;
 }
 @keyframes gallery-live {
-  70% { box-shadow: 0 0 0 7px rgba(239, 68, 68, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+  70% { box-shadow: 0 0 0 7px rgba(10, 102, 194, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(10, 102, 194, 0); }
 }
 .gallery__filter-wrap {
   display: inline-flex;
@@ -96,7 +96,7 @@
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: var(--g-ink);
+  background: var(--lime);
 }
 .gallery__filter-all {
   border: 0;
@@ -167,7 +167,7 @@
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: var(--g-ink);
+  background: var(--lime);
 }
 
 /* ── Stage ── */
@@ -339,11 +339,12 @@
   color: var(--g-ink);
   text-decoration: underline;
   text-underline-offset: 3px;
-  text-decoration-color: var(--g-line);
+  text-decoration-color: var(--lime);
+  text-decoration-thickness: 2px;
   cursor: pointer;
 }
 .gallery__open:hover {
-  text-decoration-color: var(--lime);
+  color: var(--lime);
 }
 .gallery__pause {
   flex: none;
