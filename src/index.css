@@ -2496,7 +2496,7 @@ html.has-cursor :is(input, textarea, select, [contenteditable="true"]) {
   border-top: 1px solid var(--line-2);
 }
 /* A feed of notes, set like the work cards: hairline frames, square corners,
-   mono labels, uppercase display titles. The newest note is a black band. */
+   mono labels, uppercase display titles. */
 .feed {
   display: grid;
   gap: 1.25rem;
@@ -2518,9 +2518,6 @@ html.has-cursor :is(input, textarea, select, [contenteditable="true"]) {
 }
 .post:hover {
   border-color: var(--line-3);
-}
-.post.band {
-  background: var(--ink);
 }
 .post__top {
   display: flex;
@@ -2604,9 +2601,6 @@ html.has-cursor :is(input, textarea, select, [contenteditable="true"]) {
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--lime);
-}
-.post.band .post__tags button {
-  color: var(--fg-2);
 }
 .post__tags button:hover {
   color: var(--fg-1);

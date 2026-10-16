@@ -150,7 +150,7 @@ function PostCard({ post, number, featured, onTag }: { post: Post; number: numbe
   const active = REACTIONS.find((r) => r.emoji === mine)
 
   return (
-    <article id={`post-${post.id}`} className={`post${featured ? ' band' : ''}`}>
+    <article id={`post-${post.id}`} className="post">
       <div className="post__top">
         <p className="rail">
           <span className="rail__count">No. {String(number).padStart(2, '0')}</span>
