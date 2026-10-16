@@ -172,6 +172,7 @@ export default function WireframeModel() {
       <canvas
         ref={canvasRef}
         className="wireframe__canvas"
+        data-cursor="Drag"
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
         onPointerUp={onPointerUp}

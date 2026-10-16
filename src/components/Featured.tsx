@@ -8,9 +8,11 @@ import Lightbox from './Lightbox'
 import { EASE, Mark, Rail, Reveal } from './ui'
 import WireframeModel from './WireframeModel'
 
+const MODEL_CAPTION = 'Massing study: three towers, one bridge. Drag to orbit.'
+
 interface Props {
   project: FeaturedProject
-  // Shanghai gets the interactive massing model alongside its photos.
+  // Shanghai's gallery ends with the interactive massing model as one more frame.
   withModel?: boolean
 }
 
@@ -43,7 +45,10 @@ export default function Featured({ project, withModel }: Props) {
   const [current, setCurrent] = useState(0)
   const [viewer, setViewer] = useState<number | null>(null)
   const reduce = useReducedMotion()
-  const image = project.images[current]
+  // The model, when there is one, is the frame after the last image.
+  const modelIndex = withModel ? project.images.length : -1
+  const showModel = current === modelIndex
+  const image = project.images[showModel ? 0 : current]
 
   // Analytics: a photo counts as viewed once picked (the first one shows by default).
   const firstRender = useRef(true)
@@ -52,8 +57,8 @@ export default function Featured({ project, withModel }: Props) {
       firstRender.current = false
       return
     }
-    trackAction('photo', project.name, project.images[current]?.caption)
-  }, [current, project])
+    trackAction('photo', project.name, current === modelIndex ? MODEL_CAPTION : project.images[current]?.caption)
+  }, [current, project, modelIndex])
 
   return (
     <section id={project.id} className="section featured">
@@ -66,6 +71,16 @@ export default function Featured({ project, withModel }: Props) {
       </div>
 
       <div className="featured__stage-wrap">
+        {showModel ? (
+          // Not a button: dragging orbits the model, so it does not open the viewer.
+          <div className="featured__stage featured__stage--model">
+            <WireframeModel />
+            <span className="featured__stage-meta">
+              <span>{String(current + 1).padStart(2, '0')}</span>
+              {MODEL_CAPTION}
+            </span>
+          </div>
+        ) : (
         <button
           className={`featured__stage featured__stage--${image.kind}`}
           onClick={() => setViewer(current)}
@@ -106,6 +121,7 @@ export default function Featured({ project, withModel }: Props) {
             <span className="featured__expand">Expand ↗</span>
           </span>
         </button>
+        )}
         <Shutter word={project.id} />
       </div>
 
@@ -127,6 +143,21 @@ export default function Featured({ project, withModel }: Props) {
             )}
           </button>
         ))}
+        {withModel && (
+          <button
+            role="tab"
+            aria-selected={showModel}
+            aria-label="Massing study, interactive 3D model"
+            className={`contact-sheet__frame contact-sheet__frame--model${showModel ? ' is-active' : ''}`}
+            onClick={() => setCurrent(modelIndex)}
+          >
+            <i aria-hidden="true">3D</i>
+            <span>{String(modelIndex + 1).padStart(2, '0')}</span>
+            {showModel && (
+              <motion.i className="contact-sheet__select" layoutId={`select-${project.id}`} transition={{ duration: 0.4, ease: EASE }} />
+            )}
+          </button>
+        )}
       </div>
 
       <dl className="stats">
@@ -174,20 +205,6 @@ export default function Featured({ project, withModel }: Props) {
           </ul>
         </Reveal>
       </div>
-
-      {withModel && (
-        <Reveal className="featured__model">
-          <div className="featured__model-copy">
-            <p className="rail">Massing study · interactive</p>
-            <h3>Three towers, one bridge.</h3>
-            <p>
-              A simplified massing of the scheme: two flanking towers, a set-back centre tower, the 130 m
-              sky bridge and the reflecting pool over the Financial Theatre. Drag to orbit.
-            </p>
-          </div>
-          <WireframeModel />
-        </Reveal>
-      )}
 
       {viewer !== null && (
         <Lightbox

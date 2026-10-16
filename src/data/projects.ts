@@ -54,6 +54,20 @@ export const mediaFor = (folder: string): Media[] => portfolio[folder] ?? []
 const photos = (srcs: string[], caption: string): Media[] =>
   srcs.map((src) => ({ src, kind: 'photo', caption }))
 
+/** Like photos(ordered(...)), but individual files can have their own caption. */
+function captioned(
+  images: Record<string, string>,
+  leadFile: string,
+  fallback: string,
+  captions: Record<string, string>,
+): Media[] {
+  const file = (path: string) => path.slice(path.lastIndexOf('/') + 1)
+  const entries = Object.entries(images)
+  return [...entries.filter(([p]) => file(p) === leadFile), ...entries.filter(([p]) => file(p) !== leadFile)].map(
+    ([p, src]) => ({ src, kind: 'photo', caption: captions[file(p)] ?? fallback }),
+  )
+}
+
 export type Status = 'Completed' | 'Under Construction' | 'Design' | 'Competition'
 
 interface ProjectData {
@@ -302,9 +316,14 @@ export const featured: FeaturedProject[] = [
     subtitle: 'Alfredo Harp Helú Stadium',
     location: 'Mexico City, Mexico',
     year: '2019',
+    // The portfolio PDF's concourse and seating-bowl photos are smaller crops of
+    // originals 5 and 7: the originals take those captions, the copies are left out.
     images: [
-      ...photos(ordered(diablosImages, 'FGP-ATELIER-DIABLOS-4.jpg'), 'Photograph'),
-      ...mediaFor('diablos'),
+      ...captioned(diablosImages, 'FGP-ATELIER-DIABLOS-4.jpg', 'Photograph', {
+        'FGP-ATELIER-DIABLOS-5.jpg': 'Concourse',
+        'FGP-ATELIER-DIABLOS-7.jpg': 'Seating bowl',
+      }),
+      ...mediaFor('diablos').filter((m) => m.caption !== 'Concourse' && m.caption !== 'Seating bowl'),
     ],
     quote: {
       text: 'Emerging as the new distinctive landmark of Mexico City and being the first stadium to be built in the capital in the last 50 years.',

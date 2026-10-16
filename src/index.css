@@ -490,11 +490,13 @@ kbd {
 .hero__word-inner {
   display: inline-flex;
 }
+/* Clip top and bottom only: the letters also slide sideways as they spread on
+   scroll, and a side clip would cut off their outer edges. */
 .hero__letter-clip {
   display: inline-block;
-  overflow: hidden;
-  padding: 0.08em 0.01em;
-  margin: -0.08em -0.01em;
+  padding: 0.08em 0;
+  margin: -0.08em 0;
+  clip-path: inset(0 -0.5em);
 }
 .hero__letter {
   display: inline-block;
@@ -888,6 +890,40 @@ kbd {
   background: var(--lime);
   color: var(--lime-ink);
 }
+/* The massing model as a gallery frame: it fills the stage and is dragged, not opened. */
+.featured__stage--model {
+  cursor: auto;
+  background: var(--ink);
+}
+.featured__stage--model .wireframe {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+}
+.featured__stage--model .featured__stage-meta {
+  top: 1rem;
+  bottom: auto;
+  color: var(--fg-2);
+  text-shadow: none;
+}
+.featured__stage--model .featured__stage-meta > span:first-child {
+  color: #fff;
+}
+.contact-sheet__frame--model {
+  display: grid;
+  place-items: center;
+  background: var(--ink);
+  border: 1px solid var(--line-1);
+}
+.contact-sheet__frame--model > i {
+  font: 600 1rem var(--mono);
+  font-style: normal;
+  letter-spacing: 0.08em;
+  color: var(--fg-4);
+}
+.contact-sheet__frame--model.is-active > i {
+  color: var(--lime);
+}
 .contact-sheet__select {
   position: absolute;
   inset: 0;
@@ -990,29 +1026,6 @@ cite {
   margin-top: 0.55em;
   border-radius: 50%;
   background: var(--fg-5);
-}
-
-.featured__model {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr);
-  gap: 2rem;
-  align-items: center;
-  margin-top: clamp(4rem, 8vw, 6rem);
-  padding: clamp(1.5rem, 3vw, 2.5rem);
-  border: 1px solid var(--line-1);
-  border-radius: var(--r-card);
-  background: var(--ink-1);
-}
-.featured__model h3 {
-  margin: 0 0 1rem;
-  font-size: clamp(1.75rem, 3vw, 2.5rem);
-  font-weight: 600;
-  letter-spacing: -0.04em;
-  line-height: 1.1;
-}
-.featured__model p {
-  color: var(--fg-3);
-  margin: 0;
 }
 
 .wireframe {
@@ -2105,7 +2118,6 @@ a.contact__cell:hover + .contact__copy {
 
 @media (max-width: 900px) {
   .featured__body,
-  .featured__model,
   .about {
     grid-template-columns: minmax(0, 1fr);
   }
@@ -2399,4 +2411,53 @@ a.contact__cell:hover + .contact__copy {
     grid-column: 2;
     gap: 1.1rem;
   }
+}
+
+/* ───────────── Custom cursor (see Cursor.tsx) ─────────────
+   Mouse only. The native cursor is hidden except in text fields. */
+html.has-cursor,
+html.has-cursor * {
+  cursor: none !important;
+}
+html.has-cursor :is(input, textarea, select, [contenteditable="true"]) {
+  cursor: text !important;
+}
+.cursor {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 9999;
+  pointer-events: none;
+  /* The dot is white in "difference" mode: black on paper, white on anything dark. */
+  mix-blend-mode: difference;
+}
+.cursor__blob {
+  position: absolute;
+  left: -44px;
+  top: -44px;
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #ffffff;
+  will-change: transform;
+}
+/* The labelled circle is a solid colour picked from what is under it. */
+.cursor--label {
+  mix-blend-mode: normal;
+}
+.cursor--label .cursor__blob {
+  background: var(--fg-1);
+  color: #f4f3f0;
+  transition: background-color 0.2s, color 0.2s;
+}
+.cursor--label.is-dark .cursor__blob {
+  background: #ffffff;
+  color: #0b0b0c;
+}
+.cursor__label {
+  font: 500 0.78rem var(--mono);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
 }

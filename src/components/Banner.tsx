@@ -223,6 +223,7 @@ const Card = memo(function Card({
     <motion.button
       type="button"
       className={`gcard gcard--${card.kind}${filteredOut ? ' is-out' : ''}`}
+      data-cursor="View"
       style={{ x: v.x, y: v.y, z: v.z, rotateX: v.rx, rotateY: v.ry, rotate: v.rz, scale: v.s, opacity: v.o }}
       onClick={() => onSelect(index)}
       onPointerEnter={() => onHover(index)}
@@ -605,6 +606,7 @@ export default function Banner({ onOpenProject }: { onOpenProject: (sheet: strin
       <div
         ref={stageRef}
         className={`gallery__stage gallery__stage--${mode}`}
+        data-cursor={mode === 'grid' ? undefined : 'Drag'}
         onPointerDown={onPointerDown}
         onPointerEnter={() => setHoveringStage(true)}
         onPointerLeave={() => {
