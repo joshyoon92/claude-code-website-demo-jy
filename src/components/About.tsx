@@ -10,7 +10,7 @@ export default function About() {
           <h2 className="display">
             From blueprints
             <br />
-            <Mark>to backends.</Mark>
+            <Mark>to Software.</Mark>
           </h2>
         </Reveal>
         <Reveal delay={0.1}>

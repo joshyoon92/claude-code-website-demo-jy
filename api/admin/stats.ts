@@ -34,7 +34,7 @@ const BREAKDOWN_KEYS = Object.keys(BREAKDOWNS) as (keyof typeof BREAKDOWNS)[]
 
 // The admin's own visitor IDs (first 8 characters, as shown on the dashboard),
 // from devices that never opened the dashboard. Add more here to hide them.
-const OWN_VISITORS = ['b89d494e', '405d9ef2']
+const OWN_VISITORS = ['7fda5b6a', 'b89d494e', 'd628a49a', '237fcda4', '405d9ef2']
 
 // Clicks that mean someone wants to get in touch.
 const CONTACT_TARGETS = ['email', 'linkedin', 'resume', 'phone']
