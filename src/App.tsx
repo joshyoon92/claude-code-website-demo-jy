@@ -4,6 +4,7 @@ import ArchitectureIntro from './components/ArchitectureIntro'
 import Banner from './components/Banner'
 import CommandPalette from './components/CommandPalette'
 import Contact from './components/Contact'
+import BackToTop from './components/BackToTop'
 import Cursor from './components/Cursor'
 import Featured from './components/Featured'
 import Hero from './components/Hero'
@@ -60,6 +61,7 @@ function App() {
         <PathMap />
         <Contact />
       </main>
+      <BackToTop />
       <Cursor />
       <CommandPalette open={paletteOpen} onClose={() => setPaletteOpen(false)} onOpenProject={openProject} />
     </>

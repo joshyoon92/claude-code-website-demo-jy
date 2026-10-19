@@ -2759,3 +2759,54 @@ html.has-cursor :is(input, textarea, select, [contenteditable="true"]) {
   margin: 0;
   white-space: nowrap;
 }
+
+/* ───────────── Back to top (BackToTop.tsx) ─────────────
+   LinkedIn blue reads on both the paper and the black sections. */
+.to-top {
+  position: fixed;
+  right: max(1.25rem, env(safe-area-inset-right, 0px));
+  bottom: calc(1.25rem + env(safe-area-inset-bottom, 0px));
+  z-index: 40; /* under the nav (50) and the image viewers */
+  width: 52px;
+  height: 52px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--lime);
+  box-shadow: 0 8px 24px rgba(11, 11, 12, 0.22);
+}
+.to-top svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke-width: 2;
+}
+.to-top__track {
+  stroke: rgba(255, 255, 255, 0.25);
+}
+.to-top__progress {
+  stroke: #ffffff;
+  stroke-linecap: round;
+  /* start the ring at twelve o'clock */
+  transform: rotate(-90deg);
+  transform-origin: 24px 24px;
+}
+.to-top__arrow {
+  stroke: #ffffff;
+  stroke-width: 2.25;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.to-top:focus-visible {
+  outline: 2px solid var(--fg-1);
+  outline-offset: 3px;
+}
+@media (max-width: 640px) {
+  .to-top {
+    width: 46px;
+    height: 46px;
+    right: max(1rem, env(safe-area-inset-right, 0px));
+    bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+  }
+}
